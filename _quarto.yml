@@ -15,6 +15,7 @@ format:
     theme:
       - lux
       - brand
+    backgroundcolor: "#F2E9E4"
     css: styles.css
     toc: true
 
