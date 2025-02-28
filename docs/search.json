@@ -1,16 +1,23 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "home",
+    "objectID": "project.html",
+    "href": "project.html",
+    "title": "project",
     "section": "",
-    "text": "Kirstin Lyon\n\n\nI am a data analyst with experience in Tableau, R, and Power BI. My work focuses on analysing and visualising data to support decision-making, particularly in the field of public health. I enjoy simplifying complex datasets and creating clear, informative visualisations that help others understand and use data effectively.\n\n\n\nCV\n\n\nLinkedIn\n\n\nMedium\n\n\nTableau Public\n\n\nGitHub\n\n\nR Apps (coming)\n\n\n\n\n\n\nProjects"
+    "text": "hello world!"
   },
   {
     "objectID": "about.html",
     "href": "about.html",
-    "title": "CV",
+    "title": "Hello",
     "section": "",
-    "text": "About this site\n\n1 + 1\n\n[1] 2"
+    "text": "Hello world"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Hello",
+    "section": "",
+    "text": "Kirstin Lyon\n\n\nTableau\nShiny\n\n\n\nI am a data analyst with experience in Tableau, R, and Power BI. My work focuses on analysing and visualising data to support decision-making, particularly in the field of public health. I enjoy simplifying complex datasets and creating clear, informative visualisations that help others understand and use data effectively."
   }
 ]

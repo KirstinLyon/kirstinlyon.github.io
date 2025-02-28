@@ -1,9 +1,6 @@
 ---
-title: "CV"
+format: html
+css: styles.css  # Make sure the file name matches exactly
 ---
 
-About this site
-
-```{r}
-1 + 1
-```
+Hello world

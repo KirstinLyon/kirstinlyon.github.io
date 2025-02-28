@@ -3,16 +3,32 @@ project:
   output-dir: docs
 
 website:
-  title: "MLTwelve"
+  title: Hello
+  navbar:
+    left:
+      - text: "CV"
+        href: about.html
+      - text: "Projects"
+        href: project.html
+      - text: "Contact Me"
+        href: mailto:kirstin@mltwelve.com
+    
+    tools:
+        - icon: github
+          href: https://github.com/KirstinLyon
+        - icon: linkedin
+          href: https://www.linkedin.com/in/kirstin-lyon-0320012a/
+        - icon: medium
+          href: https://medium.com/@kirstin.lyon
+        - icon: tableau
+          href: https://public.tableau.com/app/profile/kirstin.lyon5886/vizzes
 
 format:
   html:
     theme:
-      - lux
+      - flatly
       - brand
     backgroundcolor: "#F2E9E4"
     css: styles.css
     toc: false
-
-editor: visual
 
