@@ -1,11 +1,45 @@
 ---
-title: "MLTwelve"
+title: "home"
+format: html
+css: styles.css  # Make sure the file name matches exactly
 ---
 
-This is a Quarto website.
+<div class = "container" >
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+<!-- Left Column -->
 
-```{r}
-1 + 1
-```
+<div class = "left-column">
+
+<p> Kirstin Lyon </p>
+
+<p> I am a **data analyst** with experience in **Tableau**, **R**, and **Power BI**. My work focuses on analysing and visualising data to support decision-making, particularly in the field of **public health**.
+I enjoy simplifying complex datasets and creating clear, informative
+visualisations that help others understand and use data effectively. </p>
+
+<ul class = "no-bullets">
+
+<li> <a href="about">CV</a> </li>
+
+<li> <a href="https://www.linkedin.com/in/kirstin-lyon-0320012a/">LinkedIn</a> </li>
+
+<li> <a href="https://medium.com/@kirstin.lyon">Medium</a> </li>
+
+<li> <a href="https://public.tableau.com/app/profile/kirstin.lyon5886/vizzes">Tableau Public</a> </li>
+
+<li> <a href="https://github.com/KirstinLyon">GitHub</a> </li>
+
+<li> <a href="https://kirstinlyon.shinyapps.io/">R Apps (coming)</a> </li>
+
+</ul>
+
+</div>
+
+<!-- Right Column -->
+
+<div class = "right-column">
+
+<p> Projects </p>
+
+</div>
+
+</div>

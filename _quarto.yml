@@ -4,12 +4,6 @@ project:
 
 website:
   title: "MLTwelve"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
-      - test.qmd
 
 format:
   html:
@@ -18,7 +12,7 @@ format:
       - brand
     backgroundcolor: "#F2E9E4"
     css: styles.css
-    toc: true
+    toc: false
 
 editor: visual
 

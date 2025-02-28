@@ -1,1 +1,54 @@
-/* css styles */
+/* styles.css */
+
+  h1.title {
+    display: none; /* Hide the title */
+  }
+
+
+.container {
+  display: flex;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.left-column {
+  width: 35%;
+  padding: 10px;
+}
+
+.right-column {
+  width: 65%;
+  padding: 10px;
+}
+
+.project img {
+  width: 100%;
+  max-width: 400px;
+}
+
+.no-bullets {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.left-column h2 {
+  color: #F2E9E4; /* Change heading color */
+}
+
+.left-column h3 {
+  color: #F2E9E4; /* Change heading color */
+}
+
+.left-column p {
+  color: #F2E9E4; /* Change paragraph color */
+}
+
+.left-column a {
+  color: #A8E9F0; /* Change link color */
+}
+
+.left-column {
+  background-color: #062023; /* dark*/
+  padding: 20px; /* Add some padding for better spacing */
+}
