@@ -1,10 +1,10 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "MLTwelve",
+    "objectID": "two_column_test.html",
+    "href": "two_column_test.html",
+    "title": "two column test",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+    "text": "&lt;h2&gt;About Me&lt;/h2&gt;\n&lt;p&gt;Some text about yourself goes here.&lt;/p&gt;\n&lt;h3&gt;Links&lt;/h3&gt;\n&lt;ul&gt;\n  &lt;li&gt;&lt;a href=\"https://example.com\"Link 1&lt;/a&gt;&lt;/li&gt;\n  &lt;li&gt;&lt;a href=\"https://example.com\"Link 2&lt;/a&gt;&lt;/li&gt;\n  &lt;li&gt;&lt;a href=\"https://example.com\"Link 3&lt;/a&gt;&lt;/li&gt;\n&lt;/ul&gt;\n\n\n\n&lt;h2&gt;Projects&lt;/h2&gt;\n\n&lt;div class=\"project\"&gt;\n  &lt;h3&gt;Project 1&lt;/h3&gt;\n  &lt;img src=\"path/to/image1.jpg\" alt=\"Project 1 Image\" style=\"width:100%; max-width:400px;\"&gt;\n  &lt;p&gt;Description of Project 1.&lt;/p&gt;\n  &lt;a href=\"https://example.com/project1\"Learn More&lt;/a&gt;\n&lt;/div&gt;\n\n&lt;div class=\"project\"&gt;\n  &lt;h3&gt;Project 2&lt;/h3&gt;\n  &lt;img src=\"path/to/image2.jpg\" alt=\"Project 2 Image\" style=\"width:100%; max-width:400px;\"&gt;\n  &lt;p&gt;Description of Project 2.&lt;/p&gt;\n  &lt;a href=\"https://example.com/project2\"Learn More&lt;/a&gt;\n&lt;/div&gt;"
   },
   {
     "objectID": "about.html",
@@ -12,5 +12,12 @@
     "title": "CV",
     "section": "",
     "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "MLTwelve",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
   }
 ]

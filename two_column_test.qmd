@@ -1,0 +1,58 @@
+---
+title: "two column test"
+---
+
+```{=html}
+<style>
+  .container {
+    display: flex;
+  }
+  .left-column {
+    width: 30%;
+    padding: 10px;
+  }
+  .right-column {
+    width: 70%;
+    padding: 10px;
+  }
+</style>
+```
+
+::::: container
+<!-- Left Column -->
+
+::: left-column
+```         
+<h2>About Me</h2>
+<p>Some text about yourself goes here.</p>
+<h3>Links</h3>
+<ul>
+  <li><a href="https://example.com"Link 1</a></li>
+  <li><a href="https://example.com"Link 2</a></li>
+  <li><a href="https://example.com"Link 3</a></li>
+</ul>
+```
+:::
+
+<!-- Right Column -->
+
+::: right-column
+```         
+<h2>Projects</h2>
+
+<div class="project">
+  <h3>Project 1</h3>
+  <img src="path/to/image1.jpg" alt="Project 1 Image" style="width:100%; max-width:400px;">
+  <p>Description of Project 1.</p>
+  <a href="https://example.com/project1"Learn More</a>
+</div>
+
+<div class="project">
+  <h3>Project 2</h3>
+  <img src="path/to/image2.jpg" alt="Project 2 Image" style="width:100%; max-width:400px;">
+  <p>Description of Project 2.</p>
+  <a href="https://example.com/project2"Learn More</a>
+</div>
+```
+:::
+:::::
