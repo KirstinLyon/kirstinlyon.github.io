@@ -1,18 +1,30 @@
+
 ---
-format: html
-css: styles.css  # Make sure the file name matches exactly
+title: "Kirstin Lyon"
+about:
+  id: hero-heading
+  template: jolla
+  image: images/me.jpg
+  image-width: 150px
+  links:
+    - icon: github
+      text: GitHub
+      href: https://github.com/KirstinLyon
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/kirstin-lyon-0320012a/
+    - icon: medium
+      text: Medium
+      href: https://medium.com/@kirstin.lyon
+    - icon: envelope
+      text: Contact
+      href: mailto:kirstin@mltwelve.com
+    - text: Tableau
+      href: https:https://public.tableau.com/app/profile/kirstin.lyon5886/vizzes
 ---
 
-<h2>Kirstin Lyon</h2>
 
-<div class="button-container">
 
-<a href="https://public.tableau.com/app/profile/kirstin.lyon5886/vizzes" class = "btn btn-outline-dark">Tableau</a>
+Kirstin is a data analyst with experience in Tableau, R, and Power BI. Her work focuses on analysing and visualising data to support decision-making, particularly in the field of public health. Kirstin enjoys simplifying complex datasets and creating clear, informative visualisations that help others understand and use data effectively
 
-<a href="https://kirstinlyon.shinyapps.io/" class = "btn btn-outline-dark">Shiny</a>
 
-</div>
-
-<br>
-
-<p>I am a data analyst with experience in Tableau, R, and Power BI. My work focuses on analysing and visualising data to support decision-making, particularly in the field of public health. I enjoy simplifying complex datasets and creating clear, informative visualisations that help others understand and use data effectively.</p>

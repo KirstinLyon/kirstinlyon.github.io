@@ -4,3 +4,7 @@ css: styles.css  # Make sure the file name matches exactly
 ---
 
 Hello world
+
+<a href="https://public.tableau.com/app/profile/kirstin.lyon5886/vizzes" class = "btn btn-outline-dark">Tableau</a>
+
+<a href="https://kirstinlyon.shinyapps.io/" class = "btn btn-outline-dark">Shiny</a>
