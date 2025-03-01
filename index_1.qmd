@@ -1,8 +1,0 @@
----
-format: html
-css: styles.css  # Make sure the file name matches exactly
----
-
-<h2>Kirstin Lyon</h2>
-
-<p>I am a data analyst with experience in Tableau, R, and Power BI. My work focuses on analysing and visualising data to support decision-making, particularly in the field of public health. I enjoy simplifying complex datasets and creating clear, informative visualisations that help others understand and use data effectively.</p>

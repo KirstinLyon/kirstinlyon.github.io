@@ -2,29 +2,22 @@
   {
     "objectID": "project.html",
     "href": "project.html",
-    "title": "project",
+    "title": "",
     "section": "",
-    "text": "hello world!"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Kirstin Lyon",
-    "section": "",
-    "text": "Kirstin is a data analyst with experience in Tableau, R, and Power BI. Her work focuses on analysing and visualising data to support decision-making, particularly in the field of public health. Kirstin enjoys simplifying complex datasets and creating clear, informative visualisations that help others understand and use data effectively"
+    "text": "test post 2\n\n\n\ntest2\n\n\n\na description\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ntest post\n\n\n\ntest\n\n\n\na description\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "about.html",
     "href": "about.html",
     "title": "",
     "section": "",
-    "text": "Hello world\nTableau\nShiny"
+    "text": "Experience\n\n\n\nData & Analytics\n\n\nProject Manager/ PMO\n\n\n\nEducation\n\n\nSkills\n\n\n\n\n\ncontent"
   },
   {
-    "objectID": "index_1.html",
-    "href": "index_1.html",
-    "title": "",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Kirstin Lyon",
     "section": "",
-    "text": "Kirstin Lyon\n\n\nI am a data analyst with experience in Tableau, R, and Power BI. My work focuses on analysing and visualising data to support decision-making, particularly in the field of public health. I enjoy simplifying complex datasets and creating clear, informative visualisations that help others understand and use data effectively."
+    "text": "Kirstin is a data analyst with experience in Tableau, R, and PowerBI. Her work focuses on analysing and visualising data to support decision-making, particularly in the field of public health. Kirstin enjoys simplifying complex datasets and creating clear, informative visualisations that help others understand and use data effectively"
   }
 ]

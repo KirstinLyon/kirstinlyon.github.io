@@ -44,6 +44,29 @@ body {
   color: #04828B; /* Change link color */
 }
 
+.no-bullets {
+  list-style-type: none; /* Removes bullets */
+  padding: 0; /* Removes default padding */
+}
+
+.no-bullets li {
+  margin-bottom: 15px; /* Adds 15px spacing below each list item */
+  line-height: 1.6; /* Increases the line height */
+}
+
+
+.no-bullets ul {
+  padding-left: 20px;
+  margin-top: 5px;
+}
+
+
+.no-bullets ul li {
+  font-style: italic;
+  color: #555;
+}
+
+
 
 .button-container {
   display: flex; /* Use Flexbox */

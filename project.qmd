@@ -1,5 +1,7 @@
 ---
-title: "project"
+listing: 
+    contents: posts
+    type: grid
+    sort: date
+    categories: true
 ---
-
-hello world!

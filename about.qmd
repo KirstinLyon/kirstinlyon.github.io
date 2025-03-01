@@ -3,8 +3,38 @@ format: html
 css: styles.css  # Make sure the file name matches exactly
 ---
 
-Hello world
+<!-- Left Column -->
 
-<a href="https://public.tableau.com/app/profile/kirstin.lyon5886/vizzes" class = "btn btn-outline-dark">Tableau</a>
+<div class = "container">
 
-<a href="https://kirstinlyon.shinyapps.io/" class = "btn btn-outline-dark">Shiny</a>
+<div class = "left-column">
+
+<ul class = "no-bullets">
+
+<li>Experience</li>
+
+<ul class = "no-bullets">
+
+<li>Data & Analytics</li>
+
+<li>Project Manager/ PMO</li>
+
+</ul>
+
+<li>Education</li>
+
+<li>Skills</li>
+
+</ul>
+
+</div>
+
+<!-- Right Column -->
+
+<div class = "right-column">
+
+content
+
+</div>
+
+</div>
