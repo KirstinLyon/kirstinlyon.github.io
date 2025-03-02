@@ -16,11 +16,11 @@ about:
     - icon: medium
       text: Medium
       href: https://medium.com/@kirstin.lyon
+    - text: Tableau
+      href: https:https://public.tableau.com/app/profile/kirstin.lyon5886/vizzes
     - icon: envelope
       text: Contact
       href: mailto:kirstin@mltwelve.com
-    - text: Tableau
-      href: https:https://public.tableau.com/app/profile/kirstin.lyon5886/vizzes
 ---
 
 

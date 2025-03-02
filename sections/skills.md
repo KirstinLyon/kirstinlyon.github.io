@@ -1,5 +1,5 @@
 ---
-title: "Skill"
+title: "Tools, Languages & Datasets"
 format:
   html:
     include-in-header:
@@ -17,26 +17,36 @@ format:
 - Organiser for the Copenhagen Tableau User Group (TUG) between 2015-2018.
 - Speaker at the Tableau Confenfernce Europe 2016 in London.
 
-see: 
-- [Projects](https://public.tableau.com/app/profile/kirstin.lyon5886/vizzes)
-- [All Tableau Posts](/categories/tableau/index.html)
-
+See:
+<div class = "right-column">
+- <a href="https://public.tableau.com/app/profile/kirstin.lyon5886/vizzes" target="_blank">Tableau Public</a>
+- <a href="https://mltwelve.com/project.html#category=tableau" onclick="window.top.location.href=this.href; return false;">All Tableau Posts</a>
+</div>
 
 ### R
 - Three years of experience in R programming.
 - Tidyverse, Quarto
 - Package creation
 
-see:
-- [mozr (contributer)]()  
-- [sismar (contributer): Support processing of data from Mozambique's Ministry of Health] (https://github.com/usaid-mozambique/sismar) 
-- [twb2r](https://github.com/KirstinLyon/TWB2R)
-- [blingr: Processing USAID financial data] ()
-- [All R Posts](/categories/r/index.html)
-
-
+See:
+<div class = "right-column">
+- <a href="https://github.com/usaid-mozambique/mozR" target="_blank">mozr (contributer)</a>
+- <a href="https://github.com/usaid-mozambique/sismar" target="_blank">sismar (contributer)</a>
+- <a href="https://github.com/KirstinLyon/TWB2R" target="_blank">twb2r</a>
+- <a href="https://github.com/usaid-mozambique/blingr" target="_blank">blingr: Processing USAID financial data (Incomplete)</a>
+- <a href="https://mltwelve.com/project.html#category=r" onclick="window.top.location.href=this.href; return false;">All R Posts</a>
+</div>
 
 ### Other
-- [GitHub] ()
-- PowerBI: Project for Mozambique ministry of health relating to maternal and child health.
+<div class = "right-column">
+- <a href="https://github.com/KirstinLyon" target="_blank">GitHub</a>
+- PowerBI: Project for Mozambique Ministry of Health relating to maternal and child health.
+</div>
+
+### Specialised Datasets
+
+- US President's Emergency Plan for AIDS Relief (PEPFAR) data (focused on TB and HIV)
+- Naomi Spectrum data (UNAIDS)
+
+
 

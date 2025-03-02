@@ -2,44 +2,9 @@
   {
     "objectID": "sections/skills.html",
     "href": "sections/skills.html",
-    "title": "Skill",
+    "title": "Tools, Languages & Datasets",
     "section": "",
-    "text": "Tableau\n\nEleven years of creating Tableau dashboards in banking, biotech, and public health.\nOrganiser for the Copenhagen Tableau User Group (TUG) between 2015-2018.\nSpeaker at the Tableau Confenfernce Europe 2016 in London.\n\nsee: - Projects - All Tableau Posts\n\n\nR\n\nThree years of experience in R programming.\nTidyverse, Quarto\nPackage creation\n\nsee: - mozr (contributer)\n- [sismar (contributer): Support processing of data from Mozambique’s Ministry of Health] (https://github.com/usaid-mozambique/sismar) - twb2r - [blingr: Processing USAID financial data] () - All R Posts\n\n\nOther\n\n[GitHub] ()\nPowerBI: Project for Mozambique ministry of health relating to maternal and child health."
-  },
-  {
-    "objectID": "sections/education.html",
-    "href": "sections/education.html",
-    "title": "Education",
-    "section": "",
-    "text": "hello world"
-  },
-  {
-    "objectID": "sections/data.html",
-    "href": "sections/data.html",
-    "title": "Data Analyst",
-    "section": "",
-    "text": "experience"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "",
-    "section": "",
-    "text": "Professional Experience\n      \n      \n      Data Analyst\n      Project Manager / PMO\n      \n      \n      Education\n      Skills"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Kirstin Lyon",
-    "section": "",
-    "text": "Kirstin is a data analyst with experience in Tableau, R, and PowerBI. Her work focuses on analysing and visualising data to support decision-making, particularly in the field of public health. Kirstin enjoys simplifying complex datasets and creating clear, informative visualisations that help others understand and use data effectively"
-  },
-  {
-    "objectID": "project.html",
-    "href": "project.html",
-    "title": "",
-    "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nART Coverage in DR Congo\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Tableau\n\nEleven years of creating Tableau dashboards in banking, biotech, and public health.\nOrganiser for the Copenhagen Tableau User Group (TUG) between 2015-2018.\nSpeaker at the Tableau Confenfernce Europe 2016 in London.\n\nSee:\n\n\nTableau Public\nAll Tableau Posts\n\n\n\n\nR\n\nThree years of experience in R programming.\nTidyverse, Quarto\nPackage creation\n\nSee:\n\n\nmozr (contributer)\nsismar (contributer)\ntwb2r\nblingr: Processing USAID financial data (Incomplete)\nAll R Posts\n\n\n\n\nOther\n\n\nGitHub\nPowerBI: Project for Mozambique Ministry of Health relating to maternal and child health.\n\n\n\n\nSpecialised Datasets\n\nUS President’s Emergency Plan for AIDS Relief (PEPFAR) data (focused on TB and HIV)\nNaomi Spectrum data (UNAIDS)"
   },
   {
     "objectID": "sections/default.html",
@@ -54,5 +19,47 @@
     "title": "",
     "section": "",
     "text": "Select a section to update content."
+  },
+  {
+    "objectID": "project.html",
+    "href": "project.html",
+    "title": "",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nART Coverage in DR Congo\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Kirstin Lyon",
+    "section": "",
+    "text": "Kirstin is a data analyst with experience in Tableau, R, and PowerBI. Her work focuses on analysing and visualising data to support decision-making, particularly in the field of public health. Kirstin enjoys simplifying complex datasets and creating clear, informative visualisations that help others understand and use data effectively"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "",
+    "section": "",
+    "text": "Professional Experience\n      \n      \n      Data Analyst\n      Project Manager / PMO\n      \n      \n      Education\n      Tools, Langauges & Datasets\n      Teaching, Presentation & User Groups"
+  },
+  {
+    "objectID": "sections/data.html",
+    "href": "sections/data.html",
+    "title": "Data Analyst",
+    "section": "",
+    "text": "experience"
+  },
+  {
+    "objectID": "sections/education.html",
+    "href": "sections/education.html",
+    "title": "Education",
+    "section": "",
+    "text": "hello world"
+  },
+  {
+    "objectID": "sections/sharing.html",
+    "href": "sections/sharing.html",
+    "title": "Teaching, Presentations & User Groups",
+    "section": "",
+    "text": "Teaching\n\nIntroduction to GitHub @ USAID Mozambique (USAID and CDC Teams)\n\nJan. 2024\n\nIntroduction to Tableau @ USAID Mozambique (USAID and CDC Teams)\n\nJan. 2024\n\nTableau Instructor @ Novozymes\n\nDec 2015 - July 2019\n\nTableau Instructor @ Danske Bank\n\nDec 2014 - June 2016\n\n\n\n\nPresentations\n\nSpeaker @ DataViz CPH: “How to Freelance in Data Viz”\n\nSep. 21\n\nSpeaker @DataViz CPH: “Creating a Management Dashboard: What Can Possibly Go Wrong?”\n\nMar. 20\n\nSpeaker @ Visual Agency meetup: “Jumping into Competitive Trampoline Data”\n\nMar. 20\n\nSpeaker @ DataViz CPH: “Jumping into Competitive Trampoline Data”\n\nJune 19\n\nSpeaker @ London Tableau User Group: “From Land and Expand to Self-Service BI with Internal User Communities”\n\nSep. 17\n\nSpeaker @ Tableau Conference on Tour (London): “From Land and Expand to Self-Service BI with Internal User Communities”\n\nJune 17\n\nSpeaker @ Danske Bank Tableau Day: “Creating a Management Dashboard for Danske Bank”\n\nSep. 15\n\nSpeaker @ Copenhagen Tableau User Group: “Creating a Management Dashboard for Danske Bank”\n\nAug. 15\n\n\n\n\nUser Groups\n\nOrganiser @ DataViz CPH (2019-2021)\n\nAll things related to Data Visualisation in the Copenhagen area.\n\nOrganiser @ Copenhagen Tableau User Group (2015-2018)\n\nAll things related to Tableau in the Copenhagen area.\n\n\n\n\nOther\n\nTableau User Group Ambassador (2016-2019)\n\nReceived recognition from Tableau for organising the Copenhagen Tableau User Group."
   }
 ]

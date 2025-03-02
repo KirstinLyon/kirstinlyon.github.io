@@ -85,6 +85,15 @@ body {
   display: none;
 }
 
+  .right-column a {
+    color: #333f4f; /* Change to your desired color */
+    text-decoration: none; /* Optional: Remove underline */
+  }
+
+  .right-column a:hover {
+    color: #ff5733; /* Change to your desired hover color */
+  }
+
 /* Show the active section */
 .right-column section.active {
   display: block;

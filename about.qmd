@@ -14,7 +14,8 @@ css: styles.css  # Make sure the file name matches exactly
       </ul>
       
       <li><a href="sections/education.html" target="content-frame">Education</a></li>
-      <li><a href="sections/skills.html" target="content-frame">Skills</a></li>
+      <li><a href="sections/skills.html" target="content-frame">Tools, Langauges & Datasets</a></li>
+      <li><a href="sections/sharing.html" target="content-frame">Teaching, Presentation & User Groups</a></li>
     </ul>
   </div>
 
