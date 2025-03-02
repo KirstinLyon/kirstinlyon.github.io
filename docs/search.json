@@ -1,24 +1,31 @@
 [
   {
-    "objectID": "sections/education.html",
-    "href": "sections/education.html",
-    "title": "Data Analytics",
+    "objectID": "sections/skills.html",
+    "href": "sections/skills.html",
+    "title": "Skill",
     "section": "",
-    "text": "Details about your overall experience."
+    "text": "skills experience"
   },
   {
-    "objectID": "sections/education.html#experience",
-    "href": "sections/education.html#experience",
-    "title": "Data Analytics",
+    "objectID": "sections/education.html",
+    "href": "sections/education.html",
+    "title": "Education",
     "section": "",
-    "text": "Details about your overall experience."
+    "text": "hello world"
+  },
+  {
+    "objectID": "sections/data.html",
+    "href": "sections/data.html",
+    "title": "Data Analyst",
+    "section": "",
+    "text": "experience"
   },
   {
     "objectID": "about.html",
     "href": "about.html",
     "title": "",
     "section": "",
-    "text": "Experience\n      \n        Data & Analytics\n        Project Manager/ PMO\n      \n      Education\n      Skills\n    \n  \n\n  \n  \n    \n      Experience\n      Details about your overall experience.\n    \n\n    \n      Data & Analytics\n      Details about your data and analytics experience.\n    \n\n    \n      Project Manager/ PMO\n      Details about your project management experience.\n    \n\n    \n      Education\n      Details about your education.\n    \n\n    \n      Skills\n      Details about your skills."
+    "text": "Professional Experience\n      \n      \n      Data Analyst\n      Project Manager / PMO\n      \n      \n      Education\n      Skills"
   },
   {
     "objectID": "index.html",
@@ -33,5 +40,19 @@
     "title": "",
     "section": "",
     "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nART Coverage in DR Congo\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "sections/default.html",
+    "href": "sections/default.html",
+    "title": "",
+    "section": "",
+    "text": "Select a section to update content."
+  },
+  {
+    "objectID": "sections/default.html#some-header",
+    "href": "sections/default.html#some-header",
+    "title": "",
+    "section": "",
+    "text": "Select a section to update content."
   }
 ]

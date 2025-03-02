@@ -1,5 +1,4 @@
 ---
-title: "Education"
 format:
   html:
     include-in-header:
@@ -11,6 +10,5 @@ format:
           }
         </style>
 ---
-
-
-hello world
+## Some header
+Select a section to update content.

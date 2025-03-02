@@ -1,5 +1,5 @@
 ---
-title: "Education"
+title: "Project Management / PMO"
 format:
   html:
     include-in-header:
@@ -11,6 +11,3 @@ format:
           }
         </style>
 ---
-
-
-hello world

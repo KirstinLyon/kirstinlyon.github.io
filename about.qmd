@@ -4,47 +4,23 @@ css: styles.css  # Make sure the file name matches exactly
 ---
 ```{=html}
 <div class="container">
-  <!-- Left Column -->
   <div class="left-column">
-    <ul class="no-bullets">
-      <li><a onclick="showSection('experience')">Experience</a></li>
-      <ul class="no-bullets">
-        <li><a onclick="showSection('data-analytics')">Data & Analytics</a></li>
-        <li><a onclick="showSection('project-manager')">Project Manager/ PMO</a></li>
+    <ul class = "no-bullets">
+      <li>Professional Experience</li>
+      
+      <ul class = "no-bullets">
+      <li><a href="sections/data.html" target="content-frame">Data Analyst</a></li>
+      <li><a href="sections/pm_pmo.html" target="content-frame">Project Manager / PMO</a></li>
       </ul>
-      <li><a onclick="showSection('education')">Education</a></li>
-      <li><a onclick="showSection('skills')">Skills</a></li>
+      
+      <li><a href="sections/education.html" target="content-frame">Education</a></li>
+      <li><a href="sections/skills.html" target="content-frame">Skills</a></li>
     </ul>
   </div>
 
-  <!-- Right Column -->
   <div class="right-column">
-    <section id="experience" class="active">
-      <h2>Experience</h2>
-      <p>Details about your overall experience.</p>
-    </section>
-
-    <section id="data-analytics">
-      <h2>Data & Analytics</h2>
-      <p>Details about your data and analytics experience.</p>
-    </section>
-
-    <section id="project-manager">
-      <h2>Project Manager/ PMO</h2>
-      <p>Details about your project management experience.</p>
-    </section>
-
-    <section id="education">
-      <h2>Education</h2>
-      <p>Details about your education.</p>
-    </section>
-
-    <section id="skills">
-      <h2>Skills</h2>
-      <p>Details about your skills.</p>
-    </section>
+    <iframe name="content-frame" src="sections/default.html" width="100%" height="500px" style="border: none;"></iframe>
   </div>
 </div>
-
 
 ```
