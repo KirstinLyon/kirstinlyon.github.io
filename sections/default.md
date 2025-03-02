@@ -10,5 +10,4 @@ format:
           }
         </style>
 ---
-## Some header
 Select a section to update content.

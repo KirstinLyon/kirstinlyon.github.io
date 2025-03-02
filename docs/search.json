@@ -7,6 +7,13 @@
     "text": "Tableau\n\nEleven years of creating Tableau dashboards in banking, biotech, and public health.\nOrganiser for the Copenhagen Tableau User Group (TUG) between 2015-2018.\nSpeaker at the Tableau Confenfernce Europe 2016 in London.\n\nSee:\n\n\nTableau Public\nAll Tableau Posts\n\n\n\n\nR\n\nThree years of experience in R programming.\nTidyverse, Quarto\nPackage creation\n\nSee:\n\n\nmozr (contributer)\nsismar (contributer)\ntwb2r\nblingr: Processing USAID financial data (Incomplete)\nAll R Posts\n\n\n\n\nOther\n\n\nGitHub\nPowerBI: Project for Mozambique Ministry of Health relating to maternal and child health.\n\n\n\n\nSpecialised Datasets\n\nUS President’s Emergency Plan for AIDS Relief (PEPFAR) data (focused on TB and HIV)\nNaomi Spectrum data (UNAIDS)"
   },
   {
+    "objectID": "sections/pm_pmo.html",
+    "href": "sections/pm_pmo.html",
+    "title": "Project Management / PMO",
+    "section": "",
+    "text": "Project Manager in PMO, Estonian Money Laundering Investigation @ Compliance, Danske Bank (Aug. 2019 - May 2020)\n\nCoordinated the Data Governance working groups across Danske Bank, External Legal Counsel, and external management consultant teams who specialise in money laundering Aug. 19-May 20 cases, and an external team specialising in money laundering data. Supported PMO with various project management process including budgeting, resourcing, and project planning.\n\n\n\nProject Manager @ Capgemini, Denmark (May 2011 - June 2014)\n\nRole: Test Manager for Maersk Drilling / Maersk Supply Services. Maersk was rolling out a new ERP solution within the Drilling and Supply Services divisions. I joined during the test phase to support them with the final testing of the software before going live.\nRole: PMO for Maersk Line IT. Maersk IT were rolling out a new analytics platform within their IT department. I joined as a part of the PMO team to support the coordination of the internal Maersk team and an external software supplier.\nRole: Transformation team responsible for data at IKEA. After the transition was complete, I joined the transformation team responsible for creating an overview of staffing needs in the project.\nRole: Project Manager in Capgemini PMO at IKEA. Deputy-lead of a PMO team of 18 FTE’s. One member of the team was based in Sweden, the other team members were split between Bangalore and Mumbai. Responsible for establishing a PMO, general reporting, supporting the creation of metrics between IKEA and Capgemini, as well as many ad hoc activities. The project consisted of around 400 FTEs in a global team.\n\n\n\nProject Manager @ Danske Bank (June 2008 - Apr. 2011)\n\nRole: Program Manager for Transformation Programme of IT Outsourcing contract. Responsible for overseeing the six projects that were included in this programme which transferred voice services from the former external supplier to a new supplier.\nRole: Project manager for Governance (2 outsourcing agreements). Established the governance framework between Danske Bank and two external suppliers.\nRole: PMO IT Outsourcing Negotiations. Coordinated between internal Danske Bank, internal and external legal counsel, and external specialists. The contract was for IT services for a seven-year period between an external supplier and Danske Bank. The value of the contract was one of the largest in Denmark at the time.\nRole: Project Coordinator for CRM Project. Supported the IT project manager in implementing a new CRM system that was implemented in the Danske Bank group (Nordics + Northern Ireland). Created and visualised project process relating to general project status, budget, earned value analysis, as well as other project management processes."
+  },
+  {
     "objectID": "sections/default.html",
     "href": "sections/default.html",
     "title": "",
@@ -14,18 +21,18 @@
     "text": "Select a section to update content."
   },
   {
-    "objectID": "sections/default.html#some-header",
-    "href": "sections/default.html#some-header",
-    "title": "",
+    "objectID": "sections/academic.html",
+    "href": "sections/academic.html",
+    "title": "Academic",
     "section": "",
-    "text": "Select a section to update content."
+    "text": "Researcher @ Aalborg University Focus on how to search and re-find data in audio collections using visualisation techniques.\n\nOct. 02 – Feb. 08\n\nResearcher @ Glasgow Caledonian University Focus on the use of an online learning platform in the business faculty.\n\nSep. 01 – Jul. 02"
   },
   {
-    "objectID": "project.html",
-    "href": "project.html",
+    "objectID": "about.html",
+    "href": "about.html",
     "title": "",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nART Coverage in DR Congo\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Professional Experience\n      \n      \n      Data Analyst\n      Project Manager / PMO\n      Academic\n      \n      \n      Training, Certificates & Education\n      Tools, Langauges & Datasets\n      Teaching, Presentation & User Groups"
   },
   {
     "objectID": "index.html",
@@ -35,25 +42,25 @@
     "text": "Kirstin is a data analyst with experience in Tableau, R, and PowerBI. Her work focuses on analysing and visualising data to support decision-making, particularly in the field of public health. Kirstin enjoys simplifying complex datasets and creating clear, informative visualisations that help others understand and use data effectively"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
+    "objectID": "project.html",
+    "href": "project.html",
     "title": "",
     "section": "",
-    "text": "Professional Experience\n      \n      \n      Data Analyst\n      Project Manager / PMO\n      \n      \n      Education\n      Tools, Langauges & Datasets\n      Teaching, Presentation & User Groups"
+    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nART Coverage in DR Congo\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "sections/data.html",
     "href": "sections/data.html",
     "title": "Data Analyst",
     "section": "",
-    "text": "experience"
+    "text": "Data Analytics Consultant @ USAID Mozambique (Mar. 2024 – Dec. 2024)\n\nCreated Power BI dashboards for the Mozambique Ministry of Health, enabling effective visualization and analysis of Maternal and Child Health and Family Planning datasets. Supported the USAID IHO budget team by developing monthly and quarterly dashboards that integrated Phoenix and non-Phoenix datasets, using R for data preparation and analysis and Tableau for dashboard creation. Designed and implemented a Tableau dashboard to showcase Demographic Health Surveys (DHS) data, utilizing the RDHS package to streamline data extraction and visualization.\n\n\n\nData Analytics Consultant @ USAID Mozambique (Sep. 2023 – Feb. 2024)\n\nCreated program reporting for different teams within USAID Mozambique for both PEPFAR and Non-PEPFAR indicators using Tableau and R. Reports and analysis delivered include Awards, SISMA, Supply Chain, Epidemiological and Finance-related. Other tasks include training the SI team in Tableau and GitHub and providing ad hoc Tableau support.\n\n\n\nData Analytics Specialist @ USAID Mozambique\n\nCreated program reporting for different teams within USAID Mozambique for both PEPFAR and Non-PEPFAR indicators using Tableau and R. Reports delivered include TB, HIV Prevention, HIV Care and Treatment, Viral Load, TB Accelerator (national data), Supply Chain, and financial data. Analysis includes standard visuals and also detailed geographic analysis.\n\n\n\nSenior Data Analyst, Visualisation Specialist @ Panagora Group South Africa\n\nCreated program reporting for USAID clients for both PEPFAR and Non PEPFAR indicators using Tableau. Reports delivered include TB MER, monthly TX_TB and TPT, COVID-19 and TB, Local Sep. 21 – Jan. 23 TB Response reporting, HIV Prevention, and support for the creation of presentation material (COP). Other services included ad hoc support and training in Tableau.\n\n\n\nClub Administration and Sport Analytics @ Copenhagen Trampoline Club (Aug. 2020 - May. 2024)\n\nTechnical expert analysing data relating to trampoline performance, membership, economy, and capacity within the Club. Presents monthly data analysis to the board for strategic decision-making. Additionally, creating a prototype for trampoline coaching through analysis of competition results. Both the monthly reporting and prototype are created using Python for data preparation and analysis, and Tableau for data visualisation.\n\n\n\nFreelance Data Analyst, Pricing Development @Danske Bank (April 2020 - June 2020)\n\nCreated management dashboards using Tableau for product and pricing related data. Designed reports to highlight areas of change or improvement in processes related to pricing or costs.\n\n\n\nVisual Analytics Specialist and Owner @MLTwelve (July 2019 - now)\n\nCreate visual analytic products to help organisations big and small to understand their data, track improvement and communicate strategic decisions.\n\n\n\nTableau BI Analyst @ Novozymes (Dec. 2016 – June 2019)\n\nSupported the implementation of Tableau roll-out across the organization. Responsible for teaching Tableau, creating an internal community, providing support to different areas of the organisation, and a Tableau developer on other projects. Any team within the organisation could request teaching, support, or projects. Crafted dashboards for sales and opportunities for the finance and sales organisation, IT Asset Management, baking financial overview, Agronomy financial overview, and overviews for usage of Tableau server. Managed ad hoc requests and support.\n\n\n\nData Analyst @ Group Operational Risk, Danske Bank (July 2016 – Nov. 2016)\n\nData analyst for the yearly operational risk reporting. Extracted and prepared data using Alteryx, visualised data with Tableau.\n\n\n\nInformation Designer @ COO Business Banking, Danske Bank (Dec. 2014 – June 2016)\n\nExtracted and prepared data using SQL or Alteryx, visualised data in Tableau, and collaborated with internal customers at different levels of the hierarchy. Created various dashboards relating to internal finance, processes, customer satisfactions, budgeting, Mastercard usage, project and resource planning and risk management.\n\n\n\nData Analyst @ Group Process Development, Danske Bank (July 2014 - Nov. 2014)\n\nCreated dashboards to support customers onboarding process."
   },
   {
     "objectID": "sections/education.html",
     "href": "sections/education.html",
-    "title": "Education",
+    "title": "Training, Certificates & Education",
     "section": "",
-    "text": "hello world"
+    "text": "Training\n\nGeneral R training\n\nNov. 22\n\nDataViz Drawing with Stefanie Posavec @Graphic Hunters (1 day workshop) Apr. 18\n\n\n\nCertificates\n\nTableau Desktop Certified Professional @Tableau\n\nMay 18\n\nTableau Desktop Qualified Associate @Tableau\n\nJul. 17\n\nProfessional Scrum Master @scrum.org\n\nJan. 14\n\nPrince 2 Foundation @APMG International\n\nAug. 11\n\nPrince 2 Practitioner @APMG International\n\nAug. 11\n\n\n\n\nEducation\n\nPhD in Information Management & Human Computer Interaction @ Aalborg University, Denmark\n\nFeb. 04 – Feb. 08\n\nMSc in Information Technology @ Glasgow University, UK\n\nSep. 00 – Sep. 01\n\nBEd with Honours in Music & Education @ Glasgow University & Royal Conservatoire of Scotland, UK\n\nOct. 95 – July 99"
   },
   {
     "objectID": "sections/sharing.html",
