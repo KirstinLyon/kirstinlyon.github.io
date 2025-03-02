@@ -27,22 +27,17 @@ body {
 
 .left-column {
   background-color: #EADDD6; /* dark*/
-  width: 35%;
+  width: 30%;
   padding: 10px;
-  
-
+  border-right: 1px solid #ccc;
 }
+
 
 .right-column {
-  width: 65%;
+  width: 70%;
   padding: 10px;
 }
 
-
-
-.left-column a {
-  color: #04828B; /* Change link color */
-}
 
 .no-bullets {
   list-style-type: none; /* Removes bullets */
@@ -67,9 +62,30 @@ body {
 }
 
 
+/* Style links */
+.left-column a {
+  text-decoration: none;
+  color: #333f4f;
+  cursor: pointer;
+}
+
+.left-column a:hover {
+  text-decoration: underline;
+}
 
 .button-container {
   display: flex; /* Use Flexbox */
   flex-wrap: wrap; /* Wrap the buttons */
   gap: 10px; /* Space between buttons */
+}
+
+
+/* Hide all sections by default */
+.right-column section {
+  display: none;
+}
+
+/* Show the active section */
+.right-column section.active {
+  display: block;
 }

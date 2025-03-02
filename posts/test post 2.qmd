@@ -1,7 +1,0 @@
----
-title: "test post 2"
-description: "a description"
-categories: 
-    - test2
-image: "/images/placeholder.jpg"
----

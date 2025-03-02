@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>about</title>
+<title>about1</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -93,7 +93,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./about.html" aria-current="page"> 
+    <a class="nav-link" href="./about.html"> 
 <span class="menu-text">CV</span></a>
   </li>  
 </ul>
@@ -122,50 +122,60 @@ ul.task-list li input[type="checkbox"] {
   <!-- Left Column -->
   <div class="left-column">
     <ul class="no-bullets">
-      <li><a onclick="loadSection('experience')">Experience</a></li>
+      <li><a onclick="showSection('experience')">Experience</a></li>
       <ul class="no-bullets">
-        <li><a onclick="loadSection('data-analytics')">Data &amp; Analytics</a></li>
-        <li><a onclick="loadSection('project-manager')">Project Manager/ PMO</a></li>
+        <li><a onclick="showSection('data-analytics')">Data &amp; Analytics</a></li>
+        <li><a onclick="showSection('project-manager')">Project Manager/ PMO</a></li>
       </ul>
-      <li><a onclick="loadSection('education')">Education</a></li>
-      <li><a onclick="loadSection('skills')">Skills</a></li>
+      <li><a onclick="showSection('education')">Education</a></li>
+      <li><a onclick="showSection('skills')">Skills</a></li>
     </ul>
   </div>
 
   <!-- Right Column -->
-  <div class="right-column" id="content">
-    <!-- Default content -->
-    <p>Select a link to view details.</p>
+  <div class="right-column">
+    <section id="experience" class="active">
+      <h2 class="anchored">Experience</h2>
+      <p>Details about your overall experience.</p>
+    </section>
+
+    <section id="data-analytics">
+      <h2 class="anchored">Data &amp; Analytics</h2>
+      <p>Details about your data and analytics experience.</p>
+    </section>
+
+    <section id="project-manager">
+      <h2 class="anchored">Project Manager/ PMO</h2>
+      <p>Details about your project management experience.</p>
+    </section>
+
+    <section id="education">
+      <h2 class="anchored">Education</h2>
+      <p>Details about your education.</p>
+    </section>
+
+    <section id="skills">
+      <h2 class="anchored">Skills</h2>
+      <p>Details about your skills.</p>
+    </section>
   </div>
 </div>
 
 <script>
-  // Function to load the selected section
-  function loadSection(sectionId) {
-    const contentDiv = document.getElementById("content");
+  // Function to show the selected section
+  function showSection(sectionId) {
+    // Hide all sections
+    document.querySelectorAll('.right-column section').forEach(section => {
+      section.classList.remove('active');
+    });
 
-    // Prevent the default link behavior (e.g., navigating to a new page)
-    event.preventDefault();
-    
-    // Debug the file path
-    console.log(`Fetching: sections/${sectionId}.md`);
-
-    // Fetch the content from the external file
-    fetch(`/sections/${sectionId}.md`)
-      .then(response => response.text())
-      .then(data => {
-        // Render the Markdown content as HTML
-        contentDiv.innerHTML = marked.parse(data);
-      })
-      .catch(error => {
-        console.error("Error loading section:", error);
-        contentDiv.innerHTML = "<p>Error loading content.</p>";
-      });
+    // Show the selected section
+    const activeSection = document.getElementById(sectionId);
+    if (activeSection) {
+      activeSection.classList.add('active');
+    }
   }
 </script>
-
-<!-- Include the Marked.js library for Markdown rendering -->
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 
 

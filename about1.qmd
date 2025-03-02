@@ -1,0 +1,64 @@
+---
+format: html
+css: styles.css  # Make sure the file name matches exactly
+---
+```{=html}
+<div class="container">
+  <!-- Left Column -->
+  <div class="left-column">
+    <ul class="no-bullets">
+      <li><a onclick="showSection('experience')">Experience</a></li>
+      <ul class="no-bullets">
+        <li><a onclick="showSection('data-analytics')">Data & Analytics</a></li>
+        <li><a onclick="showSection('project-manager')">Project Manager/ PMO</a></li>
+      </ul>
+      <li><a onclick="showSection('education')">Education</a></li>
+      <li><a onclick="showSection('skills')">Skills</a></li>
+    </ul>
+  </div>
+
+  <!-- Right Column -->
+  <div class="right-column">
+    <section id="experience" class="active">
+      <h2>Experience</h2>
+      <p>Details about your overall experience.</p>
+    </section>
+
+    <section id="data-analytics">
+      <h2>Data & Analytics</h2>
+      <p>Details about your data and analytics experience.</p>
+    </section>
+
+    <section id="project-manager">
+      <h2>Project Manager/ PMO</h2>
+      <p>Details about your project management experience.</p>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+      <p>Details about your education.</p>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <p>Details about your skills.</p>
+    </section>
+  </div>
+</div>
+
+<script>
+  // Function to show the selected section
+  function showSection(sectionId) {
+    // Hide all sections
+    document.querySelectorAll('.right-column section').forEach(section => {
+      section.classList.remove('active');
+    });
+
+    // Show the selected section
+    const activeSection = document.getElementById(sectionId);
+    if (activeSection) {
+      activeSection.classList.add('active');
+    }
+  }
+</script>
+```

@@ -1,17 +1,31 @@
 [
   {
-    "objectID": "project.html",
-    "href": "project.html",
+    "objectID": "sections/education.html",
+    "href": "sections/education.html",
+    "title": "Data Analytics",
+    "section": "",
+    "text": "Details about your overall experience."
+  },
+  {
+    "objectID": "sections/education.html#experience",
+    "href": "sections/education.html#experience",
+    "title": "Data Analytics",
+    "section": "",
+    "text": "Details about your overall experience."
+  },
+  {
+    "objectID": "about1.html",
+    "href": "about1.html",
     "title": "",
     "section": "",
-    "text": "test post 2\n\n\n\ntest2\n\n\n\na description\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ntest post\n\n\n\ntest\n\n\n\na description\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Experience\n      \n        Data & Analytics\n        Project Manager/ PMO\n      \n      Education\n      Skills\n    \n  \n\n  \n  \n    \n      Experience\n      Details about your overall experience.\n    \n\n    \n      Data & Analytics\n      Details about your data and analytics experience.\n    \n\n    \n      Project Manager/ PMO\n      Details about your project management experience.\n    \n\n    \n      Education\n      Details about your education.\n    \n\n    \n      Skills\n      Details about your skills."
   },
   {
     "objectID": "about.html",
     "href": "about.html",
     "title": "",
     "section": "",
-    "text": "Experience\n\n\n\nData & Analytics\n\n\nProject Manager/ PMO\n\n\n\nEducation\n\n\nSkills\n\n\n\n\n\ncontent"
+    "text": "Experience\n      \n        Data & Analytics\n        Project Manager/ PMO\n      \n      Education\n      Skills\n    \n  \n\n  \n  \n    \n    Select a link to view details."
   },
   {
     "objectID": "index.html",
@@ -19,5 +33,12 @@
     "title": "Kirstin Lyon",
     "section": "",
     "text": "Kirstin is a data analyst with experience in Tableau, R, and PowerBI. Her work focuses on analysing and visualising data to support decision-making, particularly in the field of public health. Kirstin enjoys simplifying complex datasets and creating clear, informative visualisations that help others understand and use data effectively"
+  },
+  {
+    "objectID": "project.html",
+    "href": "project.html",
+    "title": "",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nART Coverage in DR Congo\n\n\n\n\n\n\n\nNo matching items"
   }
 ]

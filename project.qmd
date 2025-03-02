@@ -4,4 +4,9 @@ listing:
     type: grid
     sort: date
     categories: true
+    grid-item-border: true
+    sort-ui: true
+    fields: 
+        - title
+        - image
 ---

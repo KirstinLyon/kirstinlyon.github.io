@@ -1,40 +1,50 @@
----
-format: html
-css: styles.css  # Make sure the file name matches exactly
----
+```{=html}
+<div class="container">
+  <!-- Left Column -->
+  <div class="left-column">
+    <ul class="no-bullets">
+      <li><a onclick="loadSection('experience')">Experience</a></li>
+      <ul class="no-bullets">
+        <li><a onclick="loadSection('data-analytics')">Data & Analytics</a></li>
+        <li><a onclick="loadSection('project-manager')">Project Manager/ PMO</a></li>
+      </ul>
+      <li><a onclick="loadSection('education')">Education</a></li>
+      <li><a onclick="loadSection('skills')">Skills</a></li>
+    </ul>
+  </div>
 
-<!-- Left Column -->
-
-<div class = "container">
-
-<div class = "left-column">
-
-<ul class = "no-bullets">
-
-<li>Experience</li>
-
-<ul class = "no-bullets">
-
-<li>Data & Analytics</li>
-
-<li>Project Manager/ PMO</li>
-
-</ul>
-
-<li>Education</li>
-
-<li>Skills</li>
-
-</ul>
-
+  <!-- Right Column -->
+  <div class="right-column" id="content">
+    <!-- Default content -->
+    <p>Select a link to view details.</p>
+  </div>
 </div>
 
-<!-- Right Column -->
+<script>
+  // Function to load the selected section
+  function loadSection(sectionId) {
+    const contentDiv = document.getElementById("content");
 
-<div class = "right-column">
+    // Prevent the default link behavior (e.g., navigating to a new page)
+    event.preventDefault();
+    
+    // Debug the file path
+    console.log(`Fetching: sections/${sectionId}.md`);
 
-content
+    // Fetch the content from the external file
+    fetch(`/sections/${sectionId}.md`)
+      .then(response => response.text())
+      .then(data => {
+        // Render the Markdown content as HTML
+        contentDiv.innerHTML = marked.parse(data);
+      })
+      .catch(error => {
+        console.error("Error loading section:", error);
+        contentDiv.innerHTML = "<p>Error loading content.</p>";
+      });
+  }
+</script>
 
-</div>
-
-</div>
+<!-- Include the Marked.js library for Markdown rendering -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+```
