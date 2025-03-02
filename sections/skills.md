@@ -23,17 +23,20 @@ see:
 
 
 ### R
-- Tidyverse
-- 
+- Three years of experience in R programming.
+- Tidyverse, Quarto
+- Package creation
 
-Examples:
-- mozr : 
-- sismar: 
-- twb2r:
+see:
+- [mozr (contributer)]()  
+- [sismar (contributer): Support processing of data from Mozambique's Ministry of Health] (https://github.com/usaid-mozambique/sismar) 
+- [twb2r](https://github.com/KirstinLyon/TWB2R)
+- [blingr: Processing USAID financial data] ()
+- [All R Posts](/categories/r/index.html)
 
 
 
 ### Other
-- GitHub
-- PowerBI
+- [GitHub] ()
+- PowerBI: Project for Mozambique ministry of health relating to maternal and child health.
 
