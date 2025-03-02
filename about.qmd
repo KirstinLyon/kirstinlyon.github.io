@@ -1,3 +1,8 @@
+---
+format: html
+css: styles.css  # Make sure the file name matches exactly
+---
+
 ```{=html}
 <div class="container">
   <!-- Left Column -->
