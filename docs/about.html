@@ -24,7 +24,6 @@ ul.task-list li input[type="checkbox"] {
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
@@ -122,50 +121,46 @@ ul.task-list li input[type="checkbox"] {
   <!-- Left Column -->
   <div class="left-column">
     <ul class="no-bullets">
-      <li>Experience</li>
+      <li><a onclick="showSection('experience')">Experience</a></li>
       <ul class="no-bullets">
-        <li><a href="#" onclick="loadSection('data-analytics'); return false;">Data &amp; Analytics</a></li>
-        <li><a href="#" onclick="loadSection('project-manager'); return false;">Project Manager/ PMO</a></li>
+        <li><a onclick="showSection('data-analytics')">Data &amp; Analytics</a></li>
+        <li><a onclick="showSection('project-manager')">Project Manager/ PMO</a></li>
       </ul>
-      <li><a href="#" onclick="loadSection('education'); return false;">Education</a></li>
-      <li><a href="#" onclick="loadSection('skills'); return false;">Skills</a></li>
+      <li><a onclick="showSection('education')">Education</a></li>
+      <li><a onclick="showSection('skills')">Skills</a></li>
     </ul>
   </div>
 
   <!-- Right Column -->
-  <div class="right-column" id="content">
-    <!-- Default content -->
-    <p>Select a link to view details.</p>
+  <div class="right-column">
+    <section id="experience" class="active">
+      <h2 class="anchored">Experience</h2>
+      <p>Details about your overall experience.</p>
+    </section>
+
+    <section id="data-analytics">
+      <h2 class="anchored">Data &amp; Analytics</h2>
+      <p>Details about your data and analytics experience.</p>
+    </section>
+
+    <section id="project-manager">
+      <h2 class="anchored">Project Manager/ PMO</h2>
+      <p>Details about your project management experience.</p>
+    </section>
+
+    <section id="education">
+      <h2 class="anchored">Education</h2>
+      <p>Details about your education.</p>
+    </section>
+
+    <section id="skills">
+      <h2 class="anchored">Skills</h2>
+      <p>Details about your skills.</p>
+    </section>
   </div>
 </div>
 
-<script>
-  // Function to load the selected section
-  function loadSection(sectionId) {
-    const contentDiv = document.getElementById("content");
 
-    // Prevent the default link behavior (e.g., navigating to a new page)
-    event.preventDefault();
-    
-    // Debug the file path
-    console.log(`Fetching: sections/${sectionId}.md`);
-
-    // Fetch the content from the external file
-    fetch(`/sections/${sectionId}.md`)
-      .then(response => response.text())
-      .then(data => {
-        // Render the Markdown content as HTML
-        contentDiv.innerHTML = marked.parse(data);
-      })
-      .catch(error => {
-        console.error("Error loading section:", error);
-        contentDiv.innerHTML = "<p>Error loading content.</p>";
-      });
-  }
-</script>
-
-<!-- Include the Marked.js library for Markdown rendering -->
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 
 

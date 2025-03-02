@@ -5,6 +5,7 @@ project:
 website:
   navbar:
     logo: images/logo.png
+    pinned: true
     left:
       - text: "Projects"
         href: project.html
