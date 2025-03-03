@@ -13,10 +13,9 @@ css: styles.css  # Make sure the file name matches exactly
       <li><a href="sections/pm_pmo.html" target="content-frame">Project Manager / PMO</a></li>
       <li><a href="sections/academic.html" target="content-frame">Academic</a></li>
       </ul>
-      
-      <li><a href="sections/education.html" target="content-frame">Training, Certificates & Education</a></li>
       <li><a href="sections/skills.html" target="content-frame">Tools, Langauges & Datasets</a></li>
       <li><a href="sections/sharing.html" target="content-frame">Teaching, Presentation & User Groups</a></li>
+      <li><a href="sections/education.html" target="content-frame">Education, Certificates & Workshops</a></li>
     </ul>
   </div>
 

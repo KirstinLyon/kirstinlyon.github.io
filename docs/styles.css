@@ -60,6 +60,11 @@ body {
   color: #555;
 }
 
+/* Adjust line height for list items */
+li {
+  line-height: 1.2; /* Reduce line height */
+}
+
 
 /* Style links */
 .left-column a {

@@ -2,8 +2,8 @@
 title: "So, You Want to be a Summer Olympian? (Part 2) (2021)"
 description: "Which country excels in your sport?"
 categories: 
-    - sports
-    - tableau
+    - Sports
+    - Tableau
 image: "/images/olympics.jpg"
 format: html
 ---

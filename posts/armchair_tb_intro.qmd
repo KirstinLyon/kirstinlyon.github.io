@@ -1,0 +1,54 @@
+---
+title: "Introduction to the Armchair TB Project"
+description: "Introduction to the Armchair TB Project"
+categories: 
+    - Public Health
+    - Armchair TB Project
+image: "/images/tb_icon.png"
+format: 
+  html:
+    css: style.css
+---
+
+The Armchair Tuberculosis (TB) project is a collaboration between Dr Puni Mamdoo and Kirstin Lyon. Both interested in explaining Tuberculosis (TB) in Africa to non-experts using publicly available data.
+
+Our aim is to introduce the key indicators used in the TB community as well as the status of TB within three regions in Sub-Saharan Africa: [East African Community (EAC](https://www.eac.int/)), [Economic Community of West African States (ECOWAS)](https://ecowas.int/) and [Southern African Development Community (SADC)](https://www.sadc.int/). These sub-continental views (regional views) are often not featured in global normative TB data analyses.
+
+```{=html}
+<div style="text-align: center;">
+    <img src="/images/Map of regions.png" alt="Analysts reviewing data" width="600"/>
+</div>
+```
+
+Data is collected and processed using R and presented using [Tableau](https://www.tableau.com/). All R scripts and Tableau workbooks are freely available to download and reuse and can be found on [GitHub](https://github.com/KirstinLyon/Armchair-TB) and [Tableau Public](https://public.tableau.com/app/profile/kirstin.lyon5886) respectively.
+
+As articles are uploaded, we will update the sections below.
+
+## Articles:
+
+-   Introducing Incidence of TB per 100,000 population
+
+-   Introducing BCG Immunization Coverage Among One-Year-Olds (%) (Health Inequality Monitor)
+
+-   Introducing TB Mortality Number per 100,000 People
+
+## Data:
+
+-   Connect to the World Bank DataBank using R
+
+-   Connect to Global Health Observatory (WHO) Data API with R
+
+## Tableau:
+
+-   Dashboard: One Indicator
+
+-   Dashboard: Overview of data available
+
+-   Dashboard: Compare two indicators
+
+---
+
+About the authors: 
+[Dr Puni Mamdoo](https://www.linkedin.com/in/puni-mamdoo-8a1786108/) is a doctor and public health specialist from Durban, South Africa now currently residing in Cape Town. She works in the field of health systems and public health, particularly with TB and HIV programs.
+
+[Kirstin Lyon](https://www.linkedin.com/in/kirstin-lyon-0320012a/) is a visual analytics specialist interested in public health, and is working with a Mozambique team visualising TB and HIV data in Tableau and R. Kirstin is based in Copenhagen, Denmark.

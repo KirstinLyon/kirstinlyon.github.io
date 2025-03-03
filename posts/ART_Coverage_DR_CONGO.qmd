@@ -1,12 +1,30 @@
 ---
-title: "ART Coverage in DR Congo"
+title: "Replicating the HIV Sub-National Estimates Viewer in Tableau: A Step-by-Step Guide"
 description: "ART Coverage in DR Congo using UNAIDS data."
 categories: 
-    - public health
-    - tableau
-image: "/images/ART_DR_CONGO.png"
+    - Public Health
+    - Tableau
+image: "/images/art_in_congo/ART_DR_CONGO.png"
 format: html
 ---
+
+The [HIV Sub-National Estimates Viewer](https://naomi-spectrum.unaids.org/) is a tool used to visualize and analyze estimates of HIV prevalence, incidence, and other related indicators at a sub-national level. It allows users to explore data and gain insights into the distribution of HIV across different regions within a country or territory. This viewer typically provides interactive maps, charts, and tables to present the data in a user-friendly format.
+
+This tutorial walks through the process of recreating the HIV Sub-National Estimates Viewer using R and Tableau, with the aim of enabling individual analysis and expanding the functionalities of the viewer.
+
+**Getting started:**
+
+-   Shape file (e.g. Global Administrative Areas - [GADM](https://gadm.org/))
+
+-   Dataset from HIV Sub-National Estimates Viewer (<https://naomi-spectrum.unaids.org/>)
+
+**Shapefile for DR Congo**
+
+The DR Congo shapefile comprises three hierarchical levels: Country, Province, and Territory/Town. The “engtype 2” field distinguishes between territories and towns. Going forward, I’ll denote territories as districts.
+
+**Download data from HIV Sub-National Estimates Viewer**
+
+Choose from the options provided below. Make sure to toggle between view types and table options as indicated.
 
 ::: {#viz1740870604362 .tableauPlaceholder style="position: relative"}
 <noscript><a href='#'> <img src="https://public.tableau.com/static/images/DR/DRCONGO-ARTCoverageNaomiModel/ARTCoverage-DRCONGO/1_rss.png" alt="ART Coverage - DR CONGO " style="border: none"/> </a></noscript>

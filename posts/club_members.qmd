@@ -2,8 +2,8 @@
 title: "Where are all the members? (2021)"
 description: "Club member details in Denmark"
 categories: 
-    - sports
-    - tableau
+    - Sports
+    - Tableau
 image: "/images/club.jpg"
 format: html
 ---

@@ -2,9 +2,10 @@
 title: "Connect To World Bank DataBank Using R"
 description: "Walkthrough of connecting to the World Bank DataBank in R."
 categories: 
-    - r
-    - public health
-    - worldbank databank
+    - R
+    - Public Health
+    - Worldbank Databank
+    - Armchair TB Project
 image: "/images/medium_worldbank_databank.jpg"
 format: 
   html:
@@ -146,5 +147,7 @@ Once downloaded, the CSV file looks like this (1 row per country, per year per i
 All code can be found on the project [Armchair TB](https://github.com/KirstinLyon/Armchair-TB) in GitHub.
 
 Article published on [Medium](https://medium.com/@kirstin.lyon)
+
+[See project introduction](/posts/armchair_tb_intro.html)
 
 ---

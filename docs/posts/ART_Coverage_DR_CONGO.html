@@ -8,7 +8,7 @@
 
 <meta name="description" content="ART Coverage in DR Congo using UNAIDS data.">
 
-<title>ART Coverage in DR Congo</title>
+<title>Replicating the HIV Sub-National Estimates Viewer in Tableau: A Step-by-Step Guide</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -117,10 +117,10 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">ART Coverage in DR Congo</h1>
+<h1 class="title">Replicating the HIV Sub-National Estimates Viewer in Tableau: A Step-by-Step Guide</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">public health</div>
-    <div class="quarto-category">tableau</div>
+    <div class="quarto-category">Public Health</div>
+    <div class="quarto-category">Tableau</div>
   </div>
   </div>
 
@@ -143,6 +143,17 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>The <a href="https://naomi-spectrum.unaids.org/">HIV Sub-National Estimates Viewer</a> is a tool used to visualize and analyze estimates of HIV prevalence, incidence, and other related indicators at a sub-national level. It allows users to explore data and gain insights into the distribution of HIV across different regions within a country or territory. This viewer typically provides interactive maps, charts, and tables to present the data in a user-friendly format.</p>
+<p>This tutorial walks through the process of recreating the HIV Sub-National Estimates Viewer using R and Tableau, with the aim of enabling individual analysis and expanding the functionalities of the viewer.</p>
+<p><strong>Getting started:</strong></p>
+<ul>
+<li><p>Shape file (e.g.&nbsp;Global Administrative Areas - <a href="https://gadm.org/">GADM</a>)</p></li>
+<li><p>Dataset from HIV Sub-National Estimates Viewer (<a href="https://naomi-spectrum.unaids.org/" class="uri">https://naomi-spectrum.unaids.org/</a>)</p></li>
+</ul>
+<p><strong>Shapefile for DR Congo</strong></p>
+<p>The DR Congo shapefile comprises three hierarchical levels: Country, Province, and Territory/Town. The “engtype 2” field distinguishes between territories and towns. Going forward, I’ll denote territories as districts.</p>
+<p><strong>Download data from HIV Sub-National Estimates Viewer</strong></p>
+<p>Choose from the options provided below. Make sure to toggle between view types and table options as indicated.</p>
 <div id="viz1740870604362" class="tableauPlaceholder" style="position: relative">
 <noscript>
 <a href="#"> <img src="https://public.tableau.com/static/images/DR/DRCONGO-ARTCoverageNaomiModel/ARTCoverage-DRCONGO/1_rss.png" alt="ART Coverage - DR CONGO " style="border: none"> </a>

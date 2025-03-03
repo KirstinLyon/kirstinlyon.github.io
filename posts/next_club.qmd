@@ -2,8 +2,8 @@
 title: "Find Your Next Club in Denmark (2021)"
 description: "Looking for your next club in Denmark, use the data created by member counting in Denmark's clubs for your answer."
 categories: 
-    - sports
-    - tableau
+    - Sports
+    - Tableau
 image: "/images/club.jpg"
 format: html
 ---
