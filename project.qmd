@@ -5,7 +5,8 @@ listing:
     sort: date
     categories: true
     grid-item-border: true
-    sort-ui: true
+    sort-ui: [title, date, categories]
+    filter-ui: true
     fields: 
         - title
         - image
