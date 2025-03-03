@@ -1,6 +1,6 @@
 ---
-title: "So, You Want to be a Summer Olympian? (Part 2)"
-description: "Find your ideal sport based on the country you come from."
+title: "So, You Want to be a Summer Olympian? (Part 2) (2021)"
+description: "Which country excels in your sport?"
 categories: 
     - sports
     - tableau
