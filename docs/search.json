@@ -28,11 +28,11 @@
     "text": "Researcher @ Aalborg University Focus on how to search and re-find data in audio collections using visualisation techniques.\n\nOct. 02 – Feb. 08\n\nResearcher @ Glasgow Caledonian University Focus on the use of an online learning platform in the business faculty.\n\nSep. 01 – Jul. 02"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Kirstin Lyon",
+    "objectID": "posts/connect_world_bank_data_bank.html",
+    "href": "posts/connect_world_bank_data_bank.html",
+    "title": "Connect To World Bank DataBank Using R",
     "section": "",
-    "text": "Kirstin is a data analyst with experience in Tableau, R, and PowerBI. Her work focuses on analysing and visualising data to support decision-making, particularly in the field of public health. Kirstin enjoys simplifying complex datasets and creating clear, informative visualisations that help others understand and use data effectively"
+    "text": "The World Bank DataBank provides access to open and free global development data. As of February 2023, there are 20152 indicators available for 299 regions/countries for 55 sources with data going back decades.\nThanks to Jesse Pilburn it it easy to access this large dataset by using his wbstats package in R. This article walks through how to use this package to download indicators.\nFirst, let’s install the wbstats package from GitHub:\nremotes::install_github(\"nset-ornl/wbstats\")\nNext load the libraries. The goal is to extract the data needed for further analysis in Tableau.\nlibrary(tidyverse)\nlibrary(wbstats)\nCreate global variables. This involves setting the countries of interest, indicators and years. The Armchair TB project is interested in 11 indicators from the SADC, EAC and ECOWAS regions in Africa from 2000–2023.\n## Global Variables ----\nSADC &lt;- c(\"COD\", \"AGO\", \"NAM\", \"ZAF\", \"LSO\", \"SWZ\", \n                                 \"BWA\", \"ZWE\", \"ZMB\", \"MOZ\", \"MWI\", \n                                 \"MDG\", \"COM\", \"SYC\", \"MUS\")\n\nEAC &lt;- c(\"BDI\", \"COG\", \"KEN\", \"RWA\", \"SSD\", \"TZA\", \"UGA\")\n\nECOWAS  &lt;- c(\"BEN\", \"BFA\", \"CPV\", \"CIV\", \"GMB\", \"GHA\", \"GIN\", \n            \"GNB\", \"LBR\", \"MLI\", \"NER\", \"NGA\", \"SEN\", \"SLE\", \"TGO\")\n\n\nALL_REGIONS &lt;- c(SADC, EAC, ECOWAS)\n\n\nSTART_YEAR = 2000\nEND_YEAR = 2023\n\nINDICATORS &lt;- c(\"SH.TBS.INCD\", \"SH.TBS.DTEC.ZS\", \"SH.TBS.MORT\",\n                \"SH.TBS.CURE.ZS\", \"SH.XPD.EHEX.CH.ZS\", \"SH.XPD.GHED.GE.ZS\",\n                \"SH.UHC.SRVS.CV.XD\", \"SP.DYN.LE00.FE.IN\", \"SP.DYN.LE00.MA.IN\",\n                \"HD.HCI.OVRL\", \"SH.IMM.IBCG\")\n                \nUse the following to review which indicators and countries are available, as well as find the correct ids.\n#all indicators available\nall_indicators &lt;- wbstats::wb_indicators()\n\n#all countries available\nall_countries &lt;- wbstats::wb_countries()\nTo search for specific keywords in the indicator list, in this case any indicator that has “tuberculosis” in the name, and then create a list of all IDs, us this:\nTB_indicators &lt;- wb_search(\"Tuberculosis\") %&gt;% \n    select(indicator_id) %&gt;% \n    pull()\n    \nStore the meta-data for each indicator so it can be joined to the dataset later.\n## Meta-data ----\nindicators_metadata &lt;- wbstats::wb_indicators() %&gt;% \n    select(indicator_id, indicator, indicator_desc, source_org)\n    \nNow to retrieve the data, keep relevant columns and change it in to a long format. A new column is added for regions. Finally join the data to the indicator meta-data downloaded earlier. This includes official descriptions of each indicator.\n## Extract data ----\nWB_data &lt;- wbstats::wb_data(\n    indicator = INDICATORS,\n    country = ALL_REGIONS,\n    start_date = START_YEAR,\n    end_date = END_YEAR\n) %&gt;% \n    select(-iso2c) %&gt;% \n    rename(year = date) %&gt;% \n\n    ## create a column to hold the region name\n    mutate(region = case_when(iso3c %in% SADC ~ \"SADC\",\n                              iso3c %in% EAC ~ \"EAC\",\n                              iso3c %in% ECOWAS ~ \"ECOWAS\")) %&gt;% \n    select(iso3c, country, region, year, everything()) \n\n## Convert to a long format ----\nWB_data_long &lt;- WB_data %&gt;% \n    pivot_longer(!c(country, year, iso3c, region),\n                 names_to = \"indicator_id\",\n                 values_to = \"value\") %&gt;% \n\n    ## Join the meta-data from earlier\n    left_join(indicators_metadata, by = \"indicator_id\") %&gt;% \n    drop_na()\n    \nFinally time to print to a CSV.\n write_excel_csv(WB_data_long, \"WB_data_long.csv\")\n \nOnce downloaded, the CSV file looks like this (1 row per country, per year per indicator):\n\n    \n\n\n\nAll code can be found on the project Armchair TB in GitHub.\nArticle published on Medium"
   },
   {
     "objectID": "about.html",
@@ -42,11 +42,18 @@
     "text": "Professional Experience\n      \n      \n      Data Analyst\n      Project Manager / PMO\n      Academic\n      \n      \n      Training, Certificates & Education\n      Tools, Langauges & Datasets\n      Teaching, Presentation & User Groups"
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Kirstin Lyon",
+    "section": "",
+    "text": "Kirstin is a data analyst with experience in Tableau, R, and PowerBI. Her work focuses on analysing and visualising data to support decision-making, particularly in the field of public health. Kirstin enjoys simplifying complex datasets and creating clear, informative visualisations that help others understand and use data effectively"
+  },
+  {
     "objectID": "project.html",
     "href": "project.html",
     "title": "",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nART Coverage in DR Congo\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhere are all the members? (2021)\n\n\n\n\n\n\n\n\n\n\n\n\n\nOne Dashboard to Control Them All (Management Dashboard Example) (2016)\n\n\n\n\n\n\n\n\n\n\n\n\n\nFind Your Next Club in Denmark (2021)\n\n\n\n\n\n\n\n\n\n\n\n\n\nSo, You Want to be a Summer Olympian? (Part 1) (2021)\n\n\n\n\n\n\n\n\n\n\n\n\n\nSo, You Want to be a Summer Olympian? (Part 2) (2021)\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n\n\n\n\n\n\n\n\n\n\nART Coverage in DR Congo\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhere are all the members? (2021)\n\n\n\n\n\n\n\n\n\n\n\n\n\nConnect To World Bank DataBank Using R\n\n\n\n\n\n\n\n\n\n\n\n\n\nOne Dashboard to Control Them All (Management Dashboard Example) (2016)\n\n\n\n\n\n\n\n\n\n\n\n\n\nFind Your Next Club in Denmark (2021)\n\n\n\n\n\n\n\n\n\n\n\n\n\nSo, You Want to be a Summer Olympian? (Part 1) (2021)\n\n\n\n\n\n\n\n\n\n\n\n\n\nSo, You Want to be a Summer Olympian? (Part 2) (2021)\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "sections/data.html",
