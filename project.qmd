@@ -9,6 +9,6 @@ listing:
     fields: 
         - title
         - image
-        - category
+        - categories
         - date
 ---
