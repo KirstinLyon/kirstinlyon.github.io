@@ -2,7 +2,7 @@
 listing: 
     contents: posts
     type: grid
-    sort: date
+    sort: date desc
     categories: true
     grid-item-border: true
     sort-ui: [title, date, categories]
