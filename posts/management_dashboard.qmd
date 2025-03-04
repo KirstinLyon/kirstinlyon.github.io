@@ -1,9 +1,10 @@
 ---
-title: "One Dashboard to Control Them All (Management Dashboard Example) (2016)"
+title: "One Dashboard to Control Them All (Management Dashboard Example)"
 description: "Example of one dashboard to control them all."
 categories: 
     - Tableau
 image: "/images/management_dashboard.png"
+date: "2015-10-01"
 format: html
 ---
 

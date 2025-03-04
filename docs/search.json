@@ -42,20 +42,6 @@
     "text": "The HIV Sub-National Estimates Viewer is a tool used to visualize and analyze estimates of HIV prevalence, incidence, and other related indicators at a sub-national level. It allows users to explore data and gain insights into the distribution of HIV across different regions within a country or territory. This viewer typically provides interactive maps, charts, and tables to present the data in a user-friendly format.\nThis tutorial walks through the process of recreating the HIV Sub-National Estimates Viewer using R and Tableau, with the aim of enabling individual analysis and expanding the functionalities of the viewer.\nGetting started:\n\nShape file (e.g. Global Administrative Areas - GADM)\nDataset from HIV Sub-National Estimates Viewer (https://naomi-spectrum.unaids.org/)\n\nShapefile for DR Congo\nThe DR Congo shapefile comprises three hierarchical levels: Country, Province, and Territory/Town. The “engtype 2” field distinguishes between territories and towns. Going forward, I’ll denote territories as districts.\nDownload data from HIV Sub-National Estimates Viewer\nChoose from the options provided below. Make sure to toggle between view types and table options as indicated."
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Kirstin Lyon",
-    "section": "",
-    "text": "Kirstin is a data analyst with experience in Tableau and R. Her work focuses on analysing and visualising data to support decision-making, particularly in the field of public health. Kirstin enjoys simplifying complex datasets and creating clear, informative visualisations that help others understand and use data effectively"
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "",
-    "section": "",
-    "text": "Professional Experience\n      \n      \n      Data Analyst\n      Project Manager / PMO\n      Academic\n      \n      Tools, Langauges & Datasets\n      Teaching, Presentation & User Groups\n      Education, Certificates & Workshops"
-  },
-  {
     "objectID": "posts/armchair_tb_intro.html",
     "href": "posts/armchair_tb_intro.html",
     "title": "Introduction to the Armchair TB Project",
@@ -84,11 +70,81 @@
     "text": "Tableau:\n\nDashboard: One Indicator\nDashboard: Overview of data available\nDashboard: Compare two indicators\n\n\nAbout the authors: Dr Puni Mamdoo is a doctor and public health specialist from Durban, South Africa now currently residing in Cape Town. She works in the field of health systems and public health, particularly with TB and HIV programs.\nKirstin Lyon is a visual analytics specialist interested in public health, and is working with a Mozambique team visualising TB and HIV data in Tableau and R. Kirstin is based in Copenhagen, Denmark."
   },
   {
+    "objectID": "posts/armchair_tb_bcg.html",
+    "href": "posts/armchair_tb_bcg.html",
+    "title": "Introducing BCG Immunization Coverage Among One-Year-Olds (%) (Health Inequality Monitor)",
+    "section": "",
+    "text": "The next indicator we would like to introduce relates to the BCG Immunization coverage among one-year-olds by the WHO.\nThis indicator measures the percentage of infants who have received Bacillus Calmette-Guérin (BCG) vaccine, which is a vaccine against tuberculosis (TB). The indicator is calculated as the number of infants who have received BCG vaccine at birth divided by the total number of live births in a given time period, multiplied by 100. This indicator is important for assessing the coverage and effectiveness of BCG vaccination programs in reducing the burden of TB among infants and young children.\nTB disease mitigation through BCG vaccination is one of the main tools in the TB control programs. How are we faring in Southern, Eastern and Western regions of Sub Saharan Africa?\nRates of childhood immunization is a sensitive measure of basic healthcare access. Less than full population immunization coverage can be found in some of the most vulnerable communities where multiple dimensions of inequality and poverty co-exist. The BCG vaccine , given at birth , has a documented protective effect against meningitis and disseminated TB in children. BCG immunization does not prevent primary infection and, more importantly, does not prevent reactivation of latent pulmonary infection which is the main source of TB bacterial transmission in the community.\nIn the EAC, ECOWAS and SADC regions, coverage has varied over time yet remained consistently above 80%. Ensuing post-Covid19 data should provide some insight into the impact of the pandemic on the disruption on routine primary healthcare services such as childhood immunization programs.\n\n    \n\nLive Version\n\n\n\n\n\n   \n\n\n            \n\nThe interactive version is available on Tableau Public. See the guides for interacting with the dashboard, and downloading the data for World Bank DataBank on the project site.\nThis is part of the Armchair TB Project. Find out more about the project, and related content here."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "",
+    "section": "",
+    "text": "Professional Experience\n      \n      \n      Data Analyst\n      Project Manager / PMO\n      Academic\n      \n      Tools, Langauges & Datasets\n      Teaching, Presentation & User Groups\n      Education, Certificates & Workshops"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Kirstin Lyon",
+    "section": "",
+    "text": "Kirstin is a data analyst with experience in Tableau and R. Her work focuses on analysing and visualising data to support decision-making, particularly in the field of public health. Kirstin enjoys simplifying complex datasets and creating clear, informative visualisations that help others understand and use data effectively"
+  },
+  {
+    "objectID": "posts/armchair_tb_incidence.html",
+    "href": "posts/armchair_tb_incidence.html",
+    "title": "Introducing Incidence of TB per 100,000 population",
+    "section": "",
+    "text": "The first indicator we would like to introduce is the incidence of tuberculosis (TB) per 100,000 people that is available from the World Health Organisations (WHO) Global TB Report. The WHO defines this indicator as:\nThis information is important to the public health community, because it reflects changes to both TB transmission and TB disease expression in the population. The distinction between these two processes is significant since you may acquire TB infection but may experience TB disease only until much later. Globally, TB incidence is falling at about 2% per year and between 2015 and 2020 the cumulative reduction was 11%. This was over half way to the End TB Strategy milestone of 20% reduction between 2015 and 2020. An estimated 66 million lives were saved through TB diagnosis and treatment between 2000 and 2020. The various methods used to estimate incidence of TB disease, based on data availability and quality at a national level, are detailed in annual WHO reports."
+  },
+  {
+    "objectID": "posts/armchair_tb_incidence.html#incidence-of-tb-per-100000-population-for-eac-ecowas-and-sadc-sub-saharan-africa",
+    "href": "posts/armchair_tb_incidence.html#incidence-of-tb-per-100000-population-for-eac-ecowas-and-sadc-sub-saharan-africa",
+    "title": "Introducing Incidence of TB per 100,000 population",
+    "section": "Incidence of TB per 100,000 Population for EAC, ECOWAS and SADC (Sub-Saharan Africa)",
+    "text": "Incidence of TB per 100,000 Population for EAC, ECOWAS and SADC (Sub-Saharan Africa)\nThis graph shows that the highest proportion of TB incidence occurred in the SADC as compared to Eastern and Western Africa regions. SADC countries also have the highest HIV incidence in Sub-Saharan Africa. Peak incidence was observed between 2000 and 2008, with steady decline to date."
+  },
+  {
+    "objectID": "posts/armchair_tb_incidence.html#incidence-of-tb-per-100000-population-in-the-sadc-region",
+    "href": "posts/armchair_tb_incidence.html#incidence-of-tb-per-100000-population-in-the-sadc-region",
+    "title": "Introducing Incidence of TB per 100,000 population",
+    "section": "Incidence of TB per 100,000 Population in the SADC Region",
+    "text": "Incidence of TB per 100,000 Population in the SADC Region\nThe curves of Eswatini, Lesotho, Namibia and South Africa are immediately identifiable for their dramatic trajectories of new TB cases as compared to other countries in the region.\nContributing factors to declining incidence are political will and policy intent; improved point-of-care testing methods enabling faster diagnostic turnaround times; a slew of health system improvements backed by appropriately trained and skilled health workforce and, not least of all, dedicated program funding."
+  },
+  {
+    "objectID": "posts/armchair_tb_incidence.html#incidence-of-tb-per-100000-population-in-the-ecowas-region",
+    "href": "posts/armchair_tb_incidence.html#incidence-of-tb-per-100000-population-in-the-ecowas-region",
+    "title": "Introducing Incidence of TB per 100,000 population",
+    "section": "Incidence of TB per 100,000 Population in the ECOWAS Region",
+    "text": "Incidence of TB per 100,000 Population in the ECOWAS Region\nThere is a noticeable variation in TB incidence across countries in this region. the country with the most impressive curve is Ivory Coast."
+  },
+  {
+    "objectID": "posts/armchair_tb_incidence.html#incidence-of-tb-per-100000-population-in-the-eac-region",
+    "href": "posts/armchair_tb_incidence.html#incidence-of-tb-per-100000-population-in-the-eac-region",
+    "title": "Introducing Incidence of TB per 100,000 population",
+    "section": "Incidence of TB per 100,000 Population in the EAC Region",
+    "text": "Incidence of TB per 100,000 Population in the EAC Region\nKenya and Tanzania are clear outliers in the East Africa region however the real concern is the ongoing (and unacceptably high) TB incidence in the Rep of Congo.\n\n     \n\nLive version\n\n\n\n\n\n   \n\n\n            \n\nThe interactive version is available on Tableau Public. See the guides for interacting with the dashboard, and downloading the data for World Bank DataBank on the project site.\nThis is part of the Armchair TB Project. Find out more about the project, and related content here."
+  },
+  {
+    "objectID": "posts/armchair_tb_one_indicator.html",
+    "href": "posts/armchair_tb_one_indicator.html",
+    "title": "Armchair TB Dashboard: One Indicator",
+    "section": "",
+    "text": "The Armchair TB project uses R to retrieve and process data, and Tableau to analyse and present data. This post presents the first of the Tableau dashboards that shows one of eleven indicators as a trend over time comparing it to all regions and countries in EAC, ECOWAS and SADC.\nThe dashboard is broken in to three components: the visual (blue), compare (green) and filters (orange).\nThis visual (blue) is created using the filters on the right-hand side (green and orange). The name, ID, description and source of the indicator comes from the World Bank DataBank and updates for every indicator. To change the indicator, select a different indicator from the filter. It is also possible to select region(s), country(ies) and year(s) in the same way.\nThe green filter changes whether you see the curve as one line, per region or per country. Use the legend at the bottom to highlight regions and countries of interest (click on the coloured square for one, hold down Ctrl + click to select more than one)."
+  },
+  {
+    "objectID": "posts/armchair_tb_one_indicator.html#use-case-identify-the-countries-that-are-driving-the-largest-change-in-the-region-that-has-the-largest-change-in-incidence-of-tuberculosis-per-100000-people.",
+    "href": "posts/armchair_tb_one_indicator.html#use-case-identify-the-countries-that-are-driving-the-largest-change-in-the-region-that-has-the-largest-change-in-incidence-of-tuberculosis-per-100000-people.",
+    "title": "Armchair TB Dashboard: One Indicator",
+    "section": "Use case: Identify the countries that are driving the largest change in the region that has the largest change in incidence of tuberculosis per 100,000 people.",
+    "text": "Use case: Identify the countries that are driving the largest change in the region that has the largest change in incidence of tuberculosis per 100,000 people.\nUse the Indicator filter to select “Incidence of tuberculosis”.\nFrom the first image, the region with the largest change is SADC.\n\n    \n\nSelect SADC from Region (removing EAC and ECOWAS from the analysis), then change the compare to country.\n\n    \n\nThe countries driving the change in SADC are Eswatini, Lesotho, South Africa, Namibia and Botswana. Select those countries (from Country), and choose a different indicator (for example tuberculosis treatment success rate) to see how those countries performed in that indicator.\n\n    \n\nWash, rinse and repeat.\n\nLive version\n\n\n\n\n\n   \n\n\n            \n\nThe interactive version of this dashboard is available for use and download on Tableau Public.\nThe datasource is created using the wbstats R package. The code and data is available on GitHub. A guide for downloading the data is available as a part of the Armchair TB project.\nThis is part of the Armchair TB Project. Find out more about the project, and related content here.\nAbout the authors:\nDr Puni Mamdoo is a doctor and public health specialist from Durban, South Africa now currently residing in Cape Town. She works in the field of health systems and public health, particularly with TB and HIV programs.\nKirstin Lyon is a visual analytics specialist interested in public health, and is working with a Mozambique team visualising TB and HIV data in Tableau and R. Kirstin is based in Copenhagen, Denmark."
+  },
+  {
     "objectID": "project.html",
     "href": "project.html",
     "title": "",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Categories\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nIntroduction to the Armchair TB Project\n\n\n\nPublic Health\n\n\nArmchair TB Project\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nReplicating the HIV Sub-National Estimates Viewer in Tableau: A Step-by-Step Guide\n\n\n\nPublic Health\n\n\nTableau\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhere are all the members? (2021)\n\n\n\nSports\n\n\nTableau\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nConnect To World Bank DataBank Using R\n\n\n\nR\n\n\nPublic Health\n\n\nWorldbank Databank\n\n\nArmchair TB Project\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOne Dashboard to Control Them All (Management Dashboard Example) (2016)\n\n\n\nTableau\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFind Your Next Club in Denmark (2021)\n\n\n\nSports\n\n\nTableau\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSo, You Want to be a Summer Olympian? (Part 1) (2021)\n\n\n\nSports\n\n\nTableau\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSo, You Want to be a Summer Olympian? (Part 2) (2021)\n\n\n\nSports\n\n\nTableau\n\n\n\n\nApr 1, 2021\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Categories\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nReplicating the HIV Sub-National Estimates Viewer in Tableau: A Step-by-Step Guide\n\n\n\nPublic Health\n\n\nTableau\n\n\n\n\nMar 30, 2024\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntroducing BCG Immunization Coverage Among One-Year-Olds (%) (Health Inequality Monitor)\n\n\n\nPublic Health\n\n\nArmchair TB Project\n\n\nTableau\n\n\n\n\nFeb 18, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntroducing Incidence of TB per 100,000 population\n\n\n\nPublic Health\n\n\nArmchair TB Project\n\n\nTableau\n\n\n\n\nFeb 10, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nArmchair TB Dashboard: One Indicator\n\n\n\nPublic Health\n\n\nArmchair TB Project\n\n\nTableau\n\n\n\n\nFeb 3, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nConnect To World Bank DataBank Using R\n\n\n\nR\n\n\nPublic Health\n\n\nWorldbank Databank\n\n\nArmchair TB Project\n\n\n\n\nFeb 3, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to the Armchair TB Project\n\n\n\nPublic Health\n\n\nArmchair TB Project\n\n\n\n\nJan 27, 2023\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWhere are all the members?\n\n\n\nSports\n\n\nTableau\n\n\n\n\nApr 1, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFind Your Next Club in Denmark\n\n\n\nSports\n\n\nTableau\n\n\n\n\nApr 1, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSo, You Want to be a Summer Olympian? (Part 1)\n\n\n\nSports\n\n\nTableau\n\n\n\n\nApr 1, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSo, You Want to be a Summer Olympian? (Part 2)\n\n\n\nSports\n\n\nTableau\n\n\n\n\nApr 1, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nOne Dashboard to Control Them All (Management Dashboard Example)\n\n\n\nTableau\n\n\n\n\nOct 1, 2015\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "sections/data.html",

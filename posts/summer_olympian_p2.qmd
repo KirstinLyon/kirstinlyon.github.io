@@ -1,5 +1,5 @@
 ---
-title: "So, You Want to be a Summer Olympian? (Part 2) (2021)"
+title: "So, You Want to be a Summer Olympian? (Part 2)"
 description: "Which country excels in your sport?"
 categories: 
     - Sports

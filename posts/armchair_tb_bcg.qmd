@@ -1,0 +1,51 @@
+---
+title: "Introducing BCG Immunization Coverage Among One-Year-Olds (%) (Health Inequality Monitor)"
+description: "Introducing BCG Immunization Coverage Among One-Year-Olds (%) (Health Inequality Monitor)"
+categories: 
+    - Public Health
+    - Armchair TB Project
+    - Tableau
+image: "/images/armchair_tb/tb_icon.png"
+date: "2023-02-18"
+format: 
+  html:
+    css: style.css
+---
+
+The next indicator we would like to introduce relates to the BCG Immunization coverage among one-year-olds by the WHO.
+
+This indicator measures the percentage of infants who have received Bacillus Calmette-Guérin (BCG) vaccine, which is a vaccine against tuberculosis (TB). The indicator is calculated as the number of infants who have received BCG vaccine at birth divided by the total number of live births in a given time period, multiplied by 100. This indicator is important for assessing the coverage and effectiveness of BCG vaccination programs in reducing the burden of TB among infants and young children.
+
+TB disease mitigation through BCG vaccination is one of the main tools in the TB control programs. How are we faring in Southern, Eastern and Western regions of Sub Saharan Africa?
+
+Rates of childhood immunization is a sensitive measure of basic healthcare access. Less than full population immunization coverage can be found in some of the most vulnerable communities where multiple dimensions of inequality and poverty co-exist. The BCG vaccine , given at birth , has a documented protective effect against meningitis and disseminated TB in children. BCG immunization does not prevent primary infection and, more importantly, does not prevent reactivation of latent pulmonary infection which is the main source of TB bacterial transmission in the community.
+
+In the EAC, ECOWAS and SADC regions, coverage has varied over time yet remained consistently above 80%. Ensuing post-Covid19 data should provide some insight into the impact of the pandemic on the disruption on routine primary healthcare services such as childhood immunization programs.
+
+```{=html}
+<div style="text-align: center;">
+    <img src="/images/armchair_tb/02_01.png" alt="Analysts reviewing data" width="600"/>
+</div>
+```
+
+Live Version
+
+::: {#viz1741086737575 .tableauPlaceholder style="position: relative"}
+<noscript><a href='#'><img src="https://public.tableau.com/static/images/Ar/ArmchairTBOneIndicator/OneIndicator/1_rss.png" alt="One Indicator " style="border: none"/></a></noscript>
+
+<object class="tableauViz" style="display:none;">
+
+<param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='ArmchairTBOneIndicator&#47;OneIndicator' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ar&#47;ArmchairTBOneIndicator&#47;OneIndicator&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-GB' />
+
+</object>
+:::
+
+```{=html}
+            <script type='text/javascript'>                    var divElement = document.getElementById('viz1741086737575');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1500px';vizElement.style.height='927px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1500px';vizElement.style.height='927px';} else { vizElement.style.width='100%';vizElement.style.height='727px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+```
+
+---
+
+The interactive version is available on [Tableau Public](https://public.tableau.com/views/ArmchairTBOneIndicator/OneIndicator?%3Alanguage=en-GB&%3Adisplay_count=n&%3Aorigin=viz_share_link). See the guides for [interacting with the dashboard](/posts/armchair_tb_one_indicator.html), and [downloading the data for World Bank DataBank](/posts/connect_world_bank_data_bank.html) on the project site.
+
+This is part of the Armchair TB Project. Find out more about the project, and related content [here](/posts/armchair_tb_intro.html).

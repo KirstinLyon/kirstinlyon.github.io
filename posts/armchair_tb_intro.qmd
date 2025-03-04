@@ -4,7 +4,8 @@ description: "Introduction to the Armchair TB Project"
 categories: 
     - Public Health
     - Armchair TB Project
-image: "/images/tb_icon.png"
+image: "/images/armchair_tb/tb_icon.png"
+date: "2023-01-27"
 format: 
   html:
     css: style.css
@@ -16,7 +17,7 @@ Our aim is to introduce the key indicators used in the TB community as well as t
 
 ```{=html}
 <div style="text-align: center;">
-    <img src="/images/Map of regions.png" alt="Analysts reviewing data" width="600"/>
+    <img src="/images/armchair_tb/map_of_regions.png" alt="Analysts reviewing data" width="600"/>
 </div>
 ```
 
@@ -26,25 +27,25 @@ As articles are uploaded, we will update the sections below.
 
 ## Articles:
 
--   Introducing Incidence of TB per 100,000 population
+-   [Introducing Incidence of TB per 100,000 population](/posts/armchair_tb_incidence.html)
 
--   Introducing BCG Immunization Coverage Among One-Year-Olds (%) (Health Inequality Monitor)
+-   [Introducing BCG Immunization Coverage Among One-Year-Olds (%) (Health Inequality Monitor)](/posts/armchair_tb_bcg.html)
 
 -   Introducing TB Mortality Number per 100,000 People
 
 ## Data:
 
--   Connect to the World Bank DataBank using R
+-   [Connect to the World Bank DataBank using R](/posts/connect_world_bank_data_bank.html)
 
 -   Connect to Global Health Observatory (WHO) Data API with R
 
 ## Tableau:
 
--   Dashboard: One Indicator
+-   [Dashboard: One Indicator](/posts/armchair_tb_one_indicator.html)
 
--   Dashboard: Overview of data available
+-   [Dashboard: Overview of data available](https://public.tableau.com/app/profile/kirstin.lyon5886/viz/ArmchairTBWorldBankDataBankAvailableData/WorldBankDataBank-AvailableData)
 
--   Dashboard: Compare two indicators
+-   [Dashboard: Compare two indicators](https://public.tableau.com/app/profile/kirstin.lyon5886/viz/ArmchairTBCompareTwoWorldBankDataBankIndicators/ComparetwoIndicators)
 
 ---
 

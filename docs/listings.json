@@ -2,14 +2,17 @@
   {
     "listing": "/project.html",
     "items": [
-      "/posts/armchair_tb_intro.html",
       "/posts/ART_Coverage_DR_CONGO.html",
-      "/posts/club_members.html",
+      "/posts/armchair_tb_bcg.html",
+      "/posts/armchair_tb_incidence.html",
+      "/posts/armchair_tb_one_indicator.html",
       "/posts/connect_world_bank_data_bank.html",
-      "/posts/management_dashboard.html",
+      "/posts/armchair_tb_intro.html",
+      "/posts/club_members.html",
       "/posts/next_club.html",
       "/posts/summer_olympian_p1.html",
-      "/posts/summer_olympian_p2.html"
+      "/posts/summer_olympian_p2.html",
+      "/posts/management_dashboard.html"
     ]
   }
 ]

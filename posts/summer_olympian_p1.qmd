@@ -1,10 +1,11 @@
 ---
-title: "So, You Want to be a Summer Olympian? (Part 1) (2021)"
+title: "So, You Want to be a Summer Olympian? (Part 1)"
 description: "Find your ideal sport if gender, height and weight was all that mattered."
 categories: 
     - Sports
     - Tableau
 image: "/images/olympics.jpg"
+date: "2021-04-01"
 format: html
 ---
 
