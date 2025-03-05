@@ -1,6 +1,5 @@
 ---
 title: "Replicating the HIV Sub-National Estimates Viewer in Tableau: A Step-by-Step Guide"
-description: "ART Coverage in DR Congo using UNAIDS data."
 categories: 
     - Public Health
     - Tableau
@@ -41,16 +40,20 @@ Choose from the options provided below. Make sure to toggle between view types a
 <script type='text/javascript'>
   var divElement = document.getElementById('viz1740870604362');
   var vizElement = divElement.getElementsByTagName('object')[0];
-  if (divElement.offsetWidth > 800) {
-    vizElement.style.width = '1000px'; 
-    vizElement.style.height = '827px';
-  } else if (divElement.offsetWidth > 500) {
-    vizElement.style.width = '1000px';
-    vizElement.style.height = '827px';
-  } else {
-    vizElement.style.width = '100%';
-    vizElement.style.height = '1327px';
-  }
+  var targetWidth = 800; // Set your target width
+  var originalWidth = 1000; // Original width
+  var originalHeight = 827; // Original height
+        
+  // Calculate scale ratio
+  var scaleRatio = targetWidth / originalWidth;
+  
+  // Apply scale transformation
+  vizElement.style.transform = 'scale(' + scaleRatio + ')';
+  vizElement.style.transformOrigin = 'top left'; // Keep the scaling aligned to the top left
+  vizElement.style.width = originalWidth + 'px'; // Maintain original width
+  vizElement.style.height = originalHeight + 'px'; // Maintain original height
+  vizElement.style.overflow = 'hidden'; // Hide any overflow
+  
   var scriptElement = document.createElement('script');
   scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
   vizElement.parentNode.insertBefore(scriptElement, vizElement);

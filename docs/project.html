@@ -77,9 +77,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-image','listing-categories','listing-date',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] }],
+      valueNames: ['listing-image','listing-title','listing-date','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] }],
       
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-date","listing-title","listing-author","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -171,7 +171,7 @@ window.Quarto = {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(11)</span></div><div class="category" data-category="QXJtY2hhaXIlMjBUQiUyMFByb2plY3Q=">Armchair TB Project <span class="quarto-category-count">(5)</span></div><div class="category" data-category="UHVibGljJTIwSGVhbHRo">Public Health <span class="quarto-category-count">(6)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(1)</span></div><div class="category" data-category="U3BvcnRz">Sports <span class="quarto-category-count">(4)</span></div><div class="category" data-category="VGFibGVhdQ==">Tableau <span class="quarto-category-count">(9)</span></div><div class="category" data-category="V29ybGRiYW5rJTIwRGF0YWJhbms=">Worldbank Databank <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(13)</span></div><div class="category" data-category="QXJtY2hhaXIlMjBUQiUyMFByb2plY3Q=">Armchair TB Project <span class="quarto-category-count">(7)</span></div><div class="category" data-category="UHVibGljJTIwSGVhbHRo">Public Health <span class="quarto-category-count">(8)</span></div><div class="category" data-category="Ug==">R <span class="quarto-category-count">(2)</span></div><div class="category" data-category="U3BvcnRz">Sports <span class="quarto-category-count">(4)</span></div><div class="category" data-category="VGFibGVhdQ==">Tableau <span class="quarto-category-count">(10)</span></div><div class="category" data-category="V29ybGRiYW5rJTIwRGF0YWJhbms=">Worldbank Databank <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
@@ -182,7 +182,7 @@ window.Quarto = {
 
 
 
-<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
 <div class="listing-actions-group">
    <div class="input-group input-group-sm quarto-listing-sort">
      <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
@@ -208,17 +208,20 @@ window.Quarto = {
       <input type="text" class="search form-control" placeholder="Filter">
     </div>
 </div>
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="UHVibGljJTIwSGVhbHRoJTJDVGFibGVhdQ==" data-listing-date-sort="1711753200000" data-listing-file-modified-sort="1741086256606" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="317">
-<a href="./posts/ART_Coverage_DR_CONGO.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./images/art_in_congo/ART_DR_CONGO.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Replicating the HIV Sub-National Estimates Viewer in Tableau: A Step-by-Step Guide
-</h5>
+<div class="list quarto-listing-default">
+<div class="quarto-post image-left" data-index="0" data-categories="UHVibGljJTIwSGVhbHRoJTJDVGFibGVhdQ==" data-listing-date-sort="1711753200000" data-listing-file-modified-sort="1741166061660" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="365">
+<div class="thumbnail">
+<p><a href="./posts/ART_Coverage_DR_CONGO.html" class="no-external"></a></p><a href="./posts/ART_Coverage_DR_CONGO.html" class="no-external">
+<p><img loading="lazy" src="./images/art_in_congo/ART_DR_CONGO.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/ART_Coverage_DR_CONGO.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/ART_Coverage_DR_CONGO.html" class="no-external">Replicating the HIV Sub-National Estimates Viewer in Tableau: A Step-by-Step Guide</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/ART_Coverage_DR_CONGO.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('UHVibGljJTIwSGVhbHRo'); return false;">
 Public Health
@@ -227,25 +230,61 @@ Public Health
 Tableau
 </div>
 </div>
-<div class="card-attribution card-text-small end">
+</div>
+<div class="metadata">
+<a href="./posts/ART_Coverage_DR_CONGO.html" class="no-external">
 <div class="listing-date">
 Mar 30, 2024
 </div>
+</a>
 </div>
 </div>
+<div class="quarto-post image-left" data-index="1" data-categories="UHVibGljJTIwSGVhbHRoJTJDQXJtY2hhaXIlMjBUQiUyMFByb2plY3QlMkNS" data-listing-date-sort="1677970800000" data-listing-file-modified-sort="1741168223892" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="7" data-listing-word-count-sort="1368">
+<div class="thumbnail">
+<p><a href="./posts/armchair_tb_who_data.html" class="no-external"></a></p><a href="./posts/armchair_tb_who_data.html" class="no-external">
+<p><img loading="lazy" src="./images/armchair_tb/who_data_main.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/armchair_tb_who_data.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/armchair_tb_who_data.html" class="no-external">Connect to Global Health Observatory (WHO) Data API with R</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/armchair_tb_who_data.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('UHVibGljJTIwSGVhbHRo'); return false;">
+Public Health
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('QXJtY2hhaXIlMjBUQiUyMFByb2plY3Q='); return false;">
+Armchair TB Project
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
+R
+</div>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/armchair_tb_who_data.html" class="no-external">
+<div class="listing-date">
+Mar 5, 2023
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="UHVibGljJTIwSGVhbHRoJTJDQXJtY2hhaXIlMjBUQiUyMFByb2plY3QlMkNUYWJsZWF1" data-listing-date-sort="1676674800000" data-listing-file-modified-sort="1741091874853" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="545">
-<a href="./posts/armchair_tb_bcg.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./images/armchair_tb/tb_icon.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Introducing BCG Immunization Coverage Among One-Year-Olds (%) (Health Inequality Monitor)
-</h5>
+</div>
+<div class="quarto-post image-left" data-index="2" data-categories="UHVibGljJTIwSGVhbHRoJTJDQXJtY2hhaXIlMjBUQiUyMFByb2plY3QlMkNUYWJsZWF1" data-listing-date-sort="1677366000000" data-listing-file-modified-sort="1741167122262" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="724">
+<div class="thumbnail">
+<p><a href="./posts/armchair_tb_mortality.html" class="no-external"></a></p><a href="./posts/armchair_tb_mortality.html" class="no-external">
+<p><img loading="lazy" src="./images/armchair_tb/tb_icon.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/armchair_tb_mortality.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/armchair_tb_mortality.html" class="no-external">Introducing TB Mortality Number per 100,000 People</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/armchair_tb_mortality.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('UHVibGljJTIwSGVhbHRo'); return false;">
 Public Health
@@ -257,25 +296,61 @@ Armchair TB Project
 Tableau
 </div>
 </div>
-<div class="card-attribution card-text-small end">
+</div>
+<div class="metadata">
+<a href="./posts/armchair_tb_mortality.html" class="no-external">
+<div class="listing-date">
+Feb 26, 2023
+</div>
+</a>
+</div>
+</div>
+<div class="quarto-post image-left" data-index="3" data-categories="UHVibGljJTIwSGVhbHRoJTJDQXJtY2hhaXIlMjBUQiUyMFByb2plY3QlMkNUYWJsZWF1" data-listing-date-sort="1676674800000" data-listing-file-modified-sort="1741167167711" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="676">
+<div class="thumbnail">
+<p><a href="./posts/armchair_tb_bcg.html" class="no-external"></a></p><a href="./posts/armchair_tb_bcg.html" class="no-external">
+<p><img loading="lazy" src="./images/armchair_tb/tb_icon.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/armchair_tb_bcg.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/armchair_tb_bcg.html" class="no-external">Introducing BCG Immunization Coverage Among One-Year-Olds (%) (Health Inequality Monitor)</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/armchair_tb_bcg.html" class="no-external"></a>
+</div>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('UHVibGljJTIwSGVhbHRo'); return false;">
+Public Health
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('QXJtY2hhaXIlMjBUQiUyMFByb2plY3Q='); return false;">
+Armchair TB Project
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('VGFibGVhdQ=='); return false;">
+Tableau
+</div>
+</div>
+</div>
+<div class="metadata">
+<a href="./posts/armchair_tb_bcg.html" class="no-external">
 <div class="listing-date">
 Feb 18, 2023
 </div>
-</div>
-</div>
-</div>
 </a>
 </div>
-<div class="g-col-1" data-index="2" data-categories="UHVibGljJTIwSGVhbHRoJTJDQXJtY2hhaXIlMjBUQiUyMFByb2plY3QlMkNUYWJsZWF1" data-listing-date-sort="1675983600000" data-listing-file-modified-sort="1741091102580" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="739">
-<a href="./posts/armchair_tb_incidence.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./images/armchair_tb/tb_icon.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Introducing Incidence of TB per 100,000 population
-</h5>
+</div>
+<div class="quarto-post image-left" data-index="4" data-categories="UHVibGljJTIwSGVhbHRoJTJDQXJtY2hhaXIlMjBUQiUyMFByb2plY3QlMkNUYWJsZWF1" data-listing-date-sort="1675983600000" data-listing-file-modified-sort="1741167141710" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="870">
+<div class="thumbnail">
+<p><a href="./posts/armchair_tb_incidence.html" class="no-external"></a></p><a href="./posts/armchair_tb_incidence.html" class="no-external">
+<p><img loading="lazy" src="./images/armchair_tb/tb_icon.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/armchair_tb_incidence.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/armchair_tb_incidence.html" class="no-external">Introducing Incidence of TB per 100,000 population</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/armchair_tb_incidence.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('UHVibGljJTIwSGVhbHRo'); return false;">
 Public Health
@@ -287,25 +362,28 @@ Armchair TB Project
 Tableau
 </div>
 </div>
-<div class="card-attribution card-text-small end">
+</div>
+<div class="metadata">
+<a href="./posts/armchair_tb_incidence.html" class="no-external">
 <div class="listing-date">
 Feb 10, 2023
 </div>
-</div>
-</div>
-</div>
 </a>
 </div>
-<div class="g-col-1" data-index="3" data-categories="UHVibGljJTIwSGVhbHRoJTJDQXJtY2hhaXIlMjBUQiUyMFByb2plY3QlMkNUYWJsZWF1" data-listing-date-sort="1675378800000" data-listing-file-modified-sort="1741090248870" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="662">
-<a href="./posts/armchair_tb_one_indicator.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./images/armchair_tb/tb_icon.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Armchair TB Dashboard: One Indicator
-</h5>
+</div>
+<div class="quarto-post image-left" data-index="5" data-categories="UHVibGljJTIwSGVhbHRoJTJDQXJtY2hhaXIlMjBUQiUyMFByb2plY3QlMkNUYWJsZWF1" data-listing-date-sort="1675378800000" data-listing-file-modified-sort="1741167620115" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="793">
+<div class="thumbnail">
+<p><a href="./posts/armchair_tb_one_indicator.html" class="no-external"></a></p><a href="./posts/armchair_tb_one_indicator.html" class="no-external">
+<p><img loading="lazy" src="./images/armchair_tb/tb_icon.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/armchair_tb_one_indicator.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/armchair_tb_one_indicator.html" class="no-external">Armchair TB Dashboard: One Indicator</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/armchair_tb_one_indicator.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('UHVibGljJTIwSGVhbHRo'); return false;">
 Public Health
@@ -317,25 +395,28 @@ Armchair TB Project
 Tableau
 </div>
 </div>
-<div class="card-attribution card-text-small end">
+</div>
+<div class="metadata">
+<a href="./posts/armchair_tb_one_indicator.html" class="no-external">
 <div class="listing-date">
 Feb 3, 2023
 </div>
-</div>
-</div>
-</div>
 </a>
 </div>
-<div class="g-col-1" data-index="4" data-categories="UiUyQ1B1YmxpYyUyMEhlYWx0aCUyQ1dvcmxkYmFuayUyMERhdGFiYW5rJTJDQXJtY2hhaXIlMjBUQiUyMFByb2plY3Q=" data-listing-date-sort="1675378800000" data-listing-file-modified-sort="1741086199180" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="822">
-<a href="./posts/connect_world_bank_data_bank.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./images/medium_worldbank_databank.jpg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Connect To World Bank DataBank Using R
-</h5>
+</div>
+<div class="quarto-post image-left" data-index="6" data-categories="UiUyQ1B1YmxpYyUyMEhlYWx0aCUyQ1dvcmxkYmFuayUyMERhdGFiYW5rJTJDQXJtY2hhaXIlMjBUQiUyMFByb2plY3Q=" data-listing-date-sort="1675378800000" data-listing-file-modified-sort="1741165616723" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="822">
+<div class="thumbnail">
+<p><a href="./posts/connect_world_bank_data_bank.html" class="no-external"></a></p><a href="./posts/connect_world_bank_data_bank.html" class="no-external">
+<p><img loading="lazy" src="./images/medium_worldbank_databank.jpg" class="thumbnail-image"></p>
+</a><p><a href="./posts/connect_world_bank_data_bank.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/connect_world_bank_data_bank.html" class="no-external">Connect To World Bank DataBank Using R</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/connect_world_bank_data_bank.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">
 R
@@ -350,25 +431,28 @@ Worldbank Databank
 Armchair TB Project
 </div>
 </div>
-<div class="card-attribution card-text-small end">
+</div>
+<div class="metadata">
+<a href="./posts/connect_world_bank_data_bank.html" class="no-external">
 <div class="listing-date">
 Feb 3, 2023
 </div>
-</div>
-</div>
-</div>
 </a>
 </div>
-<div class="g-col-1" data-index="5" data-categories="UHVibGljJTIwSGVhbHRoJTJDQXJtY2hhaXIlMjBUQiUyMFByb2plY3Q=" data-listing-date-sort="1674774000000" data-listing-file-modified-sort="1741091536219" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="282">
-<a href="./posts/armchair_tb_intro.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./images/armchair_tb/tb_icon.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Introduction to the Armchair TB Project
-</h5>
+</div>
+<div class="quarto-post image-left" data-index="7" data-categories="UHVibGljJTIwSGVhbHRoJTJDQXJtY2hhaXIlMjBUQiUyMFByb2plY3Q=" data-listing-date-sort="1674774000000" data-listing-file-modified-sort="1741167151248" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="282">
+<div class="thumbnail">
+<p><a href="./posts/armchair_tb_intro.html" class="no-external"></a></p><a href="./posts/armchair_tb_intro.html" class="no-external">
+<p><img loading="lazy" src="./images/armchair_tb/tb_icon.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/armchair_tb_intro.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/armchair_tb_intro.html" class="no-external">Introduction to the Armchair TB Project</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/armchair_tb_intro.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('UHVibGljJTIwSGVhbHRo'); return false;">
 Public Health
@@ -377,25 +461,28 @@ Public Health
 Armchair TB Project
 </div>
 </div>
-<div class="card-attribution card-text-small end">
+</div>
+<div class="metadata">
+<a href="./posts/armchair_tb_intro.html" class="no-external">
 <div class="listing-date">
 Jan 27, 2023
 </div>
-</div>
-</div>
-</div>
 </a>
 </div>
-<div class="g-col-1" data-index="6" data-categories="U3BvcnRzJTJDVGFibGVhdQ==" data-listing-date-sort="1617228000000" data-listing-file-modified-sort="1741086220804" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="237">
-<a href="./posts/club_members.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./images/club.jpg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Where are all the members?
-</h5>
+</div>
+<div class="quarto-post image-left" data-index="8" data-categories="U3BvcnRzJTJDVGFibGVhdQ==" data-listing-date-sort="1617228000000" data-listing-file-modified-sort="1741167594103" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="396">
+<div class="thumbnail">
+<p><a href="./posts/club_members.html" class="no-external"></a></p><a href="./posts/club_members.html" class="no-external">
+<p><img loading="lazy" src="./images/club.jpg" class="thumbnail-image"></p>
+</a><p><a href="./posts/club_members.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/club_members.html" class="no-external">Where are all the members?</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/club_members.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('U3BvcnRz'); return false;">
 Sports
@@ -404,25 +491,28 @@ Sports
 Tableau
 </div>
 </div>
-<div class="card-attribution card-text-small end">
+</div>
+<div class="metadata">
+<a href="./posts/club_members.html" class="no-external">
 <div class="listing-date">
 Apr 1, 2021
 </div>
-</div>
-</div>
-</div>
 </a>
 </div>
-<div class="g-col-1" data-index="7" data-categories="U3BvcnRzJTJDVGFibGVhdQ==" data-listing-date-sort="1617228000000" data-listing-file-modified-sort="1741086138488" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="247">
-<a href="./posts/next_club.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./images/club.jpg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Find Your Next Club in Denmark
-</h5>
+</div>
+<div class="quarto-post image-left" data-index="9" data-categories="U3BvcnRzJTJDVGFibGVhdQ==" data-listing-date-sort="1617228000000" data-listing-file-modified-sort="1741165966001" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="434">
+<div class="thumbnail">
+<p><a href="./posts/next_club.html" class="no-external"></a></p><a href="./posts/next_club.html" class="no-external">
+<p><img loading="lazy" src="./images/club.jpg" class="thumbnail-image"></p>
+</a><p><a href="./posts/next_club.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/next_club.html" class="no-external">Find Your Next Club in Denmark</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/next_club.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('U3BvcnRz'); return false;">
 Sports
@@ -431,25 +521,28 @@ Sports
 Tableau
 </div>
 </div>
-<div class="card-attribution card-text-small end">
+</div>
+<div class="metadata">
+<a href="./posts/next_club.html" class="no-external">
 <div class="listing-date">
 Apr 1, 2021
 </div>
-</div>
-</div>
-</div>
 </a>
 </div>
-<div class="g-col-1" data-index="8" data-categories="U3BvcnRzJTJDVGFibGVhdQ==" data-listing-date-sort="1617228000000" data-listing-file-modified-sort="1741086143338" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="144">
-<a href="./posts/summer_olympian_p1.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./images/olympics.jpg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-So, You Want to be a Summer Olympian? (Part 1)
-</h5>
+</div>
+<div class="quarto-post image-left" data-index="10" data-categories="U3BvcnRzJTJDVGFibGVhdQ==" data-listing-date-sort="1617228000000" data-listing-file-modified-sort="1741167575791" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="196">
+<div class="thumbnail">
+<p><a href="./posts/summer_olympian_p1.html" class="no-external"></a></p><a href="./posts/summer_olympian_p1.html" class="no-external">
+<p><img loading="lazy" src="./images/olympics.jpg" class="thumbnail-image"></p>
+</a><p><a href="./posts/summer_olympian_p1.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/summer_olympian_p1.html" class="no-external">So, You Want to be a Summer Olympian? (Part 1)</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/summer_olympian_p1.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('U3BvcnRz'); return false;">
 Sports
@@ -458,25 +551,28 @@ Sports
 Tableau
 </div>
 </div>
-<div class="card-attribution card-text-small end">
+</div>
+<div class="metadata">
+<a href="./posts/summer_olympian_p1.html" class="no-external">
 <div class="listing-date">
 Apr 1, 2021
 </div>
-</div>
-</div>
-</div>
 </a>
 </div>
-<div class="g-col-1" data-index="9" data-categories="U3BvcnRzJTJDVGFibGVhdQ==" data-listing-date-sort="1617228000000" data-listing-file-modified-sort="1741086148183" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="239">
-<a href="./posts/summer_olympian_p2.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./images/olympics.jpg" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-So, You Want to be a Summer Olympian? (Part 2)
-</h5>
+</div>
+<div class="quarto-post image-left" data-index="11" data-categories="U3BvcnRzJTJDVGFibGVhdQ==" data-listing-date-sort="1617228000000" data-listing-file-modified-sort="1741165073573" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="206">
+<div class="thumbnail">
+<p><a href="./posts/summer_olympian_p2.html" class="no-external"></a></p><a href="./posts/summer_olympian_p2.html" class="no-external">
+<p><img loading="lazy" src="./images/olympics.jpg" class="thumbnail-image"></p>
+</a><p><a href="./posts/summer_olympian_p2.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/summer_olympian_p2.html" class="no-external">So, You Want to be a Summer Olympian? (Part 2)</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/summer_olympian_p2.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('U3BvcnRz'); return false;">
 Sports
@@ -485,38 +581,41 @@ Sports
 Tableau
 </div>
 </div>
-<div class="card-attribution card-text-small end">
+</div>
+<div class="metadata">
+<a href="./posts/summer_olympian_p2.html" class="no-external">
 <div class="listing-date">
 Apr 1, 2021
 </div>
-</div>
-</div>
-</div>
 </a>
 </div>
-<div class="g-col-1" data-index="10" data-categories="VGFibGVhdQ==" data-listing-date-sort="1443650400000" data-listing-file-modified-sort="1741086110939" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="218">
-<a href="./posts/management_dashboard.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./images/management_dashboard.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-One Dashboard to Control Them All (Management Dashboard Example)
-</h5>
+</div>
+<div class="quarto-post image-left" data-index="12" data-categories="VGFibGVhdQ==" data-listing-date-sort="1443650400000" data-listing-file-modified-sort="1741165974139" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="419">
+<div class="thumbnail">
+<p><a href="./posts/management_dashboard.html" class="no-external"></a></p><a href="./posts/management_dashboard.html" class="no-external">
+<p><img loading="lazy" src="./images/management_dashboard.png" class="thumbnail-image"></p>
+</a><p><a href="./posts/management_dashboard.html" class="no-external"></a></p>
+</div>
+<div class="body">
+<h3 class="no-anchor listing-title">
+<a href="./posts/management_dashboard.html" class="no-external">One Dashboard to Control Them All (Management Dashboard Example)</a>
+</h3>
+<div class="listing-subtitle">
+<a href="./posts/management_dashboard.html" class="no-external"></a>
+</div>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('VGFibGVhdQ=='); return false;">
 Tableau
 </div>
 </div>
-<div class="card-attribution card-text-small end">
+</div>
+<div class="metadata">
+<a href="./posts/management_dashboard.html" class="no-external">
 <div class="listing-date">
 Oct 1, 2015
 </div>
-</div>
-</div>
-</div>
 </a>
+</div>
 </div>
 </div>
 <div class="listing-no-matching d-none">

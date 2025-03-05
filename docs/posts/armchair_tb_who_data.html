@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-02-03">
+<meta name="dcterms.date" content="2023-03-05">
 
-<title>Connect To World Bank DataBank Using R</title>
+<title>Connect to Global Health Observatory (WHO) Data API with R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -152,12 +152,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Connect To World Bank DataBank Using R</h1>
+<h1 class="title">Connect to Global Health Observatory (WHO) Data API with R</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">R</div>
     <div class="quarto-category">Public Health</div>
-    <div class="quarto-category">Worldbank Databank</div>
     <div class="quarto-category">Armchair TB Project</div>
+    <div class="quarto-category">R</div>
   </div>
   </div>
 
@@ -169,7 +168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 3, 2023</p>
+      <p class="date">March 5, 2023</p>
     </div>
   </div>
   
@@ -181,90 +180,133 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div style="text-align: center;">
-    <img src="../images/medium_worldbank_databank.jpg" alt="Analysts reviewing data" width="600">
+<div class="post-description">
+  {{ description }}
 </div>
-<p>The <a href="https://databank.worldbank.org/">World Bank DataBank</a> provides access to open and free global development data. As of February 2023, there are 20152 indicators available for 299 regions/countries for 55 sources with data going back decades.</p>
-<p>Thanks to Jesse Pilburn it it easy to access this large dataset by using his <a href="https://www.rdocumentation.org/packages/wbstats/versions/1.0.4">wbstats</a> package in R. This article walks through how to use this package to download indicators.</p>
-<p>First, let’s install the wbstats package from GitHub:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"nset-ornl/wbstats"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <a href="https://www.who.int/data/gho">World Health Organisation Global Health Observatory</a> (WHO GHO) provides access to open and free global development data that is collected by WHO. As of March 2023, there are 2301 indicators available for 245 regions/countries with data going back decades.</p>
+<p>Thanks to the <a href="https://www.who.int/data/gho/info/gho-odata-api">WHO GHO API</a> it it easy to access this large dataset by using then httr and jsonlite packages in R. This article walks through how the Armchair TB project downloads all Tuberculosis (TB) related indicators in the WHO API dataset.</p>
+<section id="libraries" class="level2">
+<h2 class="anchored" data-anchor-id="libraries">Libraries</h2>
+<p>First, let’s install the different packages from CRAN:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>) </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"jsonlite"</span>) </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"httr"</span>) </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"glue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Next load the libraries. The goal is to extract the data needed for further analysis in Tableau.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wbstats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Create global variables. This involves setting the countries of interest, indicators and years. The Armchair TB project is interested in 11 indicators from the SADC, EAC and ECOWAS regions in Africa from 2000–2023.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Global Variables ----</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>SADC <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"COD"</span>, <span class="st">"AGO"</span>, <span class="st">"NAM"</span>, <span class="st">"ZAF"</span>, <span class="st">"LSO"</span>, <span class="st">"SWZ"</span>, </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"BWA"</span>, <span class="st">"ZWE"</span>, <span class="st">"ZMB"</span>, <span class="st">"MOZ"</span>, <span class="st">"MWI"</span>, </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"MDG"</span>, <span class="st">"COM"</span>, <span class="st">"SYC"</span>, <span class="st">"MUS"</span>)</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>EAC <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"BDI"</span>, <span class="st">"COG"</span>, <span class="st">"KEN"</span>, <span class="st">"RWA"</span>, <span class="st">"SSD"</span>, <span class="st">"TZA"</span>, <span class="st">"UGA"</span>)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>ECOWAS  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"BEN"</span>, <span class="st">"BFA"</span>, <span class="st">"CPV"</span>, <span class="st">"CIV"</span>, <span class="st">"GMB"</span>, <span class="st">"GHA"</span>, <span class="st">"GIN"</span>, </span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>            <span class="st">"GNB"</span>, <span class="st">"LBR"</span>, <span class="st">"MLI"</span>, <span class="st">"NER"</span>, <span class="st">"NGA"</span>, <span class="st">"SEN"</span>, <span class="st">"SLE"</span>, <span class="st">"TGO"</span>)</span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue) </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr) </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite) </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="global-variables" class="level2">
+<h2 class="anchored" data-anchor-id="global-variables">Global Variables</h2>
+<p>Create global variables. This involves setting the URL, countries of interest, and indicators. The Armchair TB project is interested in all TB indicators from the SADC, EAC and ECOWAS regions in Africa. If it’s not known which indicators are available, or the country codes, use the code in the exploring section.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Global Variables ----  </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>URL_BASE <span class="ot">&lt;-</span>  <span class="st">"https://ghoapi.azureedge.net/api/"</span> </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>SADC <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"AGO"</span>, <span class="st">"NAM"</span>, <span class="st">"ZAF"</span>, <span class="st">"LSO"</span>, <span class="st">"SWZ"</span>,            </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">"BWA"</span>, <span class="st">"ZWE"</span>, <span class="st">"ZMB"</span>, <span class="st">"MOZ"</span>, <span class="st">"MWI"</span>,            </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">"MDG"</span>, <span class="st">"COM"</span>, <span class="st">"SYC"</span>, <span class="st">"MUS"</span>)  </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>EAC <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"BDI"</span>, <span class="st">"KEN"</span>, <span class="st">"RWA"</span>, <span class="st">"SSD"</span>, <span class="st">"TZA"</span>, <span class="st">"UGA"</span>, <span class="st">"COD"</span>)  </span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>ALL_REGIONS <span class="ot">&lt;-</span> <span class="fu">c</span>(SADC, EAC, ECOWAS)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>ECOWAS  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"BEN"</span>, <span class="st">"BFA"</span>, <span class="st">"CPV"</span>, <span class="st">"CIV"</span>, <span class="st">"GMB"</span>, <span class="st">"GHA"</span>, <span class="st">"GIN"</span>,               </span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="st">"GNB"</span>, <span class="st">"LBR"</span>, <span class="st">"MLI"</span>, <span class="st">"NER"</span>, <span class="st">"NGA"</span>, <span class="st">"SEN"</span>, <span class="st">"SLE"</span>, <span class="st">"TGO"</span>)  </span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>START_YEAR <span class="ot">=</span> <span class="dv">2000</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>END_YEAR <span class="ot">=</span> <span class="dv">2023</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>INDICATORS <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"SH.TBS.INCD"</span>, <span class="st">"SH.TBS.DTEC.ZS"</span>, <span class="st">"SH.TBS.MORT"</span>,</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>                <span class="st">"SH.TBS.CURE.ZS"</span>, <span class="st">"SH.XPD.EHEX.CH.ZS"</span>, <span class="st">"SH.XPD.GHED.GE.ZS"</span>,</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>                <span class="st">"SH.UHC.SRVS.CV.XD"</span>, <span class="st">"SP.DYN.LE00.FE.IN"</span>, <span class="st">"SP.DYN.LE00.MA.IN"</span>,</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>                <span class="st">"HD.HCI.OVRL"</span>, <span class="st">"SH.IMM.IBCG"</span>)</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>                </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Use the following to review which indicators and countries are available, as well as find the correct ids.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#all indicators available</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>all_indicators <span class="ot">&lt;-</span> wbstats<span class="sc">::</span><span class="fu">wb_indicators</span>()</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">#all countries available</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>all_countries <span class="ot">&lt;-</span> wbstats<span class="sc">::</span><span class="fu">wb_countries</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>To search for specific keywords in the indicator list, in this case any indicator that has “tuberculosis” in the name, and then create a list of all IDs, us this:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>TB_indicators <span class="ot">&lt;-</span> <span class="fu">wb_search</span>(<span class="st">"Tuberculosis"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(indicator_id) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pull</span>()</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Store the meta-data for each indicator so it can be joined to the dataset later.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Meta-data ----</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>indicators_metadata <span class="ot">&lt;-</span> wbstats<span class="sc">::</span><span class="fu">wb_indicators</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(indicator_id, indicator, indicator_desc, source_org)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Now to retrieve the data, keep relevant columns and change it in to a long format. A new column is added for regions. Finally join the data to the indicator meta-data downloaded earlier. This includes official descriptions of each indicator.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Extract data ----</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>WB_data <span class="ot">&lt;-</span> wbstats<span class="sc">::</span><span class="fu">wb_data</span>(</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">indicator =</span> INDICATORS,</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">country =</span> ALL_REGIONS,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">start_date =</span> START_YEAR,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">end_date =</span> END_YEAR</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span>iso2c) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rename</span>(<span class="at">year =</span> date) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="do">## create a column to hold the region name</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">region =</span> <span class="fu">case_when</span>(iso3c <span class="sc">%in%</span> SADC <span class="sc">~</span> <span class="st">"SADC"</span>,</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>                              iso3c <span class="sc">%in%</span> EAC <span class="sc">~</span> <span class="st">"EAC"</span>,</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>                              iso3c <span class="sc">%in%</span> ECOWAS <span class="sc">~</span> <span class="st">"ECOWAS"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(iso3c, country, region, year, <span class="fu">everything</span>()) </span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Convert to a long format ----</span></span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>WB_data_long <span class="ot">&lt;-</span> WB_data <span class="sc">%&gt;%</span> </span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_longer</span>(<span class="sc">!</span><span class="fu">c</span>(country, year, iso3c, region),</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>                 <span class="at">names_to =</span> <span class="st">"indicator_id"</span>,</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>                 <span class="at">values_to =</span> <span class="st">"value"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="do">## Join the meta-data from earlier</span></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">left_join</span>(indicators_metadata, <span class="at">by =</span> <span class="st">"indicator_id"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">drop_na</span>()</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>COUNTRY <span class="ot">&lt;-</span> <span class="fu">c</span>(SADC, EAC, ECOWAS)  </span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>INDICATOR_TEXT <span class="ot">&lt;-</span> <span class="st">"tuberculosis"</span> </span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>INDICATOR_TEXT_TB <span class="ot">&lt;-</span> <span class="st">"tb"</span> </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>INDICATOR <span class="ot">&lt;-</span> <span class="st">"TB_"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="function-to-convert-url-to-a-tibble" class="level2">
+<h2 class="anchored" data-anchor-id="function-to-convert-url-to-a-tibble">Function to Convert URL to a Tibble</h2>
+<p>The function below is used to convert a URL to a tibble. Overall, this code takes a JSON file from a URL and converts it into a tidy tibble format for easier manipulation and analysis</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>convert_JSON_to_tbl <span class="ot">&lt;-</span> <span class="cf">function</span>(url){     </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">&lt;-</span> <span class="fu">GET</span>(url)     </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  data_df <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="fu">content</span>(data, <span class="at">as =</span> <span class="st">"text"</span>, <span class="at">encoding =</span> <span class="st">"utf-8"</span>))     </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  data_tbl <span class="ot">&lt;-</span>  <span class="fu">map_if</span>(data_df, is.data.frame, list) <span class="sc">%&gt;%</span>          </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    as_tibble <span class="sc">%&gt;%</span>          </span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unnest</span>(<span class="at">cols =</span> <span class="fu">c</span>(value)) <span class="sc">%&gt;%</span>          </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="st">'@odata.context'</span>) </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="exploring-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-the-data">Exploring the Data</h2>
+<p>The all_dimension tibble shows all data that is possible from the API. The all_countries and all_indicators shows details for countries and indicators. This can be used to define which countries and indicators should be pulled from the dataset.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find what you need  </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>all_dimension <span class="ot">&lt;-</span>  <span class="fu">convert_JSON_to_tbl</span>(<span class="st">"https://ghoapi.azureedge.net/api/Dimension"</span>)  </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>all_countries <span class="ot">&lt;-</span>  <span class="fu">convert_JSON_to_tbl</span>(<span class="fu">glue</span>(URL_BASE,<span class="st">"Dimension/COUNTRY/DimensionValues"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Code, Title)  </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>all_indicators <span class="ot">&lt;-</span>  <span class="fu">convert_JSON_to_tbl</span>(<span class="fu">glue</span>(URL_BASE,<span class="st">"Indicator"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Language)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="create-a-vector-of-all-indicators-of-interest" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-vector-of-all-indicators-of-interest">Create a Vector of All Indicators of Interest</h2>
+<p>In the case of indicators that have TB or Tuberculosis in the title different strategies are needed. For most, using INDICATOR returns most, but there are a few cases INDICATOR_TEXT and INDICATOR_TEXT_TB are needed. The code below finds all cases where TB or Tuberculosis are mentioned, and combines then in to a vector and keeps the indicator code.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Select a few based on globals </span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="st">indicators_from_code &lt;- all_indicators %&gt;%      </span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="st">  filter(grepl(INDICATOR, IndicatorCode, ignore.case = TRUE))   </span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="st">indicators_from_text &lt;- all_indicators %&gt;%      </span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="st">  filter(grepl(INDICATOR_TEXT, IndicatorName, ignore.case = TRUE))  </span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="st">  </span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="st">indicators_from_text_tb &lt;- all_indicators %&gt;%      </span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="st">  filter(grepl(INDICATOR_TEXT_TB, IndicatorName, ignore.case = TRUE))  </span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="st">  </span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="st">indicators &lt;- indicators_from_code %&gt;%      </span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="st">  union(indicators_from_text) %&gt;%      </span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="st">  union(indicators_from_text_tb)  </span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="st">  </span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="st">indicator_codes &lt;- indicators %&gt;%      </span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="st">  pull(IndicatorCode)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="pull-data-and-convert-to-a-list" class="level2">
+<h2 class="anchored" data-anchor-id="pull-data-and-convert-to-a-list">Pull data and Convert to a List</h2>
+<p>For the project we have chosen to extract all data and then process the data using dplyr. However, it is also possible to add a query and only extract data of interest.</p>
+<p>Each indicator has its own table in the WHO GHO, but in this case, we would like to have all data in one dataset. The code section below loops through all indicators related to TB, combines the data and outputs a list where the value column has all data for an indicator.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>indicator_data <span class="ot">&lt;-</span> <span class="fu">map</span>(indicator_codes, <span class="cf">function</span>(id) {     </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  response <span class="ot">&lt;-</span> <span class="fu">GET</span>(         </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">glue</span>(URL_BASE, id))     </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">content</span>(response, <span class="st">"text"</span>) </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The next code section converts the list to a tibble with one column per field.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>indicator_data_tbl <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(indicator_data, <span class="sc">~</span> <span class="fu">fromJSON</span>(.x,<span class="at">simplifyVector =</span> <span class="cn">TRUE</span>)<span class="sc">%&gt;%</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(<span class="at">cols =</span> <span class="fu">everything</span>())) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="process-data-and-save-as-a-csv" class="level2">
+<h2 class="anchored" data-anchor-id="process-data-and-save-as-a-csv">Process Data and Save as a CSV</h2>
+<p>The data is processed using the dplyr package in Tidyverse. First only relevant countries and columns are kept. The additional data from Indicators and Countries are added, columns are renamed, and columns are reordered.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>all_data <span class="ot">&lt;-</span> indicator_data_tbl <span class="sc">%&gt;%</span>      </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(SpatialDim <span class="sc">%in%</span> COUNTRY) <span class="sc">%&gt;%</span>      </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(IndicatorCode, TimeDim, SpatialDim, NumericValue, High, Low) <span class="sc">%&gt;%</span>     </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">region =</span> <span class="fu">case_when</span>(iso3c <span class="sc">%in%</span> SADC <span class="sc">~</span> <span class="st">"SADC"</span>,                               </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                                iso3c <span class="sc">%in%</span> EAC <span class="sc">~</span> <span class="st">"EAC"</span>,                               </span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                                iso3c <span class="sc">%in%</span> ECOWAS <span class="sc">~</span> <span class="st">"ECOWAS"</span>)) <span class="sc">%&gt;%</span>      </span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">rename</span>(<span class="at">Code =</span> SpatialDim,) <span class="sc">%&gt;%</span>      </span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">left_join</span>(indicators, <span class="at">by =</span> <span class="st">"IndicatorCode"</span>) <span class="sc">%&gt;%</span>      </span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">left_join</span>(all_countries, <span class="at">by =</span> <span class="st">"Code"</span>) <span class="sc">%&gt;%</span>      </span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">rename</span>( <span class="at">year =</span> TimeDim,            </span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>              <span class="at">value =</span> NumericValue,            </span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>              <span class="at">high_value =</span> High,            </span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>              <span class="at">low_value =</span> Low,           </span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>              <span class="at">country_code =</span> Code,            </span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>              <span class="at">indicator_name =</span> IndicatorName,            </span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>              <span class="at">country =</span> Title,            </span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>              <span class="at">indicator_code =</span> IndicatorCode) <span class="sc">%&gt;%</span>      </span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(indicator_code, indicator_name, year, country_code, country, <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Finally time to print to a CSV.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a> <span class="fu">write_excel_csv</span>(WB_data_long, <span class="st">"WB_data_long.csv"</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_excel_csv</span>(all_data,<span class="st">"WHO Data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Once downloaded, the CSV file looks like this (1 row per country, per year per indicator):</p>
 <div style="text-align: center;">
-    <img src="../images/medium_worldbank_databank_output.png" alt="Alt text" width="600">
+    <img src="../images/armchair_tb/who_data_1.png" alt="Alt text" width="600">
 </div>
-
 <hr>
 <p>All code can be found on the project <a href="https://github.com/KirstinLyon/Armchair-TB">Armchair TB</a> in GitHub.</p>
 <p>Article published on <a href="https://medium.com/@kirstin.lyon">Medium</a></p>
@@ -272,6 +314,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -7,7 +7,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2021-04-01">
-<meta name="description" content="Looking for your next club in Denmark, use the data created by member counting in Denmark’s clubs for your answer.">
 
 <title>Find Your Next Club in Denmark</title>
 <style>
@@ -125,11 +124,6 @@ ul.task-list li input[type="checkbox"] {
   </div>
   </div>
 
-<div>
-  <div class="description">
-    Looking for your next club in Denmark, use the data created by member counting in Denmark’s clubs for your answer.
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
@@ -150,6 +144,7 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Looking for your next club in Denmark, use the data created by member counting in Denmark’s clubs for your answer.</p>
 <div id="viz1741014031435" class="tableauPlaceholder" style="position: relative">
 <noscript>
 <a href="#"><img src="https://public.tableau.com/static/images/Fi/FindasportsclubinDenmark2021/Findaclub/1_rss.png" alt="Find a club " style="border: none"></a>
@@ -158,7 +153,28 @@ ul.task-list li input[type="checkbox"] {
 <p><param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F"> <param name="embed_code_version" value="3"> <param name="site_root" value=""><param name="name" value="FindasportsclubinDenmark2021/Findaclub"><param name="tabs" value="no"><param name="toolbar" value="yes"><param name="static_image" value="https://public.tableau.com/static/images/Fi/FindasportsclubinDenmark2021/Findaclub/1.png"> <param name="animate_transition" value="yes"><param name="display_static_image" value="yes"><param name="display_spinner" value="yes"><param name="display_overlay" value="yes"><param name="display_count" value="yes"><param name="language" value="en-GB"></p>
 </object>
 </div>
-            <script type="text/javascript">                    var divElement = document.getElementById('viz1741014031435');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='827px';vizElement.style.height='1196px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='827px';vizElement.style.height='1196px';} else { vizElement.style.width='100%';vizElement.style.height='1577px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+    <script type="text/javascript">                    
+        var divElement = document.getElementById('viz1741014031435');                    
+        var vizElement = divElement.getElementsByTagName('object')[0]; 
+        
+        var targetWidth = 800; // Set your target width
+        var originalWidth = 827; // Original width
+        var originalHeight = 1196; // Original height
+        
+        // Calculate scale ratio
+        var scaleRatio = targetWidth / originalWidth;
+        
+        // Apply scale transformation
+        vizElement.style.transform = 'scale(' + scaleRatio + ')';
+        vizElement.style.transformOrigin = 'top left'; // Keep the scaling aligned to the top left
+        vizElement.style.width = originalWidth + 'px'; // Maintain original width
+        vizElement.style.height = originalHeight + 'px'; // Maintain original height
+        vizElement.style.overflow = 'hidden'; // Hide any overflow
+        
+        var scriptElement = document.createElement('script');                    
+        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
+        vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+    </script>
 
 
 

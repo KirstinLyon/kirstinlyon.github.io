@@ -1,6 +1,5 @@
 ---
 title: "Connect To World Bank DataBank Using R"
-description: "Walkthrough of connecting to the World Bank DataBank in R."
 categories: 
     - R
     - Public Health

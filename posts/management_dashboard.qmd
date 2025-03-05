@@ -1,12 +1,12 @@
 ---
 title: "One Dashboard to Control Them All (Management Dashboard Example)"
-description: "Example of one dashboard to control them all."
 categories: 
     - Tableau
 image: "/images/management_dashboard.png"
 date: "2015-10-01"
 format: html
 ---
+Example of one dashboard to control them all.
 
 ::: {#viz1741014525444 .tableauPlaceholder style="position: relative"}
 <noscript><a href='#'><img src="https://public.tableau.com/static/images/Ma/ManagementDashboardExample2016/Mgmtdashboardexample/1_rss.png" alt="Management Dashboard Example " style="border: none"/></a></noscript>
@@ -19,5 +19,26 @@ format: html
 :::
 
 ```{=html}
-            <script type='text/javascript'>                    var divElement = document.getElementById('viz1741014525444');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='1366px';vizElement.style.height='795px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+    <script type='text/javascript'>                    
+        var divElement = document.getElementById('viz1741014525444');                    
+        var vizElement = divElement.getElementsByTagName('object')[0];       
+        
+        var targetWidth = 800; // Set your target width
+        var originalWidth = 1366; // Original width
+        var originalHeight = 795; // Original height
+        
+        // Calculate scale ratio
+        var scaleRatio = targetWidth / originalWidth;
+        
+        // Apply scale transformation
+        vizElement.style.transform = 'scale(' + scaleRatio + ')';
+        vizElement.style.transformOrigin = 'top left'; // Keep the scaling aligned to the top left
+        vizElement.style.width = originalWidth + 'px'; // Maintain original width
+        vizElement.style.height = originalHeight + 'px'; // Maintain original height
+        vizElement.style.overflow = 'hidden'; // Hide any overflow
+        
+        var scriptElement = document.createElement('script');                    
+        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
+        vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+    </script>
 ```

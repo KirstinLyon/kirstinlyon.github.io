@@ -1,6 +1,5 @@
 ---
 title: "Introduction to the Armchair TB Project"
-description: "Introduction to the Armchair TB Project"
 categories: 
     - Public Health
     - Armchair TB Project
@@ -31,13 +30,13 @@ As articles are uploaded, we will update the sections below.
 
 -   [Introducing BCG Immunization Coverage Among One-Year-Olds (%) (Health Inequality Monitor)](/posts/armchair_tb_bcg.html)
 
--   Introducing TB Mortality Number per 100,000 People
+-   [Introducing TB Mortality Number per 100,000 People](/posts/armchair_tb_mortality.html)
 
 ## Data:
 
 -   [Connect to the World Bank DataBank using R](/posts/connect_world_bank_data_bank.html)
 
--   Connect to Global Health Observatory (WHO) Data API with R
+-   [Connect to Global Health Observatory (WHO) Data API with R](/posts/connect/armchair_tb_who_data.html)
 
 ## Tableau:
 

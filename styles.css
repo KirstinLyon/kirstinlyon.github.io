@@ -122,4 +122,6 @@ pre code {
   color: #000000; /* Set text color to black */
 }
 
-
+.post-description {
+  display: none;
+}

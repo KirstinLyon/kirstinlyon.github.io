@@ -1,6 +1,5 @@
 ---
 title: "Find Your Next Club in Denmark"
-description: "Looking for your next club in Denmark, use the data created by member counting in Denmark's clubs for your answer."
 categories: 
     - Sports
     - Tableau
@@ -8,6 +7,8 @@ image: "/images/club.jpg"
 date: "2021-04-01"
 format: html
 ---
+
+Looking for your next club in Denmark, use the data created by member counting in Denmark's clubs for your answer.
 
 ::: {#viz1741014031435 .tableauPlaceholder style="position: relative"}
 <noscript><a href='#'><img src="https://public.tableau.com/static/images/Fi/FindasportsclubinDenmark2021/Findaclub/1_rss.png" alt="Find a club " style="border: none"/></a></noscript>
@@ -20,5 +21,26 @@ format: html
 :::
 
 ```{=html}         
-            <script type='text/javascript'>                    var divElement = document.getElementById('viz1741014031435');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='827px';vizElement.style.height='1196px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='827px';vizElement.style.height='1196px';} else { vizElement.style.width='100%';vizElement.style.height='1577px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+    <script type='text/javascript'>                    
+        var divElement = document.getElementById('viz1741014031435');                    
+        var vizElement = divElement.getElementsByTagName('object')[0]; 
+        
+        var targetWidth = 800; // Set your target width
+        var originalWidth = 827; // Original width
+        var originalHeight = 1196; // Original height
+        
+        // Calculate scale ratio
+        var scaleRatio = targetWidth / originalWidth;
+        
+        // Apply scale transformation
+        vizElement.style.transform = 'scale(' + scaleRatio + ')';
+        vizElement.style.transformOrigin = 'top left'; // Keep the scaling aligned to the top left
+        vizElement.style.width = originalWidth + 'px'; // Maintain original width
+        vizElement.style.height = originalHeight + 'px'; // Maintain original height
+        vizElement.style.overflow = 'hidden'; // Hide any overflow
+        
+        var scriptElement = document.createElement('script');                    
+        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
+        vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+    </script>
 ```

@@ -1,33 +1,42 @@
 ---
-title: "Introducing BCG Immunization Coverage Among One-Year-Olds (%) (Health Inequality Monitor)"
+title: "Introducing TB Mortality Number per 100,000 People"
 categories: 
     - Public Health
     - Armchair TB Project
     - Tableau
 image: "/images/armchair_tb/tb_icon.png"
-date: "2023-02-18"
+date: "2023-02-26"
 format: 
   html:
     css: style.css
 ---
 
-The next indicator we would like to introduce relates to the BCG Immunization coverage among one-year-olds by the WHO.
-
-This indicator measures the percentage of infants who have received Bacillus Calmette-Guérin (BCG) vaccine, which is a vaccine against tuberculosis (TB). The indicator is calculated as the number of infants who have received BCG vaccine at birth divided by the total number of live births in a given time period, multiplied by 100. This indicator is important for assessing the coverage and effectiveness of BCG vaccination programs in reducing the burden of TB among infants and young children.
-
-TB disease mitigation through BCG vaccination is one of the main tools in the TB control programs. How are we faring in Southern, Eastern and Western regions of Sub Saharan Africa?
-
-Rates of childhood immunization is a sensitive measure of basic healthcare access. Less than full population immunization coverage can be found in some of the most vulnerable communities where multiple dimensions of inequality and poverty co-exist. The BCG vaccine , given at birth , has a documented protective effect against meningitis and disseminated TB in children. BCG immunization does not prevent primary infection and, more importantly, does not prevent reactivation of latent pulmonary infection which is the main source of TB bacterial transmission in the community.
-
-In the EAC, ECOWAS and SADC regions, coverage has varied over time yet remained consistently above 80%. Ensuing post-Covid19 data should provide some insight into the impact of the pandemic on the disruption on routine primary healthcare services such as childhood immunization programs.
-
 ```{=html}
 <div style="text-align: center;">
-    <img src="/images/armchair_tb/02_01.png" alt="Analysts reviewing data" width="600"/>
+    <img src="/images/armchair_tb/mortality.png" alt="Analysts reviewing data" width="600"/>
 </div>
 ```
 
-Live Version
+The WHO (World Health Organization) defines TB mortality as
+
+> the number of deaths caused by tuberculosis (TB) among people with TB, regardless of their HIV status, per 100,000 population. TB mortality is an important indicator of the severity of the TB epidemic and the effectiveness of TB control programs.
+
+In general, high TB mortality rates suggest inadequate TB control measures, while low rates indicate effective control efforts. TB mortality rates are often higher in low- and middle-income countries, where access to TB diagnosis, treatment, and care may be limited. To reduce TB mortality, the WHO recommends timely diagnosis and treatment of TB cases, including those with drug-resistant TB, as well as addressing the social determinants of TB, such as poverty, malnutrition, and poor living conditions.
+
+Although the Sustainable Development goals (Goal 3 Target3.3) replaced the Millennium Development Goals (MDGs)(Target 6C Indicator 6.9) both programs specifically call for the end of communicable disease epidemics such as TB and HIV. The combined effects of advances in drug therapy, shortening of regimens, introduction of TB preventative therapy and strengthening of health services should make it easier for people to stay compliant on TB treatment and thus improve TB disease outcomes however, TB deaths have been slow to decline.
+
+Of particular concern was the effect of COVID19 on TB disease programs: Globally, TB deaths increased from the first time since 2005; 22.7mil children missed out on basic vaccinations in 2020; 92% of national health systems were disrupted at end 2021 and 115,500 precious healthcare workers were lost. For these reasons, cause specific death rates need close\
+monitoring and decisive action over the next 5 years.
+
+Despite a cure for TB, what are the disease specific death rates for TB patients in Southern, Eastern and Western regions of Sub-Saharan Africa ?
+
+```{=html}
+<div style="text-align: center;">
+    <img src="/images/armchair_tb/03_01.png" alt="Analysts reviewing data" width="600"/>
+</div>
+```
+
+Live
 
 ::: {#viz1741086737575 .tableauPlaceholder style="position: relative"}
 <noscript><a href='#'><img src="https://public.tableau.com/static/images/Ar/ArmchairTBOneIndicator/OneIndicator/1_rss.png" alt="One Indicator " style="border: none"/></a></noscript>
@@ -63,7 +72,7 @@ Live Version
       </script>
 ```
 
----
+------------------------------------------------------------------------
 
 The interactive version is available on [Tableau Public](https://public.tableau.com/views/ArmchairTBOneIndicator/OneIndicator?%3Alanguage=en-GB&%3Adisplay_count=n&%3Aorigin=viz_share_link). See the guides for [interacting with the dashboard](/posts/armchair_tb_one_indicator.html), and [downloading the data for World Bank DataBank](/posts/connect_world_bank_data_bank.html) on the project site.
 

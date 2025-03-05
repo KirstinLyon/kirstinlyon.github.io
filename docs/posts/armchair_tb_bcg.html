@@ -7,7 +7,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="dcterms.date" content="2023-02-18">
-<meta name="description" content="Introducing BCG Immunization Coverage Among One-Year-Olds (%) (Health Inequality Monitor)">
 
 <title>Introducing BCG Immunization Coverage Among One-Year-Olds (%) (Health Inequality Monitor)</title>
 <style>
@@ -127,11 +126,6 @@ ul.task-list li input[type="checkbox"] {
   </div>
   </div>
 
-<div>
-  <div class="description">
-    Introducing BCG Immunization Coverage Among One-Year-Olds (%) (Health Inequality Monitor)
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
@@ -169,7 +163,27 @@ ul.task-list li input[type="checkbox"] {
 <p><param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F"> <param name="embed_code_version" value="3"> <param name="site_root" value=""><param name="name" value="ArmchairTBOneIndicator/OneIndicator"><param name="tabs" value="no"><param name="toolbar" value="yes"><param name="static_image" value="https://public.tableau.com/static/images/Ar/ArmchairTBOneIndicator/OneIndicator/1.png"> <param name="animate_transition" value="yes"><param name="display_static_image" value="yes"><param name="display_spinner" value="yes"><param name="display_overlay" value="yes"><param name="display_count" value="yes"><param name="language" value="en-GB"></p>
 </object>
 </div>
-            <script type="text/javascript">                    var divElement = document.getElementById('viz1741086737575');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='1500px';vizElement.style.height='927px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='1500px';vizElement.style.height='927px';} else { vizElement.style.width='100%';vizElement.style.height='727px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+    <script type="text/javascript">                    
+      var divElement = document.getElementById('viz1741086737575');                    
+      var vizElement = divElement.getElementsByTagName('object')[0];                    
+      var targetWidth = 800; // Set your target width
+      var originalWidth = 1500; // Original width
+      var originalHeight = 927; // Original height
+
+      // Calculate scale ratio
+      var scaleRatio = targetWidth / originalWidth;
+
+      // Apply scale transformation
+      vizElement.style.transform = 'scale(' + scaleRatio + ')';
+      vizElement.style.transformOrigin = 'top left'; // Keep the scaling aligned to the top left
+      vizElement.style.width = originalWidth + 'px'; // Maintain original width
+      vizElement.style.height = originalHeight + 'px'; // Maintain original height
+      vizElement.style.overflow = 'hidden'; // Hide any overflow
+      
+      var scriptElement = document.createElement('script');                    
+      scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
+      vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+      </script>
 <hr>
 <p>The interactive version is available on <a href="https://public.tableau.com/views/ArmchairTBOneIndicator/OneIndicator?%3Alanguage=en-GB&amp;%3Adisplay_count=n&amp;%3Aorigin=viz_share_link">Tableau Public</a>. See the guides for <a href="..\posts/armchair_tb_one_indicator.html">interacting with the dashboard</a>, and <a href="..\posts/connect_world_bank_data_bank.html">downloading the data for World Bank DataBank</a> on the project site.</p>
 <p>This is part of the Armchair TB Project. Find out more about the project, and related content <a href="..\posts/armchair_tb_intro.html">here</a>.</p>
