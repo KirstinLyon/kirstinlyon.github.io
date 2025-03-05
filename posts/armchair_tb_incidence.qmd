@@ -4,18 +4,12 @@ categories:
     - Public Health
     - Armchair TB Project
     - Tableau
-image: "/images/armchair_tb/tb_icon.png"
+image: "/images/population.jpgg"
 date: "2023-02-10"
 format: 
   html:
     css: style.css
 ---
-
-```{=html}
-<div style="text-align: center;">
-    <img src="/images/population.jpg" alt="Analysts reviewing data" width="600"/>
-</div>
-```
 
 The first indicator we would like to introduce is the incidence of tuberculosis (TB) per 100,000 people that is available from the World Health Organisations (WHO) Global TB Report. The WHO defines this indicator as:
 

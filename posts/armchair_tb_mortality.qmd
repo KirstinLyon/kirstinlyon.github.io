@@ -4,18 +4,12 @@ categories:
     - Public Health
     - Armchair TB Project
     - Tableau
-image: "/images/armchair_tb/tb_icon.png"
+image: "/images/armchair_tb/mortality.png"
 date: "2023-02-26"
 format: 
   html:
     css: style.css
 ---
-
-```{=html}
-<div style="text-align: center;">
-    <img src="/images/armchair_tb/mortality.png" alt="Analysts reviewing data" width="600"/>
-</div>
-```
 
 The WHO (World Health Organization) defines TB mortality as
 
