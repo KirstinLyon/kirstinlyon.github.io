@@ -1,0 +1,209 @@
+---
+title: "Automating R Scripts: Using Task Scheduler with Batch Files"
+categories: 
+    - R
+image: "/images/automate_r/automate_r.png"
+date: "2024-03-23"
+format: 
+  html:
+    css: style.css
+---
+
+```{=html}
+<div style="text-align: center;">
+    <img src="/images/automate_r/automate_r.png" alt="Alt text" width="600" />
+</div>
+```
+
+Automating R scripts with batch files is akin to having a trusty assistant to manage data tasks efficiently. Rather than performing each task manually, you can compile all your R commands into a batch file and let it handle the workload. This not only saves time but also reduces the likelihood of errors.
+
+Furthermore, you can schedule batch files to execute at specific times, eliminating the need for manual intervention. What’s more, even individuals lacking technical expertise can utilise your R scripts with batch files, as no specialised software or coding skills are required.
+
+In this tutorial, we’ll walk through an example demonstrating the automation of three R scripts using a batch file and Windows Scheduler.
+
+Getting started:
+
+-   Install R ([link](https://www.r-project.org/))
+
+-   Install any libraries used in your code
+
+-   Windows operating system (but options exist for running batch files on a mac)
+
+## Example R script
+
+The following example generates a CSV file utilizing the Star Wars dataset provided by ggplot2, a package within Tidyverse. The data manipulation is facilitated by the dplyr and janitor packages, while the here package assists in identifying the project path. In this scenario, the output file is intended to be saved in a folder named Data within the same directory as the R script.
+
+``` R
+library(tidyverse) 
+library(here) 
+library(janitor)  
+
+# Define the output file path relative to the location of the script 
+output_file <- here::here("Data", "starwars_df.csv") 
+
+# Generate the CSV file 
+starwars_df <- starwars %>%      
+    select(name, species, homeworld) %>%      
+    clean_names() %>%      
+    write_csv(output_file)
+```
+
+## Example Batch File
+
+A batch file is a script file containing a series of commands that are executed sequentially by the command interpreter on a computer system. In the Windows operating system, batch files typically have a “.bat” extension.
+
+Batch files are commonly used to automate repetitive tasks, perform system administration tasks, and run sequences of commands or programs without manual intervention. They are essentially text files containing a list of commands that would otherwise have to be entered individually at the command prompt.
+
+---
+
+The following batch file is used to automate the example R scripts.
+
+Start by defining your paths. Update the placeholder path below with the correct path to your Rscript.exe. Replace `"C:\Program Files\R\R-4.3.3\bin\Rscript.exe"` with the actual path to your Rscript.exe, and `"C:\Path\to\your\R\script.R"` with the path to your R script. This batch file will execute the specified R script using Rscript.exe. You can add more commands or scripts after the execution of the R script as needed.
+
+```         
+REM Define the path to Rscript executable 
+set "rscript=C:\Program Files\R\R-4.3.3\bin\Rscript.exe
+```
+
+With this script, `COMMON_PATH`
+will be set to the directory where the batch file is located, assuming
+the batch file is in the same folder as your R scripts. If you want to
+set `COMMON_PATH` as an absolute path, uncomment the line and replace `"C:\absolute\path\to\R\scripts"` with your desired absolute path.
+
+```         
+REM Get the directory of the batch file 
+set "batch_dir=%~dp0"  
+
+REM Set the common path relative to the batch file location 
+set "common_path=%batch_dir%..\Scripts\"  
+
+REM Replace the common path with an absolute path if needed REM 
+set "COMMON_PATH=C:\absolute\path\to\R\scripts"  
+
+REM Prints the common path to the console 
+echo %common_path%
+```
+
+Next, specify the paths to your R scripts. In this example, all three
+files are located in the same folder, and the common path has been
+previously defined. However, if the R scripts are located in different
+folders, you can store their absolute paths directly here instead of
+creating a common path variable.
+
+```         
+REM Define the path to the R script 
+set "rscript_file1=%common_path%script_1.R" 
+set "rscript_file2=%common_path%script_2.R" 
+set "rscript_file3=%common_path%script_3.R"
+```
+
+Run the R scripts.
+
+```         
+REM Execute the R script 
+"%rscript%" "%rscript_file1%" 
+"%rscript%" "%rscript_file2%" 
+"%rscript%" "%rscript_file3%"
+```
+
+The “pause” command prevents the console from closing, allowing you to
+view the output generated during the execution of the batch file. On the
+other hand, the “exit” command will close the console immediately after
+the batch file finishes executing.
+
+```         
+PAUSE
+```
+
+To execute, simply double-click the batch file (typically saved with a .bat extension).
+
+## **Automating a batch file with Windows Task Scheduler**
+
+Windows Task Scheduler is a built-in utility in the Windows operating system that allows users to schedule and automate various tasks to run at specific times or in response to specific events. It provides a graphical user interface (GUI) that enables users to create, modify, and delete scheduled tasks easily.
+
+With Windows Task Scheduler, users can schedule tasks such as running programs, scripts, or batch files, as well as performing system maintenance tasks like disk cleanup or system backups. Tasks can be scheduled to run once, at a specified time and date, or on a recurring basis, such as daily, weekly, or monthly.
+
+Tasks can also be triggered by specific events, such as when the computer starts up, when a user logs on, or when a particular system event occurs. Additionally, Task Scheduler provides options for configuring task settings, including specifying the user account under which the task will run, setting priority levels, and defining conditions for task execution.
+
+Overall, Windows Task Scheduler is a versatile tool that helps users automate routine tasks, improve productivity, and ensure that important processes are executed reliably and on schedule.
+
+---
+
+## Create a Task
+
+1.  Open Task Scheduler and select “Create Basic Task”.
+
+```{=html}
+<div style="text-align: center;">
+    <img src="/images/automate_r/automate_r_1.png" alt="Alt text" width="600" />
+</div>
+```
+
+Add a name and description for your task.
+
+```{=html}
+<div style="text-align: center;">
+    <img src="/images/automate_r/automate_r_2.png" alt="Alt text" width="600" />
+</div>
+```
+
+Select the schedule
+
+```{=html}
+<div style="text-align: center;">
+    <img src="/images/automate_r/automate_r_3.png" alt="Alt text" width="600" />
+</div>
+```
+
+Depending on which trigger is selected, and separate window opens.
+
+```{=html}
+<div style="text-align: center;">
+    <img src="/images/automate_r/automate_r_4.png" alt="Alt text" width="600" />
+</div>
+```
+
+The only option available is to start a program (this includes a batch file).
+
+```{=html}
+<div style="text-align: center;">
+    <img src="/images/automate_r/automate_r_5.png" alt="Alt text" width="600" />
+</div>
+```
+
+Browse for your batch file.
+
+```{=html}
+<div style="text-align: center;">
+    <img src="/images/automate_r/automate_r_6.png" alt="Alt text" width="600" />
+</div>
+```
+
+The final window is a summary of the task.
+
+```{=html}
+<div style="text-align: center;">
+    <img src="/images/automate_r/automate_r_7.png" alt="Alt text" width="600" />
+</div>
+```
+
+---
+
+n short, automating R scripts with batch files and task schedulers
+offers numerous benefits, but two standout advantages are worth
+highlighting. Firstly, it enables you to effortlessly run scripts in the
+background, freeing up time for other tasks. Secondly, it simplifies
+script execution for anyone, regardless of their familiarity with R,
+fostering collaboration and knowledge sharing within your team.
+
+---
+
+## Links
+
+[Working example](https://github.com/KirstinLyon/run_r_with_bat_file/tree/main) (available on GitHub)
+
+[Tidyverse](https://www.tidyverse.org/) (suite of R pacakages)
+
+[Here](https://here.r-lib.org/) (R package)
+
+[Janitor](https://sfirke.github.io/janitor/) (R package)

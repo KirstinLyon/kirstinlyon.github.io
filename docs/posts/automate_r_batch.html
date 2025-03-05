@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2024-03-30">
+<meta name="dcterms.date" content="2024-03-23">
 
-<title>Replicating the HIV Sub-National Estimates Viewer in Tableau: A Step-by-Step Guide</title>
+<title>Automating R Scripts: Using Task Scheduler with Batch Files</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -103,6 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -151,12 +152,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Replicating the HIV Sub-National Estimates Viewer in Tableau: A Step-by-Step Guide</h1>
+<h1 class="title">Automating R Scripts: Using Task Scheduler with Batch Files</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Public Health</div>
-    <div class="quarto-category">Tableau</div>
     <div class="quarto-category">R</div>
-    <div class="quarto-category">geospatial</div>
   </div>
   </div>
 
@@ -168,7 +166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 30, 2024</p>
+      <p class="date">March 23, 2024</p>
     </div>
   </div>
   
@@ -180,206 +178,119 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>The <a href="https://naomi-spectrum.unaids.org/">HIV Sub-National Estimates Viewer</a> is a tool used to visualize and analyze estimates of HIV prevalence, incidence, and other related indicators at a sub-national level. It allows users to explore data and gain insights into the distribution of HIV across different regions within a country or territory. This viewer typically provides interactive maps, charts, and tables to present the data in a user-friendly format.</p>
-<p>This tutorial walks through the process of recreating the HIV Sub-National Estimates Viewer using R and Tableau, with the aim of enabling individual analysis and expanding the functionalities of the viewer.</p>
-<p><strong>Getting started:</strong></p>
+<div style="text-align: center;">
+    <img src="../images/automate_r/automate_r.png" alt="Alt text" width="600">
+</div>
+<p>Automating R scripts with batch files is akin to having a trusty assistant to manage data tasks efficiently. Rather than performing each task manually, you can compile all your R commands into a batch file and let it handle the workload. This not only saves time but also reduces the likelihood of errors.</p>
+<p>Furthermore, you can schedule batch files to execute at specific times, eliminating the need for manual intervention. What’s more, even individuals lacking technical expertise can utilise your R scripts with batch files, as no specialised software or coding skills are required.</p>
+<p>In this tutorial, we’ll walk through an example demonstrating the automation of three R scripts using a batch file and Windows Scheduler.</p>
+<p>Getting started:</p>
 <ul>
-<li><p>Shape file (e.g.&nbsp;Global Administrative Areas - <a href="https://gadm.org/">GADM</a>)</p></li>
-<li><p>Dataset from HIV Sub-National Estimates Viewer (<a href="https://naomi-spectrum.unaids.org/" class="uri">https://naomi-spectrum.unaids.org/</a>)</p></li>
+<li><p>Install R (<a href="https://www.r-project.org/">link</a>)</p></li>
+<li><p>Install any libraries used in your code</p></li>
+<li><p>Windows operating system (but options exist for running batch files on a mac)</p></li>
 </ul>
-<p><strong>Shapefile for DR Congo</strong></p>
-<p>The DR Congo shapefile comprises three hierarchical levels: Country, Province, and Territory/Town. The “engtype 2” field distinguishes between territories and towns. Going forward, I’ll denote territories as districts.</p>
-<p><strong>Download data from HIV Sub-National Estimates Viewer</strong></p>
-<p>Choose from the options provided below. Make sure to toggle between view types and table options as indicated.</p>
-<div style="text-align: center;">
-    <img src="../images/art_in_congo/art_in_congo_1.png" alt="Alt text" width="150">
-</div>
-<p>After completing all selections (and ensuring “Table” is chosen), you will observe the following. Click on the CSV icon to initiate the data download.</p>
-<div style="text-align: center;">
-    <img src="../images/art_in_congo/art_in_congo_2.png" alt="Alt text" width="600">
-</div>
-<p>The data is presented in an organized manner by level, a crucial aspect for establishing the hierarchy. It’s important not to modify this arrangement before importing the data into R. The dataset comprises four levels, but only three will be utilized in Tableau, aligning with the three levels present in the shapefile.</p>
-<div style="text-align: center;">
-    <img src="../images/art_in_congo/art_in_congo_3.png" alt="Alt text" width="600">
-</div>
-<section id="prepare-data-using-r" class="level4">
-<h4 class="anchored" data-anchor-id="prepare-data-using-r"><strong>Prepare Data using R</strong></h4>
-<ol type="1">
-<li>Below is an example of importing libraries, setting paths, and creating placeholders for additional columns based on the selected data from the HIV sub-national estimates viewer</li>
-</ol>
+<section id="example-r-script" class="level2">
+<h2 class="anchored" data-anchor-id="example-r-script">Example R script</h2>
+<p>The following example generates a CSV file utilizing the Star Wars dataset provided by ggplot2, a package within Tidyverse. The data manipulation is facilitated by the dplyr and janitor packages, while the here package assists in identifying the project path. In this scenario, the output file is intended to be saved in a folder named Data within the same directory as the R script.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(zoo)   </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#---- GLOBAL </span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>PATH <span class="ot">&lt;-</span>  <span class="st">"Data/dr_congo_level3_ART_coverage_all.csv"</span> </span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>OUTPUT <span class="ot">&lt;-</span> <span class="st">"Dataout/"</span> </span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>AGE <span class="ot">&lt;-</span> <span class="st">"All Ages"</span> </span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>SEX <span class="ot">&lt;-</span> <span class="st">"Both"</span> </span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>INDICATOR <span class="ot">&lt;-</span> <span class="st">"ART Coverage"</span>  </span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>PERIOD <span class="ot">&lt;-</span>  <span class="dv">2022</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="2" type="1">
-<li>Below is a function in R that converts a list of administrations into a hierarchy. In this example, Area Level 3 is selected, and “include all levels” is chosen in the Table Option. The function uses zoo package in R.</li>
-</ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>clean_hierarchy <span class="ot">&lt;-</span> <span class="cf">function</span>(df) {</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">level_name =</span> <span class="fu">paste</span>(level, area, <span class="at">sep =</span> <span class="st">"_"</span>),</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">country =</span> <span class="fu">str_extract</span>(level_name, <span class="st">"^0_(.*)"</span>),</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">province =</span> <span class="fu">str_extract</span>(level_name, <span class="st">"^1_(.*)"</span>),</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">district =</span> <span class="fu">str_extract</span>(level_name, <span class="st">"^2_(.*)"</span>),</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">sub_district =</span> <span class="fu">str_extract</span>(level_name, <span class="st">"^3_(.*)"</span>)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">%&gt;%</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>            <span class="fu">across</span>(country<span class="sc">:</span>sub_district, <span class="sc">~</span> zoo<span class="sc">::</span><span class="fu">na.locf</span>(.x, <span class="at">na.rm =</span> <span class="cn">FALSE</span>))</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">%&gt;%</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(<span class="sc">!</span>(province <span class="sc">==</span> level_name <span class="sc">|</span> district <span class="sc">==</span> level_name)) <span class="sc">%&gt;%</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>            <span class="fu">across</span>(country<span class="sc">:</span>sub_district, <span class="sc">~</span> <span class="fu">str_replace</span>(.x, <span class="st">"</span><span class="sc">\\</span><span class="st">d+_"</span>,<span class="st">""</span>))</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">%&gt;%</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        <span class="fu">drop_na</span>() </span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Below is a function in R that can be used to create additional columns for combining datasets with different indicators, ages, or sexes. This function allows you to download separate datasets for each indicator (or age or sex) in Tableau and then combine them in R before importing them into Tableau.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>add_columns <span class="ot">&lt;-</span> <span class="cf">function</span>(df, age, sex, indicator, period){</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    df <span class="sc">%&gt;%</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">age =</span> age,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">sex =</span> sex, </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">indicator =</span> indicator,</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">period =</span> period</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="3" type="1">
-<li>Below is an example of how you can run the data through the clean_hierarchy function, create additional columns. It is important to check the names of provinces and districts against the shapefile from GADM. In this example, the district “Oïcha” is updated to “Oicha” to match the shapefile.</li>
-</ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(PATH) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    clean_hierarchy <span class="sc">%&gt;%</span> </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">add_columns</span>(AGE, SEX, INDICATOR, PERIOD) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#different naming of district</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">district =</span> <span class="fu">case_when</span>(district <span class="sc">==</span> <span class="st">"Oïcha"</span> <span class="sc">~</span> <span class="st">"Oicha"</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                                <span class="at">.default =</span> district)) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(country, province, district, sub_district, </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>           period, sex, age, indicator, lower, mean, upper)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">write_csv</span>(<span class="fu">paste0</span>(OUTPUT, <span class="st">"spectrum.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ol start="4" type="1">
-<li>This is how the final dataset appears:</li>
-</ol>
-<div style="text-align: center;">
-    <img src="../images/art_in_congo/art_in_congo_4.png" alt="Alt text" width="600">
-</div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here) </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)  </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the output file path relative to the location of the script </span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>output_file <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"Data"</span>, <span class="st">"starwars_df.csv"</span>) </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the CSV file </span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>starwars_df <span class="ot">&lt;-</span> starwars <span class="sc">%&gt;%</span>      </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(name, species, homeworld) <span class="sc">%&gt;%</span>      </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">clean_names</span>() <span class="sc">%&gt;%</span>      </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">write_csv</span>(output_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="recreating-the-art-coverage-map-in-tableau" class="level4">
-<h4 class="anchored" data-anchor-id="recreating-the-art-coverage-map-in-tableau"><strong>Recreating the ART Coverage map in Tableau</strong></h4>
-<div style="text-align: center;">
-    <img src="../images/art_in_congo/art_in_congo_5.png" alt="Alt text" width="600">
-</div>
-<p><strong>Import Data</strong></p>
-<p>The spatial file is provided in a zipped format. Tableau does not require it to be unzipped, but if you choose to unzip it, ensure that the “.shp” file is placed in the same folder as the other spatial files.</p>
-<p>Note: Verify that the administration names from the HIV Sub-National Esimtates Viewer match those in the spatial file. It may be necessary to update the names in R before joining the data in Tableau.</p>
-<p>The shapefile should be joined to the estimates data using the lowest level in the dataset. In this case, “Name 2” in the shapefile corresponds to “District” in the estimates data. The join is as follows:</p>
-<div style="text-align: center;">
-    <img src="../images/art_in_congo/art_in_congo_6.png" alt="Alt text" width="600">
-</div>
-<p><strong>Create Layers</strong></p>
-<p>Map layers can be created in Tableau using geometry (polygons) and points. Check all geographical elements you want to use are marked as spatial in Tableau (they should have a small globe). If they don’t, change the data type to geographic.</p>
-<div style="text-align: center;">
-    <img src="../images/art_in_congo/art_in_congo_7.png" alt="Alt text" width="150">
-</div>
-<p>If the data type does not correspond to a geographic role, then it should be modified.</p>
-<div style="text-align: center;">
-    <img src="../images/art_in_congo/art_in_congo_8.png" alt="Alt text" width="600">
-</div>
-<p>Add country (double-click). Ensure the mark type is map. Click on the Colour card and change the opacity to 0% and add a border.</p>
-<div style="text-align: center;">
-    <img src="../images/art_in_congo/art_in_congo_9.png" alt="Alt text" width="600">
-</div>
-<p>Update Background Layers and set Washout to 100%. This removes the background from the map.</p>
-<div style="text-align: center;">
-    <img src="../images/art_in_congo/art_in_congo_10.png" alt="Alt text" width="600">
-</div>
-<p><strong>Add Province</strong></p>
-<p>To include the province, drag it onto the canvas until “Marks Layer” is visible, then drop it. Confirm that the mark type is set to “map.”</p>
-<div style="text-align: center;">
-    <img src="../images/art_in_congo/art_in_congo_11.png" alt="Alt text" width="600">
-</div>
-<p>Tableau automatically interprets province and country data, eliminating the need for a shapefile. However, if you encounter the following error, it may be due to your computer settings.</p>
-<div style="text-align: center;">
-    <img src="../images/art_in_congo/art_in_congo_12.png" alt="Alt text" width="400">
-</div>
-<p>Click on “unknown” and select Edit Locations.</p>
-<div style="text-align: center;">
-    <img src="../images/art_in_congo/art_in_congo_13.png" alt="Alt text" width="400">
-</div>
-<p>You can either specify the country directly (if it remains constant) or indicate a field containing the country information.</p>
-<div style="text-align: center;">
-    <img src="../images/art_in_congo/art_in_congo_14.png" alt="Alt text" width="400">
-</div>
-<p><strong>Add Districts</strong></p>
-<p>This is where the “geometry” field from the shapefile comes into play. When Geometry is dragged as a layer, it appears as COLLECT(Geometry) in the marks shelf. Follow the same process as in step 2: drag until you see “add layer”. Ensure the mark type is set to “map”. Add the district name to detail, and apply mean to color. By default, it will be summed. If the district isn’t the lowest level, use avg(mean) instead of sum(mean).</p>
-<div style="text-align: center;">
-    <img src="../images/art_in_congo/art_in_congo_15.png" alt="Alt text" width="600">
-</div>
-<p>Change the legend colour to Viridis. In the map below, null values appear as yellow. We want to remove nulls but keep the data relating to towns.</p>
-<div style="text-align: center;">
-    <img src="../images/art_in_congo/art_in_congo_16.png" alt="Alt text" width="600">
-</div>
-<p>Create a calculation to display districts without a value as white. To retain the ability to display towns, create the following calculation and place it in filters.</p>
-<pre><code>iif([Engtype 2] = "Territory" and 
-isnull([Mean (Spectrum.Csv1)]), "remove", "keep")</code></pre>
-<p><strong>Create a Map Layer for Towns</strong></p>
-<p>Create calculations for additional layers (then drag in similar to above). The Example below shows how to create a layer for towns. Set the mark type to circle, and add the calculation to text to show names.</p>
-<pre><code>iif([Engtype 2] = "Town", [Geometry], null)</code></pre>
-<div style="text-align: center;">
-    <img src="../images/art_in_congo/art_in_congo_17.png" alt="Alt text" width="600">
-</div>
-<p><strong>Interacting with layers using the Layer Control</strong></p>
-<p>The Layer control can be used to toggle layers on and off by users. It appears when you hover over the top left hand corner of the map.</p>
-<div style="text-align: center;">
-    <img src="../images/art_in_congo/art_in_congo_18.png" alt="Alt text" width="200">
-</div>
-<p><strong>Using parameters to control layers</strong></p>
-<p>Create a parameter control, then use the following calculation. [toggle: towns] is the name of the parameter, and [map layer: town] is the layer created for towns. Create the map layer using the calculation below:</p>
-<pre><code>iif([toggle: towns] = 1, [map layer: town], null)</code></pre>
+<section id="example-batch-file" class="level2">
+<h2 class="anchored" data-anchor-id="example-batch-file">Example Batch File</h2>
+<p>A batch file is a script file containing a series of commands that are executed sequentially by the command interpreter on a computer system. In the Windows operating system, batch files typically have a “.bat” extension.</p>
+<p>Batch files are commonly used to automate repetitive tasks, perform system administration tasks, and run sequences of commands or programs without manual intervention. They are essentially text files containing a list of commands that would otherwise have to be entered individually at the command prompt.</p>
 <hr>
-<p><strong>Create the Dashboard</strong></p>
-<p>Drag the worksheet containing the map to the dashboard, and add any parameters and filters. The live version of this dashboard is available on Tableau Public.</p>
+<p>The following batch file is used to automate the example R scripts.</p>
+<p>Start by defining your paths. Update the placeholder path below with the correct path to your Rscript.exe. Replace <code>"C:\Program Files\R\R-4.3.3\bin\Rscript.exe"</code> with the actual path to your Rscript.exe, and <code>"C:\Path\to\your\R\script.R"</code> with the path to your R script. This batch file will execute the specified R script using Rscript.exe. You can add more commands or scripts after the execution of the R script as needed.</p>
+<pre><code>REM Define the path to Rscript executable 
+set "rscript=C:\Program Files\R\R-4.3.3\bin\Rscript.exe</code></pre>
+<p>With this script, <code>COMMON_PATH</code> will be set to the directory where the batch file is located, assuming the batch file is in the same folder as your R scripts. If you want to set <code>COMMON_PATH</code> as an absolute path, uncomment the line and replace <code>"C:\absolute\path\to\R\scripts"</code> with your desired absolute path.</p>
+<pre><code>REM Get the directory of the batch file 
+set "batch_dir=%~dp0"  
+
+REM Set the common path relative to the batch file location 
+set "common_path=%batch_dir%..\Scripts\"  
+
+REM Replace the common path with an absolute path if needed REM 
+set "COMMON_PATH=C:\absolute\path\to\R\scripts"  
+
+REM Prints the common path to the console 
+echo %common_path%</code></pre>
+<p>Next, specify the paths to your R scripts. In this example, all three files are located in the same folder, and the common path has been previously defined. However, if the R scripts are located in different folders, you can store their absolute paths directly here instead of creating a common path variable.</p>
+<pre><code>REM Define the path to the R script 
+set "rscript_file1=%common_path%script_1.R" 
+set "rscript_file2=%common_path%script_2.R" 
+set "rscript_file3=%common_path%script_3.R"</code></pre>
+<p>Run the R scripts.</p>
+<pre><code>REM Execute the R script 
+"%rscript%" "%rscript_file1%" 
+"%rscript%" "%rscript_file2%" 
+"%rscript%" "%rscript_file3%"</code></pre>
+<p>The “pause” command prevents the console from closing, allowing you to view the output generated during the execution of the batch file. On the other hand, the “exit” command will close the console immediately after the batch file finishes executing.</p>
+<pre><code>PAUSE</code></pre>
+<p>To execute, simply double-click the batch file (typically saved with a .bat extension).</p>
+</section>
+<section id="automating-a-batch-file-with-windows-task-scheduler" class="level2">
+<h2 class="anchored" data-anchor-id="automating-a-batch-file-with-windows-task-scheduler"><strong>Automating a batch file with Windows Task Scheduler</strong></h2>
+<p>Windows Task Scheduler is a built-in utility in the Windows operating system that allows users to schedule and automate various tasks to run at specific times or in response to specific events. It provides a graphical user interface (GUI) that enables users to create, modify, and delete scheduled tasks easily.</p>
+<p>With Windows Task Scheduler, users can schedule tasks such as running programs, scripts, or batch files, as well as performing system maintenance tasks like disk cleanup or system backups. Tasks can be scheduled to run once, at a specified time and date, or on a recurring basis, such as daily, weekly, or monthly.</p>
+<p>Tasks can also be triggered by specific events, such as when the computer starts up, when a user logs on, or when a particular system event occurs. Additionally, Task Scheduler provides options for configuring task settings, including specifying the user account under which the task will run, setting priority levels, and defining conditions for task execution.</p>
+<p>Overall, Windows Task Scheduler is a versatile tool that helps users automate routine tasks, improve productivity, and ensure that important processes are executed reliably and on schedule.</p>
 <hr>
-<p>Further Reading</p>
-<p><a href="https://gadm.org/">Shape Files:</a></p>
-<p><a href="https://naomi-spectrum.unaids.org/">HIV sub-national estimates viewer</a></p>
-<p><a href="https://public.tableau.com/app/profile/kirstin.lyon5886/viz/DRCONGO-ARTCoverageNaomiModel/ARTCoverage-DRCONGO">Live Example on Tableau Public</a></p>
-<p><a href="https://github.com/KirstinLyon/naomi_spectrum">R Script on GitHub</a></p>
-<p><a href="https://interworks.com/blog/2021/03/16/exploring-the-new-map-layers-feature-in-tableau-20204/">Detailed explanation for creating map layers: Creating layered maps in Tableau</a></p>
-<p>Live Version</p>
-<div id="viz1740870604362" class="tableauPlaceholder" style="position: relative">
-<noscript>
-<a href="#"> <img src="https://public.tableau.com/static/images/DR/DRCONGO-ARTCoverageNaomiModel/ARTCoverage-DRCONGO/1_rss.png" alt="ART Coverage - DR CONGO " style="border: none"> </a>
-</noscript>
-<object class="tableauViz" style="display:none;">
-<p><param name="host_url" value="https%3A%2F%2Fpublic.tableau.com%2F"> <param name="embed_code_version" value="3"> <param name="site_root" value=""> <param name="name" value="DRCONGO-ARTCoverageNaomiModel/ARTCoverage-DRCONGO"> <param name="tabs" value="no"> <param name="toolbar" value="yes"> <param name="static_image" value="https://public.tableau.com/static/images/DR/DRCONGO-ARTCoverageNaomiModel/ARTCoverage-DRCONGO/1.png"> <param name="animate_transition" value="yes"> <param name="display_static_image" value="yes"> <param name="display_spinner" value="yes"> <param name="display_overlay" value="yes"> <param name="display_count" value="yes"> <param name="language" value="en-GB"></p>
-</object>
+</section>
+<section id="create-a-task" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-task">Create a Task</h2>
+<ol type="1">
+<li>Open Task Scheduler and select “Create Basic Task”.</li>
+</ol>
+<div style="text-align: center;">
+    <img src="../images/automate_r/automate_r_1.png" alt="Alt text" width="600">
 </div>
-<script type="text/javascript">
-  var divElement = document.getElementById('viz1740870604362');
-  var vizElement = divElement.getElementsByTagName('object')[0];
-  var targetWidth = 800; // Set your target width
-  var originalWidth = 1000; // Original width
-  var originalHeight = 827; // Original height
-        
-  // Calculate scale ratio
-  var scaleRatio = targetWidth / originalWidth;
-  
-  // Apply scale transformation
-  vizElement.style.transform = 'scale(' + scaleRatio + ')';
-  vizElement.style.transformOrigin = 'top left'; // Keep the scaling aligned to the top left
-  vizElement.style.width = originalWidth + 'px'; // Maintain original width
-  vizElement.style.height = originalHeight + 'px'; // Maintain original height
-  vizElement.style.overflow = 'hidden'; // Hide any overflow
-  
-  var scriptElement = document.createElement('script');
-  scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-  vizElement.parentNode.insertBefore(scriptElement, vizElement);
-</script>
+<p>Add a name and description for your task.</p>
+<div style="text-align: center;">
+    <img src="../images/automate_r/automate_r_2.png" alt="Alt text" width="600">
+</div>
+<p>Select the schedule</p>
+<div style="text-align: center;">
+    <img src="../images/automate_r/automate_r_3.png" alt="Alt text" width="600">
+</div>
+<p>Depending on which trigger is selected, and separate window opens.</p>
+<div style="text-align: center;">
+    <img src="../images/automate_r/automate_r_4.png" alt="Alt text" width="600">
+</div>
+<p>The only option available is to start a program (this includes a batch file).</p>
+<div style="text-align: center;">
+    <img src="../images/automate_r/automate_r_5.png" alt="Alt text" width="600">
+</div>
+<p>Browse for your batch file.</p>
+<div style="text-align: center;">
+    <img src="../images/automate_r/automate_r_6.png" alt="Alt text" width="600">
+</div>
+<p>The final window is a summary of the task.</p>
+<div style="text-align: center;">
+    <img src="../images/automate_r/automate_r_7.png" alt="Alt text" width="600">
+</div>
+<hr>
+<p>n short, automating R scripts with batch files and task schedulers offers numerous benefits, but two standout advantages are worth highlighting. Firstly, it enables you to effortlessly run scripts in the background, freeing up time for other tasks. Secondly, it simplifies script execution for anyone, regardless of their familiarity with R, fostering collaboration and knowledge sharing within your team.</p>
+<hr>
+</section>
+<section id="links" class="level2">
+<h2 class="anchored" data-anchor-id="links">Links</h2>
+<p><a href="https://github.com/KirstinLyon/run_r_with_bat_file/tree/main">Working example</a> (available on GitHub)</p>
+<p><a href="https://www.tidyverse.org/">Tidyverse</a> (suite of R pacakages)</p>
+<p><a href="https://here.r-lib.org/">Here</a> (R package)</p>
+<p><a href="https://sfirke.github.io/janitor/">Janitor</a> (R package)</p>
 
 
 </section>
