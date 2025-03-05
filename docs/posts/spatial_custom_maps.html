@@ -6,9 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2023-03-05">
+<meta name="dcterms.date" content="2024-03-14">
 
-<title>Connect to Global Health Observatory (WHO) Data API with R</title>
+<title>Creating Custom Shape Files in R using the SF Package</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -152,11 +152,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Connect to Global Health Observatory (WHO) Data API with R</h1>
+<h1 class="title">Creating Custom Shape Files in R using the SF Package</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">Public Health</div>
-    <div class="quarto-category">Armchair TB Project</div>
     <div class="quarto-category">R</div>
+    <div class="quarto-category">geospatial</div>
   </div>
   </div>
 
@@ -168,7 +167,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 5, 2023</p>
+      <p class="date">March 14, 2024</p>
     </div>
   </div>
   
@@ -180,138 +179,118 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="post-description">
-  {{ description }}
-</div>
-<p>The <a href="https://www.who.int/data/gho">World Health Organisation Global Health Observatory</a> (WHO GHO) provides access to open and free global development data that is collected by WHO. As of March 2023, there are 2301 indicators available for 245 regions/countries with data going back decades.</p>
-<p>Thanks to the <a href="https://www.who.int/data/gho/info/gho-odata-api">WHO GHO API</a> it it easy to access this large dataset by using then httr and jsonlite packages in R. This article walks through how the Armchair TB project downloads all Tuberculosis (TB) related indicators in the WHO API dataset.</p>
-<section id="libraries" class="level2">
-<h2 class="anchored" data-anchor-id="libraries">Libraries</h2>
-<p>First, let’s install the different packages from CRAN:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>) </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"jsonlite"</span>) </span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"httr"</span>) </span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"glue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Next load the libraries. The goal is to extract the data needed for further analysis in Tableau.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue) </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr) </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite) </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="global-variables" class="level2">
-<h2 class="anchored" data-anchor-id="global-variables">Global Variables</h2>
-<p>Create global variables. This involves setting the URL, countries of interest, and indicators. The Armchair TB project is interested in all TB indicators from the SADC, EAC and ECOWAS regions in Africa. If it’s not known which indicators are available, or the country codes, use the code in the exploring section.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Global Variables ----  </span></span>
+<p>This post covers two scenarios:</p>
+<ol type="1">
+<li><p>Creating a custom shape file by merging other shape files. For example, if you have multiple shapefiles representing different regions or administrative divisions and you want to merge them into a single shapefile representing the entire area. The example below merges 16 shape files to create the SADC region in Africa.</p></li>
+<li><p>Create a custom shape file merging polygons within the same shape file. If you have a shapefile representing a region, and you want to merge polygons within the same shapefile based on a common attribute, such as administrative divisions. The example below merges a province and a municipality in Mozambique.</p></li>
+</ol>
+<section id="generate-a-tailored-shapefile-for-a-particular-area-using-country-level-shapefiles." class="level2">
+<h2 class="anchored" data-anchor-id="generate-a-tailored-shapefile-for-a-particular-area-using-country-level-shapefiles.">1. Generate a tailored shapefile for a particular area using country-level shapefiles.</h2>
+<p>In this example I have a dataset for the South African Development Community (SADC) and I want to display it on a map. I have shape files for the 16 members, and I want to create one shape file that includes all member states so I can merge the spatial data with my dataset. All shape files are downloaded from <a href="https://gadm.org/">gadm.org</a>.</p>
+<p>Start by importing libraries and setting up paths.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf)  </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>INPUT_PATH <span class="ot">&lt;-</span> <span class="st">"Data_public/"</span> </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>OUTPUT_PATH <span class="ot">&lt;-</span> <span class="st">"Dataout/temp/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In this example, zip files were downloaded from GADM, so the next step is to unzip the files and put them in the OUTPUT_PATH.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>zip_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(INPUT_PATH, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">.zip$"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span>      </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">map</span>(unzip, <span class="at">exdir =</span> OUTPUT_PATH)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Next read in all files with the extension .shp and merge them using the SF package. The countries have different levels of granularity, but this is not an issue when using the bind_rows function.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Read in all .shp files and merge </span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>URL_BASE <span class="ot">&lt;-</span>  <span class="st">"https://ghoapi.azureedge.net/api/"</span> </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>SADC <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"AGO"</span>, <span class="st">"NAM"</span>, <span class="st">"ZAF"</span>, <span class="st">"LSO"</span>, <span class="st">"SWZ"</span>,            </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="st">"BWA"</span>, <span class="st">"ZWE"</span>, <span class="st">"ZMB"</span>, <span class="st">"MOZ"</span>, <span class="st">"MWI"</span>,            </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="st">"MDG"</span>, <span class="st">"COM"</span>, <span class="st">"SYC"</span>, <span class="st">"MUS"</span>)  </span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>EAC <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"BDI"</span>, <span class="st">"KEN"</span>, <span class="st">"RWA"</span>, <span class="st">"SSD"</span>, <span class="st">"TZA"</span>, <span class="st">"UGA"</span>, <span class="st">"COD"</span>)  </span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>ECOWAS  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"BEN"</span>, <span class="st">"BFA"</span>, <span class="st">"CPV"</span>, <span class="st">"CIV"</span>, <span class="st">"GMB"</span>, <span class="st">"GHA"</span>, <span class="st">"GIN"</span>,               </span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="st">"GNB"</span>, <span class="st">"LBR"</span>, <span class="st">"MLI"</span>, <span class="st">"NER"</span>, <span class="st">"NGA"</span>, <span class="st">"SEN"</span>, <span class="st">"SLE"</span>, <span class="st">"TGO"</span>)  </span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>COUNTRY <span class="ot">&lt;-</span> <span class="fu">c</span>(SADC, EAC, ECOWAS)  </span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>INDICATOR_TEXT <span class="ot">&lt;-</span> <span class="st">"tuberculosis"</span> </span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>INDICATOR_TEXT_TB <span class="ot">&lt;-</span> <span class="st">"tb"</span> </span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>INDICATOR <span class="ot">&lt;-</span> <span class="st">"TB_"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="function-to-convert-url-to-a-tibble" class="level2">
-<h2 class="anchored" data-anchor-id="function-to-convert-url-to-a-tibble">Function to Convert URL to a Tibble</h2>
-<p>The function below is used to convert a URL to a tibble. Overall, this code takes a JSON file from a URL and converts it into a tidy tibble format for easier manipulation and analysis</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>convert_JSON_to_tbl <span class="ot">&lt;-</span> <span class="cf">function</span>(url){     </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">&lt;-</span> <span class="fu">GET</span>(url)     </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  data_df <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="fu">content</span>(data, <span class="at">as =</span> <span class="st">"text"</span>, <span class="at">encoding =</span> <span class="st">"utf-8"</span>))     </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  data_tbl <span class="ot">&lt;-</span>  <span class="fu">map_if</span>(data_df, is.data.frame, list) <span class="sc">%&gt;%</span>          </span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    as_tibble <span class="sc">%&gt;%</span>          </span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">unnest</span>(<span class="at">cols =</span> <span class="fu">c</span>(value)) <span class="sc">%&gt;%</span>          </span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="st">'@odata.context'</span>) </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="exploring-the-data" class="level2">
-<h2 class="anchored" data-anchor-id="exploring-the-data">Exploring the Data</h2>
-<p>The all_dimension tibble shows all data that is possible from the API. The all_countries and all_indicators shows details for countries and indicators. This can be used to define which countries and indicators should be pulled from the dataset.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Find what you need  </span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>all_dimension <span class="ot">&lt;-</span>  <span class="fu">convert_JSON_to_tbl</span>(<span class="st">"https://ghoapi.azureedge.net/api/Dimension"</span>)  </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>all_countries <span class="ot">&lt;-</span>  <span class="fu">convert_JSON_to_tbl</span>(<span class="fu">glue</span>(URL_BASE,<span class="st">"Dimension/COUNTRY/DimensionValues"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Code, Title)  </span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>all_indicators <span class="ot">&lt;-</span>  <span class="fu">convert_JSON_to_tbl</span>(<span class="fu">glue</span>(URL_BASE,<span class="st">"Indicator"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Language)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="create-a-vector-of-all-indicators-of-interest" class="level2">
-<h2 class="anchored" data-anchor-id="create-a-vector-of-all-indicators-of-interest">Create a Vector of All Indicators of Interest</h2>
-<p>In the case of indicators that have TB or Tuberculosis in the title different strategies are needed. For most, using INDICATOR returns most, but there are a few cases INDICATOR_TEXT and INDICATOR_TEXT_TB are needed. The code below finds all cases where TB or Tuberculosis are mentioned, and combines then in to a vector and keeps the indicator code.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Select a few based on globals </span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>indicators_from_code <span class="ot">&lt;-</span> all_indicators <span class="sc">%&gt;%</span>      </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(INDICATOR, IndicatorCode, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))   </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>indicators_from_text <span class="ot">&lt;-</span> all_indicators <span class="sc">%&gt;%</span>      </span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(INDICATOR_TEXT, IndicatorName, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))  </span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>indicators_from_text_tb <span class="ot">&lt;-</span> all_indicators <span class="sc">%&gt;%</span>      </span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">grepl</span>(INDICATOR_TEXT_TB, IndicatorName, <span class="at">ignore.case =</span> <span class="cn">TRUE</span>))  </span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>indicators <span class="ot">&lt;-</span> indicators_from_code <span class="sc">%&gt;%</span>      </span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">union</span>(indicators_from_text) <span class="sc">%&gt;%</span>      </span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">union</span>(indicators_from_text_tb)  </span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>indicator_codes <span class="ot">&lt;-</span> indicators <span class="sc">%&gt;%</span>      </span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(IndicatorCode)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="pull-data-and-convert-to-a-list" class="level2">
-<h2 class="anchored" data-anchor-id="pull-data-and-convert-to-a-list">Pull data and Convert to a List</h2>
-<p>For the project we have chosen to extract all data and then process the data using dplyr. However, it is also possible to add a query and only extract data of interest.</p>
-<p>Each indicator has its own table in the WHO GHO, but in this case, we would like to have all data in one dataset. The code section below loops through all indicators related to TB, combines the data and outputs a list where the value column has all data for an indicator.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>indicator_data <span class="ot">&lt;-</span> <span class="fu">map</span>(indicator_codes, <span class="cf">function</span>(id) {     </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  response <span class="ot">&lt;-</span> <span class="fu">GET</span>(         </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">glue</span>(URL_BASE, id))     </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">content</span>(response, <span class="st">"text"</span>) </span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The next code section converts the list to a tibble with one column per field.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>indicator_data_tbl <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(indicator_data, <span class="sc">~</span> <span class="fu">fromJSON</span>(.x,<span class="at">simplifyVector =</span> <span class="cn">TRUE</span>)<span class="sc">%&gt;%</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(<span class="at">cols =</span> <span class="fu">everything</span>())) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="process-data-and-save-as-a-csv" class="level2">
-<h2 class="anchored" data-anchor-id="process-data-and-save-as-a-csv">Process Data and Save as a CSV</h2>
-<p>The data is processed using the dplyr package in Tidyverse. First only relevant countries and columns are kept. The additional data from Indicators and Countries are added, columns are renamed, and columns are reordered.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>all_data <span class="ot">&lt;-</span> indicator_data_tbl <span class="sc">%&gt;%</span>      </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(SpatialDim <span class="sc">%in%</span> COUNTRY) <span class="sc">%&gt;%</span>      </span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(IndicatorCode, TimeDim, SpatialDim, NumericValue, High, Low) <span class="sc">%&gt;%</span>     </span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">region =</span> <span class="fu">case_when</span>(iso3c <span class="sc">%in%</span> SADC <span class="sc">~</span> <span class="st">"SADC"</span>,                               </span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                                iso3c <span class="sc">%in%</span> EAC <span class="sc">~</span> <span class="st">"EAC"</span>,                               </span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                                iso3c <span class="sc">%in%</span> ECOWAS <span class="sc">~</span> <span class="st">"ECOWAS"</span>)) <span class="sc">%&gt;%</span>      </span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">rename</span>(<span class="at">Code =</span> SpatialDim,) <span class="sc">%&gt;%</span>      </span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">left_join</span>(indicators, <span class="at">by =</span> <span class="st">"IndicatorCode"</span>) <span class="sc">%&gt;%</span>      </span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">left_join</span>(all_countries, <span class="at">by =</span> <span class="st">"Code"</span>) <span class="sc">%&gt;%</span>      </span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>      </span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">rename</span>( <span class="at">year =</span> TimeDim,            </span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>              <span class="at">value =</span> NumericValue,            </span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>              <span class="at">high_value =</span> High,            </span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>              <span class="at">low_value =</span> Low,           </span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>              <span class="at">country_code =</span> Code,            </span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>              <span class="at">indicator_name =</span> IndicatorName,            </span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>              <span class="at">country =</span> Title,            </span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>              <span class="at">indicator_code =</span> IndicatorCode) <span class="sc">%&gt;%</span>      </span>
-<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(indicator_code, indicator_name, year, country_code, country, <span class="fu">everything</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Finally time to print to a CSV.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write_excel_csv</span>(all_data,<span class="st">"WHO Data.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Once downloaded, the CSV file looks like this (1 row per country, per year per indicator):</p>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>shapefiles <span class="ot">&lt;-</span> <span class="fu">list.files</span>(OUTPUT_PATH, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">.shp$"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>) </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>sf_list <span class="ot">&lt;-</span> <span class="fu">map</span>(shapefiles, st_read)  </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Merge the sf objects into a single sf object </span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>merged_sf <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(sf_list)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Finally write the new merged shape file, and plot to check all countries are included.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">st_write</span>(merged_sf, <span class="at">dsn =</span> <span class="st">"Dataout/merged_SADC.shp"</span>) </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(merged_sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The end result is a shape file that includes all levels for all countries in the SADC region.</p>
 <div style="text-align: center;">
-    <img src="../images/armchair_tb/who_data_1.png" alt="Alt text" width="600">
+    <img src="../images/maps_2/maps_2_1.png" alt="Alt text" width="600">
+</div>
+</section>
+<section id="create-a-customised-shapefile-by-merging-elements" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-customised-shapefile-by-merging-elements">2. Create a customised shapefile by merging elements</h2>
+<p>The task is to merge a province and a municipality in Mozambique, specifically Maputo and Maputo City (also known as Cidade de Maputo). Currently, these administrative divisions are stored separately in a shapefile. However, the analysis requires the province/municipality to be merged.</p>
+<div style="text-align: center;">
+    <img src="../images/maps_2/maps_2_2.png" alt="Alt text" width="600">
+</div>
+<p>The original dataset has Maputo and Maputo City as two separate provinces in Mozambique. The data is downloaded from gadm.org.</p>
+<div style="text-align: center;">
+   <img src="../images/maps_2/maps_2_3.png" alt="Alt text" width="600">
+</div>
+<p>First load the necessary libraries, creating paths and update based on country and what should be merged.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sf) </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor) </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>MOZ_EXAMPLE <span class="ot">&lt;-</span> <span class="st">"Data/Moz/gadm41_MOZ_1.shp"</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>PROVINCES_TO_MERGE <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Maputo"</span>, <span class="st">"Maputo City"</span>) </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>NAME <span class="ot">&lt;-</span>  <span class="st">"Maputo"</span> </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>COUNTRY <span class="ot">&lt;-</span> <span class="st">"Mozambique"</span> </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>GID_0 <span class="ot">&lt;-</span> <span class="st">"MOZ"</span> </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>OUTPUT <span class="ot">&lt;-</span> <span class="st">"Dataout/merged_province/"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>merge_province</code> function consolidates the provinces by merging them, generating the geometry for the resulting merged province, and eliminating the provinces that have been merged to prevent them from appearing as separate entities. Subsequently, it merges the newly created “province” with the existing provinces.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>merge_province <span class="ot">&lt;-</span> <span class="cf">function</span>(province_df, provinces, name, country, gid_0){          </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> province_df <span class="sc">%&gt;%</span>          </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(name_1 <span class="sc">%in%</span> provinces) <span class="sc">%&gt;%</span>          </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        sf<span class="sc">::</span><span class="fu">st_union</span>()   <span class="co">#combines the provinces          </span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co">#creates a spatial object and adds geometry     </span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> sf<span class="sc">::</span><span class="fu">st_sf</span>(<span class="at">name_1 =</span> name, <span class="at">geometry =</span> temp) <span class="sc">%&gt;%</span>          </span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">country =</span> COUNTRY,                </span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">gid_0 =</span> GID_0)          </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#removes the provinces that have been merged     </span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>old_province <span class="ot">&lt;-</span> province_df <span class="sc">%&gt;%</span>         </span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span>name_1 <span class="sc">%in%</span> provinces)          </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#combines the old provinces with the merged province     </span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(old_province, temp)          </span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>(temp)      </span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Read in the original shape file, converting it to an SF object, and then plot (using sf) to check all provinces are included.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Read in the shapefile containing the provinces of Mozambique </span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>original_provinces <span class="ot">&lt;-</span> <span class="fu">st_read</span>(MOZ_EXAMPLE) <span class="sc">%&gt;%</span>     </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    sf<span class="sc">::</span><span class="fu">st_sf</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">#creates a SF object      </span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">clean_names</span>()   </span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(original_provinces)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Use the newly created function to merge the desired provinces and create a new shape file. Plot the results using sf.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>new_provinces <span class="ot">&lt;-</span> original_provinces <span class="sc">%&gt;%</span>      </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">merge_province</span>(PROVINCES_TO_MERGE, NAME, COUNTRY, GID_0)   </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#show merged provinces     </span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(new_provinces)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Finally write the shape file as a spatial file for future use.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># write all spatial files </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">write_sf</span>(new_provinces, <span class="fu">paste0</span>(OUTPUT,<span class="st">"merged_province.shp"</span>)) </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_write</span>(new_provinces, <span class="fu">paste0</span>(OUTPUT,<span class="st">"merged_province.gpkg"</span>)) </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>sf<span class="sc">::</span><span class="fu">st_write</span>(new_provinces, <span class="fu">paste0</span>(OUTPUT,<span class="st">"merged_province.geojson"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The new dataset looks like this:</p>
+<div style="text-align: center;">
+    <img src="../images/maps_2/maps_2_4.png" alt="Alt text" width="600">
+</div>
+<p>When plotted in RStudio, all provinces are displayed and Maputo and Maputo City have been merged.</p>
+<div style="text-align: center;">
+    <img src="../images/maps_2/maps_2_5.png" alt="Alt text" width="400">
 </div>
 <hr>
-<p>All code can be found on the project <a href="https://github.com/KirstinLyon/Armchair-TB">Armchair TB</a> in GitHub.</p>
-<p>Article published on <a href="https://medium.com/@kirstin.lyon">Medium</a></p>
-<p><a href="..\posts/armchair_tb_intro.html">See project introduction</a></p>
-<hr>
+<p><em>Other links</em></p>
+<p><a href="https://gadm.org/">Spatial files at GADM</a></p>
+<p><a href="https://r-spatial.github.io/sf/">SF package</a></p>
+<p><a href="..\posts/spatial_districts_coordinates.html">Identifying Districts Using Coordinates with R’s SF Package</a></p>
+<p><a href="..\posts/ART_Coverage_DR_CONGO.html">Replicating the HIV Sub-National Estimates Viewer in Tableau: A Step-by-Step Guide</a> (how to create maps in Tableau)</p>
+<p><a href="https://github.com/KirstinLyon/misc_spatial">Example on GitHub</a></p>
 
 
 </section>

@@ -1,0 +1,194 @@
+---
+title: "Creating Custom Shape Files in R using the SF Package"
+categories: 
+    - R
+    - geospatial
+image: "/images/maps_2/maps_2.png"
+date: "2024-03-14"
+format: 
+  html:
+    css: style.css
+---
+
+This post covers two scenarios:
+
+1.  Creating a custom shape file by merging other shape files. For example, if you have multiple shapefiles representing different regions or administrative divisions and you want to merge them into a single shapefile representing the entire area. The example below merges 16 shape files to create the SADC region in Africa.
+
+2.  Create a custom shape file merging polygons within the same shape file. If you have a shapefile representing a region, and you want to merge polygons within the same shapefile based on a common attribute, such as administrative divisions. The example below merges a province and a municipality in Mozambique.
+
+## 1. Generate a tailored shapefile for a particular area using country-level shapefiles.
+
+In this example I have a dataset for the South African Development Community (SADC) and I want to display it on a map. I have shape files for the 16 members, and I want to create one shape file that includes all member states so I can merge the spatial data with my dataset. All shape files are downloaded from [gadm.org](https://gadm.org/).
+
+Start by importing libraries and setting up paths.
+
+```r         
+library(tidyverse) 
+library(sf)  
+
+INPUT_PATH <- "Data_public/" 
+OUTPUT_PATH <- "Dataout/temp/"
+```
+
+In this example, zip files were downloaded from GADM, so the next step is to unzip the files and put them in the OUTPUT_PATH.
+
+```r         
+zip_files <- list.files(INPUT_PATH, pattern = "\\.zip$", full.names = TRUE) %>%      
+    map(unzip, exdir = OUTPUT_PATH)
+```
+
+Next read in all files with the extension .shp and merge them using the
+SF package. The countries have different levels of granularity, but this
+is not an issue when using the bind_rows function.
+
+```r         
+#Read in all .shp files and merge 
+
+shapefiles <- list.files(OUTPUT_PATH, pattern = "\\.shp$", full.names = TRUE) 
+sf_list <- map(shapefiles, st_read)  
+
+# Merge the sf objects into a single sf object 
+merged_sf <- bind_rows(sf_list)
+```
+
+Finally write the new merged shape file, and plot to check all countries are included.
+
+```r         
+st_write(merged_sf, dsn = "Dataout/merged_SADC.shp") 
+plot(merged_sf)
+```
+
+The end result is a shape file that includes all levels for all countries in the SADC region.
+
+```{=html}
+<div style="text-align: center;">
+    <img src="/images/maps_2/maps_2_1.png" alt="Alt text" width="600" />
+</div>
+```
+
+## 2. Create a customised shapefile by merging elements
+
+The task is to merge a province and a municipality in Mozambique, specifically Maputo and Maputo City (also known as Cidade de Maputo). Currently, these administrative divisions are stored separately in a shapefile. However, the analysis requires the province/municipality to be merged.
+
+```{=html}
+<div style="text-align: center;">
+    <img src="/images/maps_2/maps_2_2.png" alt="Alt text" width="600" />
+</div>
+```
+
+The original dataset has Maputo and Maputo City as two separate provinces in Mozambique. The data is downloaded from gadm.org.
+
+```{=html}
+<div style="text-align: center;">
+   <img src="/images/maps_2/maps_2_3.png" alt="Alt text" width="600" />
+</div>
+```
+
+First load the necessary libraries, creating paths and update based on country and what should be merged.
+
+```r         
+library(sf) 
+library(janitor) 
+library(tidyverse)  
+
+MOZ_EXAMPLE <- "Data/Moz/gadm41_MOZ_1.shp" 
+PROVINCES_TO_MERGE <- c("Maputo", "Maputo City") 
+NAME <-  "Maputo" 
+COUNTRY <- "Mozambique" 
+GID_0 <- "MOZ" 
+OUTPUT <- "Dataout/merged_province/"
+```
+
+The `merge_province` function
+consolidates the provinces by merging them, generating the geometry for
+the resulting merged province, and eliminating the provinces that have
+been merged to prevent them from appearing as separate entities.
+Subsequently, it merges the newly created "province" with the existing
+provinces.
+
+```r         
+merge_province <- function(province_df, provinces, name, country, gid_0){          
+temp <- province_df %>%          
+    filter(name_1 %in% provinces) %>%          
+        sf::st_union()   #combines the provinces          
+        
+#creates a spatial object and adds geometry     
+
+temp <- sf::st_sf(name_1 = name, geometry = temp) %>%          
+    mutate(country = COUNTRY,                
+        gid_0 = GID_0)          
+        
+#removes the provinces that have been merged     
+old_province <- province_df %>%         
+    filter(!name_1 %in% provinces)          
+    
+#combines the old provinces with the merged province     
+temp <- bind_rows(old_province, temp)          
+
+return(temp)      
+}
+```
+
+Read in the original shape file, converting it to an SF object, and then plot (using sf) to check all provinces are included.
+
+```r         
+# Read in the shapefile containing the provinces of Mozambique 
+
+original_provinces <- st_read(MOZ_EXAMPLE) %>%     
+    sf::st_sf() %>% 
+    
+    #creates a SF object      
+    clean_names()   
+    
+plot(original_provinces)
+```
+
+Use the newly created function to merge the desired provinces and create a new shape file. Plot the results using sf.
+
+```r         
+new_provinces <- original_provinces %>%      
+    merge_province(PROVINCES_TO_MERGE, NAME, COUNTRY, GID_0)   
+    
+#show merged provinces     
+plot(new_provinces)
+```
+
+Finally write the shape file as a spatial file for future use.
+
+```r         
+# write all spatial files 
+
+sf::write_sf(new_provinces, paste0(OUTPUT,"merged_province.shp")) 
+sf::st_write(new_provinces, paste0(OUTPUT,"merged_province.gpkg")) 
+sf::st_write(new_provinces, paste0(OUTPUT,"merged_province.geojson"))
+```
+
+The new dataset looks like this:
+
+```{=html}
+<div style="text-align: center;">
+    <img src="/images/maps_2/maps_2_4.png" alt="Alt text" width="600" />
+</div>
+```
+
+When plotted in RStudio, all provinces are displayed and Maputo and Maputo City have been merged.
+
+```{=html}
+<div style="text-align: center;">
+    <img src="/images/maps_2/maps_2_5.png" alt="Alt text" width="400" />
+</div>
+```
+
+---
+
+*Other links*
+
+[Spatial files at GADM](https://gadm.org/)
+
+[SF package](https://r-spatial.github.io/sf/)
+
+[Identifying Districts Using Coordinates with R’s SF Package](/posts/spatial_districts_coordinates.html)
+
+[Replicating the HIV Sub-National Estimates Viewer in Tableau: A Step-by-Step Guide](/posts/ART_Coverage_DR_CONGO.html) (how to create maps in Tableau)
+
+[Example on GitHub](https://github.com/KirstinLyon/misc_spatial)

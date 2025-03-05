@@ -1,0 +1,114 @@
+---
+title: "Identifying Districts Using Coordinates with R’s SF Package"
+categories: 
+    - R
+    - geospatial
+image: "/images/maps_1.png"
+date: "2024-03-14"
+format: 
+  html:
+    css: style.css
+---
+
+**Task**: Identify which health facility coordinates should be checked based on the expected district and district according to a shape file.
+
+**Solution:** Use R’s SF package to identify which polygon (district) a point (health facility coordinate) belongs to and compare that to the assigned district. Finally create a list of health facilities that appear to have incorrect coordinates.
+
+**Inputs required:** a shape file (in the format .shp) that contains district and province details, and a health facility dataset that has longitude and latitude (or coordinates) for each health facility as well as province and district details.
+
+**Walkthough of a solution:**
+
+1.  Import libraries.
+
+```r         
+library(sf) 
+library(tidyverse)
+```
+
+Tidyverse is used for cleaning the data, and the [`sf` package](https://r-spatial.github.io/sf/) is a popular R package designed for working with spatial data in a simple feature format.
+
+2\. Set paths to datasets as well as an output folder.
+
+```r         
+shape_file <- "Data/districts/NEW_161_Districts.shp" 
+coordinate_file <- "Data/gis_info.xlsx" 
+output_folder <- "Dataout/"
+```
+
+3\. Read in the shape file using sf.
+
+```r         
+# Read the shapefile containing district boundaries     
+districts <- sf::st_read(shape_file) %>%          
+    select(shape_province = province,                 
+    shape_district = district,                 
+    geometry)
+```
+
+4\. Read in the health facilities dataset.
+
+```r         
+ # Read the Excel file containing facility coordinates     
+ facilities_file <- readxl::read_xlsx(coordinate_file)          
+ 
+ # prepare the facilities data and remove any sites without longitude/latitude     
+ 
+ facilities <- facilities_file %>%         
+    select(sitename,longitude, latitude,                
+    coord_province = province,                 
+    coord_district = district) %>%          
+    tidyr::drop_na()
+```
+
+5\. Convert the health facility dataset to an sf object. Coordinates can
+be used instead of longitude and latitude. The CRS argument ensures the
+mapping for the health facilities dataset and the shape dataset is the
+same.
+
+```r         
+# Convert facilities dataframe to sf object
+facilities_sf <- sf::st_as_sf(x = facilities,
+                              coords = c("longitude", "latitude"),                                    
+                              crs = st_crs(districts))
+```
+
+6\. Join the datasets and to remove the geometry column. The geometry column can only be removed using sf (not tidyverse).
+
+```r         
+# Perform spatial join between districts and facilities and remove the geometry column     
+
+district_info <- st_join(districts, facilities_sf) %>%          
+    sf::st_drop_geometry()
+```
+
+7\. Create a flag for health facilities whose assigned district and district (according to its coordinates) do not match.
+
+```r         
+    #add a flag to check if the psnu is as expected     
+    
+    output_file <- district_info %>%          
+        mutate(check_district = case_when(coord_district == shape_district ~ 0, 
+                                            .default = 1)         
+                                         ) %>%          
+                                select(sitename, check_district,                 
+                                        shape_province, shape_district,                
+                                        coord_province, coord_district)
+    
+```
+
+8\. Export data.
+
+```r         
+all_data <- output_file %>%      
+    write_excel_csv(glue::glue("{output_folder}all_data.csv"))  
+    
+    wrong_district <- all_data %>%      
+        filter(check_district == 1) %>%      
+        write_excel_csv(glue::glue("{output_folder}check_gis.csv"))
+```
+
+**Links**
+
+[sf package](https://r-spatial.github.io/sf/)
+
+[Working example of code](https://github.com/KirstinLyon/misc_spatial)
