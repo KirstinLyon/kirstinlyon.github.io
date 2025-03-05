@@ -12,13 +12,13 @@ format:
         </style>
 ---
 
-**Project Manager in PMO, Estonian Money Laundering Investigation** @ Compliance, Danske Bank (Aug. 2019 - May 2020)
+**Project Manager in PMO, Estonian Money Laundering Investigation** @Compliance, Danske Bank (Aug. 2019 - May 2020)
 
 - Coordinated the Data Governance working groups across Danske Bank, External Legal Counsel, and external management consultant teams who specialise in money laundering
 cases, and an external team specialising in money laundering data. 
 - Supported PMO with various project management process including budgeting, resourcing, and project planning.
 
-**Project Manager** @ Capgemini, Denmark (May 2011 - June 2014)
+**Project Manager** @Capgemini, Denmark (May 2011 - June 2014)
 
 Role: Test Manager @ Maersk Drilling / Maersk Supply Services. 
 
@@ -37,7 +37,7 @@ Role: Project Manager in Capgemini PMO @ IKEA.
 - Deputy-lead of a PMO team of 18 FTE’s. One member of the team was based in Sweden, the other team members were split between Bangalore and Mumbai. Responsible for establishing a PMO, general reporting, supporting the creation of metrics between IKEA and Capgemini, as well as many ad hoc activities. The project consisted of around 400 FTEs in a global team.
 
 
-**Project Manager** @ Danske Bank (June 2008 - Apr. 2011)
+**Project Manager** @Danske Bank (June 2008 - Apr. 2011)
 
 Role: Program Manager for Transformation Programme of IT Outsourcing contract. 
 

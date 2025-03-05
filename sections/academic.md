@@ -12,10 +12,10 @@ format:
         </style>
 ---
 
-**Researcher** @ Aalborg University (Oct. 02 – Feb. 08)
+**Researcher** @Aalborg University, Denmark (Oct. 02 – Feb. 08)
 
 - Focus on how to search and re-find data in audio collections using visualisation techniques.
 
-**Researcher** @ Glasgow Caledonian University (Sep. 01 – Jul. 02)
+**Researcher** @Glasgow Caledonian University, UK (Sep. 01 – Jul. 02)
 
 - Focus on the use of an online learning platform in the business faculty. 

@@ -12,7 +12,7 @@ format:
         </style>
 ---
 
-**Tableau**
+### Tableau
 ```{=html}
 <ul class="compact">   
     <li>Eleven years of creating Tableau dashboards in banking, biotech, and public health. </li>   
@@ -29,11 +29,11 @@ See:
 </ul>
 ```
 
-**PowerBI**
+### PowerBI
 
 Project for Mozambique Ministry of Health relating to maternal and child health.
 
-**R**
+### R
 
 ```{=html}
 <ul class="compact">   
@@ -55,11 +55,12 @@ See:
 </ul>
 ```
 
-**Other**
+### Other
 
 <a href="https://github.com/KirstinLyon" target="_blank">GitHub</a>
 
-**Specialised Datasets**
+
+### Specialised Datasets
 
 [US President's Emergency Plan for AIDS Relief (PEPFAR) data (focused on TB and HIV)](https://www.state.gov/wp-content/uploads/2021/09/FY22-MER-2.6-Indicator-Reference-Guide.pdf)
 
