@@ -7,7 +7,9 @@ image: "/images/olympics.jpg"
 date: "2021-04-01"
 format: html
 ---
-Find your ideal sport if gender, height and weight was all that mattered
+Hey there, future Olympian! 🏅 Wondering which sport might be your best fit based on your height and weight? I created a Tableau dashboard using data from the 2016 Olympics to help you figure that out. Whether you’re tall, short, light, or heavy, this tool breaks down which sports tend to favor athletes with your build.
+
+Just input your height and weight, and the dashboard will show you the sports where athletes with similar stats have excelled. It’s a practical way to explore where your natural physique might give you an edge. Ready to find your ideal sport? Let’s dive in!
 
 ::: {#viz1740997833056 .tableauPlaceholder style="position: relative"}
 <noscript><a href='#'><img src="https://public.tableau.com/static/images/So/Soyouwanttobeasummerolympian/Soyouwanttobeanolympianpart1/1_rss.png" alt="So you want to be an olympian?  part 1 " style="border: none"/></a></noscript>

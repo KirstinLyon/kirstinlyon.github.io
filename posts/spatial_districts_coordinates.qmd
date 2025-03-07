@@ -2,7 +2,7 @@
 title: "Identifying Districts Using Coordinates with R’s SF Package"
 categories: 
     - R
-    - geospatial
+    - Geospatial
 image: "/images/maps_1.png"
 date: "2024-03-14"
 format: 

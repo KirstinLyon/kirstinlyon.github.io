@@ -28,6 +28,13 @@
     "text": "Researcher @Aalborg University, Denmark (Oct. 02 – Feb. 08)\n\nFocus on how to search and re-find data in audio collections using visualisation techniques.\n\nResearcher @Glasgow Caledonian University, UK (Sep. 01 – Jul. 02)\n\nFocus on the use of an online learning platform in the business faculty."
   },
   {
+    "objectID": "posts/summer_olympian_p2.html",
+    "href": "posts/summer_olympian_p2.html",
+    "title": "So, You Want to be a Summer Olympian? (Part 2)",
+    "section": "",
+    "text": "Hey there, future Olympian!\nIf you’re aiming for the Summer Olympics, figuring out which country excels in your sport can give you a serious edge. I created a Tableau dashboard using data from the 2016 Olympics to help you do just that. Whether you’re into swimming, track and field, or something more specialised, this tool breaks it all down.\nSimply select your sport, and the dashboard will show you which countries performed best in 2016. It’s a practical way to explore where you might find the strongest training programs, competition, and support for your Olympic journey. Ready to find your ideal match? Let’s get started!"
+  },
+  {
     "objectID": "posts/spatial_districts_coordinates.html",
     "href": "posts/spatial_districts_coordinates.html",
     "title": "Identifying Districts Using Coordinates with R’s SF Package",
@@ -39,7 +46,7 @@
     "href": "posts/next_club.html",
     "title": "Find Your Next Club in Denmark",
     "section": "",
-    "text": "Looking for your next club in Denmark, use the data created by member counting in Denmark’s clubs for your answer."
+    "text": "Looking for your next sports or fitness club in Denmark? Whether you’re into football, swimming, yoga, or weightlifting, finding the right club can help you stay active and motivated. To make your search easier, we’ve built a Tableau dashboard using yearly club data from DGI, DIF, and DFF—Denmark’s leading sports organisations. This data tracks member counts across sports and fitness clubs nationwide, giving you a clear picture of which clubs are thriving and might suit your interests.\nWith this dashboard, you can explore trends, compare clubs, and find the perfect fit for your fitness goals. Ready to find your next sports community? Let’s dive in!"
   },
   {
     "objectID": "posts/connect_world_bank_data_bank.html",
@@ -263,14 +270,14 @@
     "href": "posts/club_members.html",
     "title": "Where are all the members?",
     "section": "",
-    "text": "Club member details in Denmark"
+    "text": "This Tableau dashboard is designed to help sports and fitness clubs in Denmark better understand their membership numbers and how they compare to similar clubs. Built using yearly data from DGI, DIF, and DFF, the dashboard provides an overview of all clubs and their member counts nationwide.\nClubs can use this tool to track their growth, benchmark against others, and identify trends within their category. Whether you’re looking to assess your club’s performance or explore opportunities for improvement, this dashboard offers valuable insights to help you stay competitive and engaged in Denmark’s vibrant sports community. Dive in and see where your club stands! -"
   },
   {
     "objectID": "posts/management_dashboard.html",
     "href": "posts/management_dashboard.html",
     "title": "One Dashboard to Control Them All (Management Dashboard Example)",
     "section": "",
-    "text": "Example of one dashboard to control them all."
+    "text": "This Tableau dashboard offers a comprehensive management overview, initially developed for a team tasked with monitoring the end-to-end operations of complex processes. The dashboard spans key areas such as customer management, tasks, projects, and finance, providing a high-level snapshot of performance and progress. Each section in the original dashboard was connected to a dedicated dashboard, enabling users to delve into specific details for more in-depth analysis.\nDesigned to enhance decision-making and improve visibility across various functions, this example was first demonstrated at the Copenhagen Tableau User Group. The example presented here showcases the front page, acting as a central hub for quick insights and easy navigation. Discover how this dashboard can bring clarity and efficiency to your management processes."
   },
   {
     "objectID": "posts/spatial_custom_maps.html",
@@ -298,14 +305,14 @@
     "href": "posts/summer_olympian_p1.html",
     "title": "So, You Want to be a Summer Olympian? (Part 1)",
     "section": "",
-    "text": "Find your ideal sport if gender, height and weight was all that mattered"
+    "text": "Hey there, future Olympian! 🏅 Wondering which sport might be your best fit based on your height and weight? I created a Tableau dashboard using data from the 2016 Olympics to help you figure that out. Whether you’re tall, short, light, or heavy, this tool breaks down which sports tend to favor athletes with your build.\nJust input your height and weight, and the dashboard will show you the sports where athletes with similar stats have excelled. It’s a practical way to explore where your natural physique might give you an edge. Ready to find your ideal sport? Let’s dive in!"
   },
   {
     "objectID": "project.html",
     "href": "project.html",
     "title": "",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Categories\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nReplicating the HIV Sub-National Estimates Viewer in Tableau: A Step-by-Step Guide\n\n\n\n\n\n\nPublic Health\n\n\nTableau\n\n\nR\n\n\ngeospatial\n\n\n\n\n\n\nMar 30, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nAutomating R Scripts: Using Task Scheduler with Batch Files\n\n\n\n\n\n\nR\n\n\n\n\n\n\nMar 23, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nCreating Custom Shape Files in R using the SF Package\n\n\n\n\n\n\nR\n\n\ngeospatial\n\n\n\n\n\n\nMar 14, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nIdentifying Districts Using Coordinates with R’s SF Package\n\n\n\n\n\n\nR\n\n\ngeospatial\n\n\n\n\n\n\nMar 14, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nConnect to Global Health Observatory (WHO) Data API with R\n\n\n\n\n\n\nPublic Health\n\n\nArmchair TB Project\n\n\nR\n\n\n\n\n\n\nMar 5, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nIntroducing TB Mortality Number per 100,000 People\n\n\n\n\n\n\nPublic Health\n\n\nArmchair TB Project\n\n\nTableau\n\n\n\n\n\n\nFeb 26, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nIntroducing BCG Immunization Coverage Among One-Year-Olds (%) (Health Inequality Monitor)\n\n\n\n\n\n\nPublic Health\n\n\nArmchair TB Project\n\n\nTableau\n\n\n\n\n\n\nFeb 18, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nIntroducing Incidence of TB per 100,000 population\n\n\n\n\n\n\nPublic Health\n\n\nArmchair TB Project\n\n\nTableau\n\n\n\n\n\n\nFeb 10, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nArmchair TB Dashboard: One Indicator\n\n\n\n\n\n\nPublic Health\n\n\nArmchair TB Project\n\n\nTableau\n\n\n\n\n\n\nFeb 3, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nConnect To World Bank DataBank Using R\n\n\n\n\n\n\nR\n\n\nPublic Health\n\n\nWorldbank Databank\n\n\nArmchair TB Project\n\n\n\n\n\n\nFeb 3, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to the Armchair TB Project\n\n\n\n\n\n\nPublic Health\n\n\nArmchair TB Project\n\n\n\n\n\n\nJan 27, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nWhere are all the members?\n\n\n\n\n\n\nSports\n\n\nTableau\n\n\n\n\n\n\nApr 1, 2021\n\n\n\n\n\n\n\n\n\n\n\n\nFind Your Next Club in Denmark\n\n\n\n\n\n\nSports\n\n\nTableau\n\n\n\n\n\n\nApr 1, 2021\n\n\n\n\n\n\n\n\n\n\n\n\nSo, You Want to be a Summer Olympian? (Part 1)\n\n\n\n\n\n\nSports\n\n\nTableau\n\n\n\n\n\n\nApr 1, 2021\n\n\n\n\n\n\n\n\n\n\n\n\nSo, You Want to be a Summer Olympian? (Part 2)\n\n\n\n\n\n\nSports\n\n\nTableau\n\n\n\n\n\n\nApr 1, 2021\n\n\n\n\n\n\n\n\n\n\n\n\nOne Dashboard to Control Them All (Management Dashboard Example)\n\n\n\n\n\n\nTableau\n\n\n\n\n\n\nOct 1, 2015\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Categories\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nReplicating the HIV Sub-National Estimates Viewer in Tableau: A Step-by-Step Guide\n\n\n\n\n\n\nPublic Health\n\n\nTableau\n\n\nR\n\n\nGeospatial\n\n\nNaomi Specturm\n\n\n\n\n\n\nMar 30, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nAutomating R Scripts: Using Task Scheduler with Batch Files\n\n\n\n\n\n\nR\n\n\n\n\n\n\nMar 23, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nCreating Custom Shape Files in R using the SF Package\n\n\n\n\n\n\nR\n\n\nGeospatial\n\n\n\n\n\n\nMar 14, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nIdentifying Districts Using Coordinates with R’s SF Package\n\n\n\n\n\n\nR\n\n\nGeospatial\n\n\n\n\n\n\nMar 14, 2024\n\n\n\n\n\n\n\n\n\n\n\n\nConnect to Global Health Observatory (WHO) Data API with R\n\n\n\n\n\n\nPublic Health\n\n\nArmchair TB Project\n\n\nR\n\n\nWorld Bank Databank\n\n\n\n\n\n\nMar 5, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nIntroducing TB Mortality Number per 100,000 People\n\n\n\n\n\n\nPublic Health\n\n\nArmchair TB Project\n\n\nTableau\n\n\nWorld Bank Databank\n\n\n\n\n\n\nFeb 26, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nIntroducing BCG Immunization Coverage Among One-Year-Olds (%) (Health Inequality Monitor)\n\n\n\n\n\n\nPublic Health\n\n\nArmchair TB Project\n\n\nTableau\n\n\nWorld Bank Databank\n\n\n\n\n\n\nFeb 18, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nIntroducing Incidence of TB per 100,000 population\n\n\n\n\n\n\nPublic Health\n\n\nArmchair TB Project\n\n\nTableau\n\n\nWorld Bank Databank\n\n\n\n\n\n\nFeb 10, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nArmchair TB Dashboard: One Indicator\n\n\n\n\n\n\nPublic Health\n\n\nArmchair TB Project\n\n\nTableau\n\n\nWorld Bank Databank\n\n\n\n\n\n\nFeb 3, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nConnect To World Bank DataBank Using R\n\n\n\n\n\n\nR\n\n\nPublic Health\n\n\nWorld Bank Databank\n\n\nArmchair TB Project\n\n\n\n\n\n\nFeb 3, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction to the Armchair TB Project\n\n\n\n\n\n\nPublic Health\n\n\nArmchair TB Project\n\n\n\n\n\n\nJan 27, 2023\n\n\n\n\n\n\n\n\n\n\n\n\nWhere are all the members?\n\n\n\n\n\n\nSports\n\n\nTableau\n\n\n\n\n\n\nApr 1, 2021\n\n\n\n\n\n\n\n\n\n\n\n\nFind Your Next Club in Denmark\n\n\n\n\n\n\nSports\n\n\nTableau\n\n\n\n\n\n\nApr 1, 2021\n\n\n\n\n\n\n\n\n\n\n\n\nSo, You Want to be a Summer Olympian? (Part 1)\n\n\n\n\n\n\nSports\n\n\nTableau\n\n\n\n\n\n\nApr 1, 2021\n\n\n\n\n\n\n\n\n\n\n\n\nSo, You Want to be a Summer Olympian? (Part 2)\n\n\n\n\n\n\nSports\n\n\nTableau\n\n\n\n\n\n\nApr 1, 2021\n\n\n\n\n\n\n\n\n\n\n\n\nOne Dashboard to Control Them All (Management Dashboard Example)\n\n\n\n\n\n\nTableau\n\n\n\n\n\n\nOct 1, 2015\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "sections/data.html",

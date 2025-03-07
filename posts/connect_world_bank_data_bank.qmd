@@ -3,7 +3,7 @@ title: "Connect To World Bank DataBank Using R"
 categories: 
     - R
     - Public Health
-    - Worldbank Databank
+    - World Bank Databank
     - Armchair TB Project
 image: "/images/medium_worldbank_databank.jpg"
 date: "2023-02-03"

@@ -1,6 +1,5 @@
 ---
 title: "So, You Want to be a Summer Olympian? (Part 2)"
-description: "Which country excels in your sport?"
 categories: 
     - Sports
     - Tableau
@@ -10,8 +9,11 @@ format: html
 ---
 
 
+Hey there, future Olympian! 
 
-## TEXT
+If you’re aiming for the Summer Olympics, figuring out which country excels in your sport can give you a serious edge. I created a Tableau dashboard using data from the 2016 Olympics to help you do just that. Whether you’re into swimming, track and field, or something more specialised, this tool breaks it all down.
+
+Simply select your sport, and the dashboard will show you which countries performed best in 2016. It’s a practical way to explore where you might find the strongest training programs, competition, and support for your Olympic journey. Ready to find your ideal match? Let’s get started! 
 
 ::: {#viz1740998658445 .tableauPlaceholder style="position: relative"}
 <noscript><a href='#'><img src="https://public.tableau.com/static/images/So/SoYouWanttobeaSummerOlympianPart22021/Olympics-whichcountry/1_rss.png" alt="Olympics - which country? " style="border: none"/></a></noscript>

@@ -4,7 +4,8 @@ categories:
     - Public Health
     - Armchair TB Project
     - Tableau
-image: "/images/population.jpgg"
+    - World Bank Databank
+image: "/images/population.jpg"
 date: "2023-02-10"
 format: 
   html:

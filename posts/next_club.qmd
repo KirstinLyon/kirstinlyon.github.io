@@ -8,7 +8,9 @@ date: "2021-04-01"
 format: html
 ---
 
-Looking for your next club in Denmark, use the data created by member counting in Denmark's clubs for your answer.
+Looking for your next sports or fitness club in Denmark? Whether you’re into football, swimming, yoga, or weightlifting, finding the right club can help you stay active and motivated. To make your search easier, we’ve built a Tableau dashboard using yearly club data from DGI, DIF, and DFF—Denmark’s leading sports organisations. This data tracks member counts across sports and fitness clubs nationwide, giving you a clear picture of which clubs are thriving and might suit your interests.
+
+With this dashboard, you can explore trends, compare clubs, and find the perfect fit for your fitness goals. Ready to find your next sports community? Let’s dive in! 
 
 ::: {#viz1741014031435 .tableauPlaceholder style="position: relative"}
 <noscript><a href='#'><img src="https://public.tableau.com/static/images/Fi/FindasportsclubinDenmark2021/Findaclub/1_rss.png" alt="Find a club " style="border: none"/></a></noscript>

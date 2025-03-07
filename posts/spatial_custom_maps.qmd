@@ -2,7 +2,7 @@
 title: "Creating Custom Shape Files in R using the SF Package"
 categories: 
     - R
-    - geospatial
+    - Geospatial
 image: "/images/maps_2/maps_2.png"
 date: "2024-03-14"
 format: 

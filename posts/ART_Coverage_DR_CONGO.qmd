@@ -4,7 +4,8 @@ categories:
     - Public Health
     - Tableau
     - R
-    - geospatial
+    - Geospatial
+    - Naomi Specturm
 image: "/images/art_in_congo/art_in_congo_0.png"
 date: "2024-03-30"
 format: html

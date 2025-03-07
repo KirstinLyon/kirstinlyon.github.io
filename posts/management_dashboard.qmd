@@ -6,7 +6,9 @@ image: "/images/management_dashboard.png"
 date: "2015-10-01"
 format: html
 ---
-Example of one dashboard to control them all.
+This Tableau dashboard offers a comprehensive management overview, initially developed for a team tasked with monitoring the end-to-end operations of complex processes. The dashboard spans key areas such as customer management, tasks, projects, and finance, providing a high-level snapshot of performance and progress. Each section in the original dashboard was connected to a dedicated dashboard, enabling users to delve into specific details for more in-depth analysis.
+
+Designed to enhance decision-making and improve visibility across various functions, this example was first demonstrated at the Copenhagen Tableau User Group. The example presented here showcases the front page, acting as a central hub for quick insights and easy navigation. Discover how this dashboard can bring clarity and efficiency to your management processes.
 
 ::: {#viz1741014525444 .tableauPlaceholder style="position: relative"}
 <noscript><a href='#'><img src="https://public.tableau.com/static/images/Ma/ManagementDashboardExample2016/Mgmtdashboardexample/1_rss.png" alt="Management Dashboard Example " style="border: none"/></a></noscript>
