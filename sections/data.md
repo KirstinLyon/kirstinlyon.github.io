@@ -56,7 +56,7 @@ format:
 - Supported the implementation of Tableau roll-out across the organization. 
 - Responsible for teaching Tableau, creating an internal community, providing support to different areas of the organisation, and a Tableau developer on other projects. 
 - Any team within the organisation could request teaching, support, or projects. 
-- Crafted dashboards for sales and opportunities for the finance and sales organisation, IT Asset Management, baking financial overview, Agronomy financial overview, and overviews for usage of Tableau server. 
+- Created dashboards for sales and opportunities for the finance and sales organisation, IT Asset Management, baking financial overview, Agronomy financial overview, and overviews for usage of Tableau server. 
 - Managed ad hoc requests and support.
 
 **Data Analyst** @Group Operational Risk, Danske Bank (July 2016 – Nov. 2016)

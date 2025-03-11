@@ -1,0 +1,53 @@
+---
+title: "Mozambique TB/HIV Coinfection Overview (Demo)"
+categories: 
+    - Tableau
+    - Public Health
+    - BI Dashboard
+image: "/images/pepfar_tb_demo/tb_demo_01.png"
+date: "2025-03-11"
+format: html
+---
+
+This demonstration presents a Business Intelligence (BI) Dashboard designed to provide comprehensive insights into TB/HIV coinfection trends and treatment outcomes at a yearly level. Developed in collaboration with the USAID team in Mozambique, this dashboard leverages publicly available data from the data.pepfar.gov website (until its recent decommissioning). The analysis focuses on key PEPFAR indicators, including TB_STAT (TB status of HIV patients), TB_STAT_POS (HIV patients with a positive TB status), and TB_ART (HIV patients on antiretroviral therapy who are also receiving TB treatment).
+
+The original dataset available to the USAID team included additional disaggregates such as age, sex, partner organization, and health facilities, as well as distinctions between new and existing cases. These granular details allow for a more nuanced understanding of the data, enabling targeted interventions and resource allocation. While TB_STAT and TB_STAT_POS were historically reported quarterly, and TB_ART was reported quarterly until 2022 (transitioning to yearly reporting thereafter), this dashboard consolidates the data at a yearly level to provide a high-level overview of trends and performance over time.
+
+Built using Tableau, this dashboard is based on a prototype originally created with the Mozambique USAID team. It serves as an example of how BI tools can transform complex datasets into actionable insights for public health decision-making. By visualizing critical metrics and disaggregated data at a yearly level, the dashboard empowers health program managers, policymakers, and stakeholders to monitor program performance, identify disparities, and develop evidence-based strategies to combat TB/HIV coinfection. This tool is particularly valuable in resource-limited settings, where data-driven decisions can significantly improve patient outcomes and optimize healthcare delivery.
+
+::: {#viz1741687666557 .tableauPlaceholder style="position: relative"}
+<noscript><a href='#'><img src="https://public.tableau.com/static/images/MY/MY3GT22D9/1_rss.png" alt="TB/HIV Coinfection (AJUDA Only) " style="border: none"/></a></noscript>
+
+<object class="tableauViz" style="display:none;">
+
+<param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='shared&#47;MY3GT22D9' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;MY&#47;MY3GT22D9&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-GB' /><param name='filter' value='publish=yes' />
+
+</object>
+:::
+
+```{=html}
+    <script type='text/javascript'>                    
+    var divElement = document.getElementById('viz1741687666557');                    
+    var vizElement = divElement.getElementsByTagName('object')[0]; 
+    
+    
+    var targetWidth = 800; // Set your target width
+    var originalWidth = 1600; // Original width
+    var originalHeight = 3227; // Original height
+        
+    // Calculate scale ratio
+    var scaleRatio = targetWidth / originalWidth;
+    
+    // Apply scale transformation
+    vizElement.style.transform = 'scale(' + scaleRatio + ')';
+    vizElement.style.transformOrigin = 'top left'; // Keep the scaling aligned to the top left
+    vizElement.style.width = originalWidth + 'px'; // Maintain original width
+    vizElement.style.height = originalHeight + 'px'; // Maintain original height
+    vizElement.style.overflow = 'hidden'; // Hide any overflow    
+                    
+    
+    var scriptElement = document.createElement('script');                    
+    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                                  vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+    
+    </script>
+```

@@ -3,6 +3,7 @@ title: "Find Your Next Club in Denmark"
 categories: 
     - Sports
     - Tableau
+    - BI Dashboard
 image: "/images/club.jpg"
 date: "2021-04-01"
 format: html

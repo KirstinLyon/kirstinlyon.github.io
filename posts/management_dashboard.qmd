@@ -2,6 +2,8 @@
 title: "One Dashboard to Control Them All (Management Dashboard Example)"
 categories: 
     - Tableau
+    - Management Dashboard
+    - BI Dashboard
 image: "/images/management_dashboard.png"
 date: "2015-10-01"
 format: html

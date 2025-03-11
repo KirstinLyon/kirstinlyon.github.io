@@ -1,5 +1,5 @@
 ---
-title: "Tools, Languages & Datasets"
+title: "Skill"
 format:
   html:
     include-in-header:
@@ -15,7 +15,7 @@ format:
 ### Tableau
 ```{=html}
 <ul class="compact">   
-    <li>Eleven years of creating Tableau dashboards in banking, biotech, and public health. </li>   
+    <li>Eleven years of creating Tableau dashboards in the finance, biotech, and public health sectors. </li>   
     <li>Organiser for the Copenhagen Tableau User Group (TUG) between 2015-2018. </li>   
     <li>Speaker at the Tableau Confenfernce Europe 2016 in London.</li> 
 </ul>
@@ -31,15 +31,15 @@ See:
 
 ### PowerBI
 
-Project for Mozambique Ministry of Health relating to maternal and child health.
+Project for Mozambique Ministry of Health related to maternal and child health.
 
 ### R
 
 ```{=html}
 <ul class="compact">   
     <li>Three years of experience in R programming. </li>   
-    <li>Tidyverse, Quarto, sf </li>   
-    <li>Package creation</li> 
+    <li>Tidyverse, Quarto, sf. </li>   
+    <li>Package creation.</li> 
 </ul>
 ```
 
@@ -58,12 +58,3 @@ See:
 ### Other
 
 <a href="https://github.com/KirstinLyon" target="_blank">GitHub</a>
-
-
-### Specialised Datasets
-
-[US President's Emergency Plan for AIDS Relief (PEPFAR) data (focused on TB and HIV)](https://www.state.gov/wp-content/uploads/2021/09/FY22-MER-2.6-Indicator-Reference-Guide.pdf)
-
-[Naomi Spectrum data (UNAIDS)](https://naomi-spectrum.unaids.org/)
-
-[Demographic Health Surveys (DHS) (USAID)](https://www.dhsprogram.com/data/)
