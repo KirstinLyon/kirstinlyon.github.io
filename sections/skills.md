@@ -29,7 +29,7 @@ See:
 </ul>
 ```
 
-### PowerBI
+### Power BI
 
 Project for Mozambique Ministry of Health related to maternal and child health.
 

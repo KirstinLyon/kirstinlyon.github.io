@@ -13,7 +13,7 @@ format:
 ---
 **Data Analytics Consultant** @USAID Mozambique (Mar. 2024 – Dec. 2024)
 
-- Created PowerBI dashboards for the Mozambique Ministry of Health supporting analysis of Maternal and Child Health and Family Planning datasets. 
+- Created Power BI dashboards for the Mozambique Ministry of Health supporting analysis of Maternal and Child Health and Family Planning datasets. 
 - Supported the USAID IHO budget team by developing monthly and quarterly dashboards that integrated Phoenix and non-Phoenix datasets, using R for data preparation and analysis and Tableau for dashboard creation. 
 - Designed and implemented a Tableau dashboard to showcase Demographic Health Surveys (DHS) data, utilizing the RDHS package to streamline data extraction and visualization.
 

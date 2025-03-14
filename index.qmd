@@ -25,6 +25,6 @@ about:
 
 
 
-Kirstin is a data analyst with experience in Tableau, PowerBI and R. Her work focuses on analysing and visualising data to support decision-making, with experience in the fields of public health, biotech and finance. Kirstin enjoys simplifying complex datasets and creating clear, informative visualisations that help others understand and use data effectively.
+Kirstin is a data analyst with experience in Tableau, Power BI and R. Her work focuses on analysing and visualising data to support decision-making, with experience in the fields of public health, biotech and finance. Kirstin enjoys simplifying complex datasets and creating clear, informative visualisations that help others understand and use data effectively.
 
 
