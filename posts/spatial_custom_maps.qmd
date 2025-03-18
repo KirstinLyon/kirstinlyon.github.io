@@ -22,7 +22,7 @@ In this example I have a dataset for the South African Development Community (SA
 
 Start by importing libraries and setting up paths.
 
-```r         
+``` r
 library(tidyverse) 
 library(sf)  
 
@@ -32,16 +32,14 @@ OUTPUT_PATH <- "Dataout/temp/"
 
 In this example, zip files were downloaded from GADM, so the next step is to unzip the files and put them in the OUTPUT_PATH.
 
-```r         
+``` r
 zip_files <- list.files(INPUT_PATH, pattern = "\\.zip$", full.names = TRUE) %>%      
     map(unzip, exdir = OUTPUT_PATH)
 ```
 
-Next read in all files with the extension .shp and merge them using the
-SF package. The countries have different levels of granularity, but this
-is not an issue when using the bind_rows function.
+Next read in all files with the extension .shp and merge them using the SF package. The countries have different levels of granularity, but this is not an issue when using the bind_rows function.
 
-```r         
+``` r
 #Read in all .shp files and merge 
 
 shapefiles <- list.files(OUTPUT_PATH, pattern = "\\.shp$", full.names = TRUE) 
@@ -53,7 +51,7 @@ merged_sf <- bind_rows(sf_list)
 
 Finally write the new merged shape file, and plot to check all countries are included.
 
-```r         
+``` r
 st_write(merged_sf, dsn = "Dataout/merged_SADC.shp") 
 plot(merged_sf)
 ```
@@ -86,7 +84,7 @@ The original dataset has Maputo and Maputo City as two separate provinces in Moz
 
 First load the necessary libraries, creating paths and update based on country and what should be merged.
 
-```r         
+``` r
 library(sf) 
 library(janitor) 
 library(tidyverse)  
@@ -99,14 +97,9 @@ GID_0 <- "MOZ"
 OUTPUT <- "Dataout/merged_province/"
 ```
 
-The `merge_province` function
-consolidates the provinces by merging them, generating the geometry for
-the resulting merged province, and eliminating the provinces that have
-been merged to prevent them from appearing as separate entities.
-Subsequently, it merges the newly created "province" with the existing
-provinces.
+The `merge_province` function consolidates the provinces by merging them, generating the geometry for the resulting merged province, and eliminating the provinces that have been merged to prevent them from appearing as separate entities. Subsequently, it merges the newly created "province" with the existing provinces.
 
-```r         
+``` r
 merge_province <- function(province_df, provinces, name, country, gid_0){          
 temp <- province_df %>%          
     filter(name_1 %in% provinces) %>%          
@@ -131,7 +124,7 @@ return(temp)
 
 Read in the original shape file, converting it to an SF object, and then plot (using sf) to check all provinces are included.
 
-```r         
+``` r
 # Read in the shapefile containing the provinces of Mozambique 
 
 original_provinces <- st_read(MOZ_EXAMPLE) %>%     
@@ -145,7 +138,7 @@ plot(original_provinces)
 
 Use the newly created function to merge the desired provinces and create a new shape file. Plot the results using sf.
 
-```r         
+``` r
 new_provinces <- original_provinces %>%      
     merge_province(PROVINCES_TO_MERGE, NAME, COUNTRY, GID_0)   
     
@@ -155,7 +148,7 @@ plot(new_provinces)
 
 Finally write the shape file as a spatial file for future use.
 
-```r         
+``` r
 # write all spatial files 
 
 sf::write_sf(new_provinces, paste0(OUTPUT,"merged_province.shp")) 
@@ -179,7 +172,7 @@ When plotted in RStudio, all provinces are displayed and Maputo and Maputo City 
 </div>
 ```
 
----
+------------------------------------------------------------------------
 
 *Other links*
 

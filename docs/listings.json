@@ -2,6 +2,7 @@
   {
     "listing": "/project.html",
     "items": [
+      "/posts/lab_times_data_example.html",
       "/posts/pepfar_tb_example.html",
       "/posts/ART_Coverage_DR_CONGO.html",
       "/posts/automate_r_batch.html",
