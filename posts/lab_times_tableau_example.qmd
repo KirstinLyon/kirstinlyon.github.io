@@ -1,0 +1,69 @@
+---
+title: "Visualizing Lab Testing Turnaround Times"
+categories: 
+    - Tableau
+    - BI Dashboard
+    - Public Health
+image: "/images/testing.jpg"
+date: "2025-03-21"
+format: html
+---
+
+The Lab Testing Turnaround Time Dashboard is a tool for understanding and improving the efficiency of fictional labs. It offers a clear and detailed look at key metrics, helping to optimise testing processes. What You'll Find:
+
+**Interactive Maps**: See where labs and healthcare facilities are located and how they perform in different regions.
+
+**Trend Tracking:** Dive into historical data to spot trends and changes in turnaround times, helping you plan better.
+
+**Outlier Spotting:** Identify any unusual delays or inefficiencies so you can take quick action.
+
+**Comparisons:** Compare labs and facilities to see who's doing well and share best practices.
+
+This dashboard was inspired by a Tableau dashboard created in collaboration with the USAID Mozambique team. It uses a dataset from the Mozambique CDC laboratory partner, the Association of Public Health Laboratories (APHL). The data presented here is fictional and was generated using R.
+
+Although this is designed for Lab Testing, it applies equally to any processes where time is essential. The live version of the dashboard is [here](https://public.tableau.com/app/profile/kirstin.lyon5886/viz/LabProcessingTimesDemo/LabTurnaroundTime).
+
+::: {#viz1742585743164 .tableauPlaceholder style="position: relative"}
+<noscript><a href='#'><img src="https://public.tableau.com/static/images/La/LabProcessingTimesDemo/LabTurnaroundTime/1_rss.png" alt="Lab: Turnaround Time " style="border: none"/></a></noscript>
+
+<object class="tableauViz" style="display:none;">
+
+<param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='views&#47;LabProcessingTimesDemo&#47;LabTurnaroundTime?:language=en-GB&amp;:embed=true&amp;:sid=&amp;:redirect=auth' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;La&#47;LabProcessingTimesDemo&#47;LabTurnaroundTime&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-GB' />
+
+</object>
+:::
+
+
+```{=html}
+<script type='text/javascript'>
+    var divElement = document.getElementById('viz1742585743164');
+    var vizElement = divElement.getElementsByTagName('object')[0];
+    var targetWidth = 800; // Set your target width
+    var originalWidth = 1600; // Original width
+    var originalHeight = 3927; // Original height
+
+    // Calculate scale ratio
+    var scaleRatio = targetWidth / originalWidth;
+
+    // Apply scale transformation
+    vizElement.style.transform = 'scale(' + scaleRatio + ')';
+    vizElement.style.transformOrigin = 'top left'; // Keep the scaling aligned to the top left
+    vizElement.style.width = originalWidth + 'px'; // Maintain original width
+    vizElement.style.height = originalHeight + 'px'; // Maintain original height
+    vizElement.style.overflow = 'hidden'; // Hide any overflow
+
+    var scriptElement = document.createElement('script');
+    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+    vizElement.parentNode.insertBefore(scriptElement, vizElement);
+</script>
+```
+
+------------------------------------------------------------------------
+
+Links
+
+[Lab Testing Turnaround Time](https://public.tableau.com/app/profile/kirstin.lyon5886/viz/LabProcessingTimesDemo/LabTurnaroundTime) (available on Tableau Public)
+
+[Data (available on GitHub)](https://github.com/KirstinLyon/lab_times)
+
+[Guide to creating sample data](/posts/lab_times_data_example.html)
