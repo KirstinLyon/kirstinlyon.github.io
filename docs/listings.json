@@ -2,6 +2,7 @@
   {
     "listing": "/project.html",
     "items": [
+      "/posts/airtable_r.html",
       "/posts/who_daily_dash.html",
       "/posts/lab_times_tableau_example.html",
       "/posts/lab_times_data_example.html",
