@@ -340,8 +340,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">run</span><span class="kw">:</span><span class="at"> mkdir -p Dataout</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Clean Dataout directory</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">run</span><span class="kw">:</span><span class="at"> rm -rf Dataout/*</span><span class="co">  # Optional: Clears the directory before running the script</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">run</span><span class="kw">:</span><span class="at"> rm -rf Dataout/*</span><span class="co">  # Optional: Clears the directory before running the script</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="4" type="1">
 <li>Check secrets have been set and return messages to confirm.</li>
 </ol>
@@ -409,7 +408,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>This walkthrough guides you through connecting to Airtable using the rairtable package in R, emphasising secure credential management by storing your Airtable API key in GitHub Secrets. You enhance security by accessing the Personal Access Token and Base ID through environment variables in your R script. Additionally, the guide demonstrates how to automate the workflow using GitHub Actions, allowing you to schedule data retrieval and updates at desired intervals. This automation ensures your data remains up-to-date without manual intervention, enabling you to focus on analysis while maintaining data synchronisation and reducing repetitive tasks.</p>
 <hr>
-<p>Links <a href="https://airtable.com">Airtable</a> <a href="https://cran.r-project.org/web/packages/rairtable/index.html">rairtable</a> <a href="https://docs.github.com/en/actions">GitHub Actions</a> <a href="https://docs.github.com/en/actions/security-guides/encrypted-secrets">GitHub Secrets</a> <a href="https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/triggering-a-workflow">GitHub Triggers</a> <a href="https://github.com/KirstinLyon/airtable_to_r">Example on GitHub</a> <a href="..\posts/who_daily_dash.html">Automating R Scripts to Fetch and Process API Data with GitHub Actions</a></p>
+<p>Links</p>
+<p><a href="https://airtable.com">Airtable</a></p>
+<p><a href="https://cran.r-project.org/web/packages/rairtable/index.html">rairtable</a></p>
+<p><a href="https://docs.github.com/en/actions">GitHub Actions</a></p>
+<p><a href="https://docs.github.com/en/actions/security-guides/encrypted-secrets">GitHub Secrets</a></p>
+<p><a href="https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/triggering-a-workflow">GitHub Triggers</a></p>
+<p><a href="https://github.com/KirstinLyon/airtable_to_r">Example on GitHub</a></p>
+<p><a href="..\posts/who_daily_dash.html">Automating R Scripts to Fetch and Process API Data with GitHub Actions</a></p>
 
 
 </section>
