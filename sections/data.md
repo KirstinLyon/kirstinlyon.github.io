@@ -21,7 +21,7 @@ format:
 
 - Created program reporting for different teams within USAID Mozambique for both PEPFAR and Non-PEPFAR indicators using Tableau and R. 
 - Reports and analysis delivered include Awards, SISMA, Supply Chain, Epidemiological and Finance-related. 
-- Other tasks include training the SI team in Tableau and GitHub and providing ad hoc Tableau support.
+- Training the Strategic Insights and Budget teams in USAID and CDC in Tableau and GitHub and providing ad hoc Tableau support.
 
 **Data Analytics Specialist** @USAID Mozambique (Feb. 2023 – Aug. 2023)
 
