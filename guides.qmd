@@ -1,0 +1,12 @@
+---
+listing: 
+    contents: posts/blog
+    type: default
+    sort: date desc
+    fields: [image, title, date, categories]
+    image-align: left
+    categories: true
+    grid-item-border: true
+    sort-ui: [title, date, categories]
+    filter-ui: true
+---

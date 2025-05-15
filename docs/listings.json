@@ -1,28 +1,23 @@
 [
   {
-    "listing": "/project.html",
+    "listing": "/guides.html",
     "items": [
-      "/posts/airtable_r.html",
-      "/posts/who_daily_dash.html",
-      "/posts/lab_times_tableau_example.html",
-      "/posts/lab_times_data_example.html",
-      "/posts/pepfar_tb_example.html",
-      "/posts/ART_Coverage_DR_CONGO.html",
-      "/posts/automate_r_batch.html",
-      "/posts/spatial_custom_maps.html",
-      "/posts/spatial_districts_coordinates.html",
-      "/posts/armchair_tb_who_data.html",
-      "/posts/armchair_tb_mortality.html",
-      "/posts/armchair_tb_bcg.html",
-      "/posts/armchair_tb_incidence.html",
-      "/posts/armchair_tb_one_indicator.html",
-      "/posts/connect_world_bank_data_bank.html",
-      "/posts/armchair_tb_intro.html",
-      "/posts/club_members.html",
-      "/posts/next_club.html",
-      "/posts/summer_olympian_p1.html",
-      "/posts/summer_olympian_p2.html",
-      "/posts/management_dashboard.html"
+      "/posts/blog/airtable_r.html",
+      "/posts/blog/who_daily_dash.html",
+      "/posts/blog/lab_times_tableau_example.html",
+      "/posts/blog/lab_times_data_example.html",
+      "/posts/blog/pepfar_tb_example.html",
+      "/posts/blog/ART_Coverage_DR_CONGO.html",
+      "/posts/blog/automate_r_batch.html",
+      "/posts/blog/spatial_custom_maps.html",
+      "/posts/blog/spatial_districts_coordinates.html",
+      "/posts/blog/armchair_tb_who_data.html",
+      "/posts/blog/connect_world_bank_data_bank.html",
+      "/posts/blog/club_members.html",
+      "/posts/blog/next_club.html",
+      "/posts/blog/summer_olympian_p1.html",
+      "/posts/blog/summer_olympian_p2.html",
+      "/posts/blog/management_dashboard.html"
     ]
   }
 ]

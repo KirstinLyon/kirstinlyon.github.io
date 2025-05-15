@@ -1,0 +1,214 @@
+---
+title: "Generating Real-World Mock Data with R — Example"
+categories: 
+    - R
+image: "/images/random_data.jpg"
+date: "2025-03-18"
+format: 
+  html:
+    css: style.css
+---
+
+Ever wanted to showcase your work but found yourself constrained by confidential data? The ideal solution is often to use a publicly available dataset that closely mirrors your project, allowing you to demonstrate your skills without compromising sensitive information. However, finding the perfect dataset can be challenging. So, what do you do when you can’t find the right one?
+
+One practical approach is to use tools like [Mockaroo](https://mockaroo.com/), which helps you generate custom datasets based on predefined rules. Alternatively, you can use R to create your dataset. This process begins by defining the columns and establishing rules to govern the data. The more detailed your rules, the more realistic your dataset will be. In this post, I’ll walk you through how I created a basic dummy dataset for laboratory testing times, inspired by my collaboration with the USAID team in Mozambique.
+
+### Data Description
+
+This dataset tracks the duration, in days, of laboratory tests' progress through four stages: collection to receipt, receipt to registration, registration to analysis, and analysis to validation. Each test is assigned a unique identifier associated with a specific health facility.
+
+To show the mapping features in Tableau, I created fictional health facilities and situated them within an imaginary country. This was done using a [map generator](https://azgaar.github.io/Fantasy-Map-Generator/) and the [Star Wars](https://dplyr.tidyverse.org/reference/starwars.html) dataset available through Tidyverse. The final dataset provides a monthly summary of all tests conducted at each health facility.
+
+### Rules
+
+**Laboratory Network**: The dataset includes 50 laboratories distributed across the fictional world of Courme.
+
+**Test Volume:** Each laboratory can process a maximum of 1,000 monthly tests.
+
+**Test Stages:** Every test undergoes four sequential stages: receipt, registration, analysis, and validation.
+
+**Data Availability:** The dataset provides monthly summaries for the year 2024.
+
+**Outliers:** To simulate real-world variability, 20% of the tests include outliers, representing atypical processing times.
+
+### Datasets Overview
+
+`country.geojson:`
+
+**Description:** This file contains the geographic outline of the fictional country, Courme. The original detailed geojson was simplified using the R library sf to better suit the project's needs.
+
+**Purpose:** Provides the base map for visualizing health facilities' distribution and provinces' distribution.
+
+`province.geojson:`
+
+**Description:** This file defines the boundaries of provinces within Courme, each named after worlds from the Star Wars universe. It was created using the sf and dplyr libraries.
+
+**Purpose:** Allows for the visualization and analysis of data at the provincial level, adding a layer of geographic detail to the dataset.
+
+`hf_info.csv:`
+
+**Description:** This dataset includes information on 50 health facilities across the fictional map. Coordinates for each facility were randomly generated, and the sf library was used to determine the province to which each facility belonged. ([Guide](/posts/spatial_districts_coordinates.html))
+
+**Purpose:** Provides essential metadata for each health facility, enabling spatial analysis and mapping of laboratory testing data.
+
+`lab_dummy_data.csv:`
+
+**Description:** Contains sample data for laboratory tests conducted at the 50 health facilities. This dataset includes information on test processing times and stages.
+
+**Purpose:** Acts as the primary dataset for demonstrating data analysis and visualization techniques, showcasing the workflow from data collection to validation.
+
+### Creating the lab_dummy_data in R
+
+In this walkthrough, I’ll guide you through generating the lab_dummy_data dataset using R. This dataset simulates laboratory testing times across 50 health facilities in the fictional world of Courme. Let's begin by setting up our environment and defining the necessary parameters.
+
+Next, we’ll define the parameters that govern our dataset. These include the number of health facilities, the maximum number of tests per month, and the time frame for the data.
+
+``` r
+# Load necessary libraries
+library(dplyr)
+library(tidyr)
+library(readr)
+library(stringr)
+
+# Define parameters
+NUM_HEALTH_FACILITIES <- 50 # number of health facilities to create
+YEAR <- 2024 #year the data is available
+MAX_NUM_TESTS <- 1000 # maximum number of tests in a month per health facility
+START_DATE <- as.Date("2024-01-01")
+END_DATE <- as.Date("2024-12-31")
+PERIOD <- seq(START_DATE, END_DATE, by = "month")  # All months in 2024
+OUTLIER <- 0.2  # % of tests that are outliers
+OUTPUT <- "Dataout/" #folder where output is saved
+```
+
+Before generating your dataset, start by reading the health facility information. This file contains the coordinates and province details for the 50 health facilities, which will be essential for later steps.
+
+To ensure reproducibility, set a seed using set.seed(). This guarantees that the same random data is generated each time you run the code. If you prefer to create new random data with each run, remove or comment out the set.seed() line.
+
+``` r
+health_facility_info <- read_csv("Data/hf_info.csv")
+
+# Set seed for reproducibility
+set.seed(123)
+```
+
+We create a base data frame that includes all health facility IDs and period combinations.
+
+``` r
+hf_data <- expand.grid(
+    hf_id = paste0("hf_", sprintf("%02d", 1:NUM_HEALTH_FACILITIES)),
+    period = PERIOD
+)
+```
+
+Here, expand.grid generates a comprehensive grid of health facility IDs and periods, setting the foundation for our dataset.
+
+Next, we add tests to each facility-period combination. Each facility can process a varying number of tests each month.
+
+``` r
+hf_data <- hf_data |>
+    rowwise() |>
+    mutate(
+        num_tests = sample(1:MAX_NUM_TESTS, n(), replace = TRUE),
+        test_id = list(paste0(hf_id, "_", period, "_", 1:num_tests)),
+    ) |>
+    unnest(test_id) |>
+    select(-num_tests)
+```
+
+*rowwise():* Ensures that operations are applied row by row.
+
+*mutate:* Add new columns, including a unique test ID for each test.
+
+*unnest(test_id):* Expands the list of test IDs into individual rows.
+
+Finally, we introduce variability by randomly assigning each test's days in each stage.
+
+``` r
+hf_data <- hf_data |>
+    mutate(
+        s1_receipt = sample(4:8, n(), replace = TRUE),
+        s2_registration = sample(1:3, n(), replace = TRUE),
+        s3_analysis = sample(3:17, n(), replace = TRUE),
+        s4_validation = sample(1:2, n(), replace = TRUE),
+    )
+```
+
+This step introduces outliers to simulate real-world variability in laboratory testing times. By setting a seed for reproducibility, we randomly select a subset of rows to modify, adding extra days to each test stage to create anomalies. This process involves conditionally increasing the duration of receipt, registration, analysis, and validation stages, making the data more challenging and realistic. Finally, we summarize the dataset by calculating average durations and test counts for each health facility and period, preparing it for further analysis and visualization.
+
+``` r
+set.seed(123)  # Reset seed for reproducibility
+
+outlier_indices <- sample(1:nrow(hf_data), size = ceiling(OUTLIER * nrow(hf_data)))  # Randomly select 1% of rows
+
+# Introduce outliers for each stage
+hf_data <- hf_data |> 
+    mutate(
+        s1_receipt = ifelse(row_number() %in% outlier_indices, s1_receipt + sample(5:20, 1), s1_receipt),
+        s2_registration = ifelse(row_number() %in% outlier_indices, s2_registration + sample(5:15, 1), s2_registration),
+        s3_analysis = ifelse(row_number() %in% outlier_indices, s3_analysis + sample(10:60, 1), s3_analysis),
+        s4_validation = ifelse(row_number() %in% outlier_indices, s4_validation + sample(5:12, 1), s4_validation)
+    ) |> 
+    
+    #group by hf_id and period to get the average for a HF each period
+    group_by(hf_id, period) |> 
+    summarise(
+        s1_receipt_avg = mean(s1_receipt),
+        s2_registration_avg = mean(s2_registration),
+        s3_analysis_avg = mean(s3_analysis),
+        s4_validation_avg = mean(s4_validation), 
+        num_tests = n(),
+        .groups = "drop"
+    )
+```
+
+In this step, we name our health facilities using characters from the Star Wars dataset. We further enrich the dataset by adding additional health facility information and categorizing each facility into fictional partner groups like “Rebellion” or “Empire” based on their province IDs. Additionally, we introduce a new column that flags certain facilities as laboratories based on their IDs. This closely mirrors the actual dataset.
+
+``` r
+#use names from Star Wars dataset for HF names
+hf_names <- starwars |> 
+    slice(1:NUM_HEALTH_FACILITIES) |> 
+    pull(name)
+
+# Create a named vector for the mapping
+hf_mapping <- setNames(hf_names, paste0("hf_", sprintf("%02d", 1:NUM_HEALTH_FACILITIES)))
+
+# Apply the mapping to the heatlh facility column. Add partners
+hf_lab_dummy_data <- hf_data |> 
+    mutate(hf_name = recode(hf_id, !!!hf_mapping),
+           hf_name = paste(hf_name, "HF", sep = " "),
+           ) |> 
+    left_join(health_facility_info, by = "hf_id") |> 
+    rename(province_id = province) |> 
+    mutate(partner = case_when (
+        province_id < 4 ~ "Rebellion",
+        province_id < 8 ~ "Empire",
+        province_id < 10 ~ "Mandalorians",
+        .default = "Resistance"),
+        # new column for is_lab - set to 1 if it hf_id contains a 2
+        is_lab = if_else(str_detect(hf_id, "5"), 1, 0)
+    )
+```
+
+Finish by saving your dataset for future use.
+
+``` r
+# Save the data to a CSV file
+write_csv(hf_lab_dummy_data, paste0(OUTPUT,"lab_dummy_data.csv"))
+```
+
+This dataset aims to simulate the complexities of real-world laboratory testing, complete with variability in test processing times. It is intended as a tool for practising data analysis and visualization techniques while maintaining the confidentiality of actual data.
+
+------------------------------------------------------------------------
+
+Links
+
+[Mockeroo](https://mockaroo.com/)
+
+[Code in GitHub](https://github.com/KirstinLyon/lab_times)
+
+[Fantasy map generator (available on GitHub)](https://azgaar.github.io/Fantasy-Map-Generator/)
+
+[Star Wars](https://dplyr.tidyverse.org/reference/starwars.html) dataset available from Tidyverse
+
+[Identifying Districts Using Coordinates with R’s SF Package](/posts/blog/spatial_districts_coordinates.html)

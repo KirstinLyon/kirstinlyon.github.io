@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2024-03-23">
 
-<title>Education, Certificates &amp; Workshops</title>
+<title>Automating R Scripts: Using Task Scheduler with Batch Files</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,24 +21,58 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f3c2ea88cadbcfb37ba28ffa2c97cfc1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-f3c2ea88cadbcfb37ba28ffa2c97cfc1.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -65,15 +100,10 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<style>
-  /* Hide the navbar immediately */
-  .navbar {
-    display: none;
-  }
-</style>
 
 
-<link rel="stylesheet" href="../styles.css">
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -83,8 +113,8 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../images/logo.png" alt="" class="navbar-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/logo.png" alt="" class="navbar-logo">
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -99,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-projects">    
         <li>
-    <a class="dropdown-item" href="../armchair_tb_project.html">
+    <a class="dropdown-item" href="../../armchair_tb_project.html">
  <span class="dropdown-text">Armchair TB</span></a>
   </li>  
         <li>
@@ -109,11 +139,11 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../guides.html"> 
+    <a class="nav-link" href="../../guides.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../about.html"> 
+    <a class="nav-link" href="../../about.html"> 
 <span class="menu-text">CV</span></a>
   </li>  
 </ul>
@@ -137,14 +167,24 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Education, Certificates &amp; Workshops</h1>
-</div>
+<h1 class="title">Automating R Scripts: Using Task Scheduler with Batch Files</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">R</div>
+    <div class="quarto-category">Automation</div>
+  </div>
+  </div>
 
 
 
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 23, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -154,23 +194,119 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="education" class="level3">
-<h3 class="anchored" data-anchor-id="education">Education</h3>
-<p><strong>PhD in Information Management &amp; Human Computer Interaction</strong> <span class="citation" data-cites="Aalborg">@Aalborg</span> University, Denmark (Feb.&nbsp;2004 - Feb.&nbsp;2008)</p>
-<p><strong>MSc in Information Technology</strong> <span class="citation" data-cites="Glasgow">@Glasgow</span> University, UK (Sep.&nbsp;2000 – Sep.&nbsp;2001)</p>
-<p><strong>BEd with Honours in Music &amp; Education</strong> <span class="citation" data-cites="Glasgow">@Glasgow</span> University &amp; Royal Conservatoire of Scotland, UK (Oct.&nbsp;1995 – July 1999)</p>
+<div style="text-align: center;">
+    <img src="../../images/automate_r/automate_r.png" alt="Alt text" width="600">
+</div>
+<p>Automating R scripts with batch files is akin to having a trusty assistant to manage data tasks efficiently. Rather than performing each task manually, you can compile all your R commands into a batch file and let it handle the workload. This not only saves time but also reduces the likelihood of errors.</p>
+<p>Furthermore, you can schedule batch files to execute at specific times, eliminating the need for manual intervention. What’s more, even individuals lacking technical expertise can utilise your R scripts with batch files, as no specialised software or coding skills are required.</p>
+<p>In this tutorial, we’ll walk through an example demonstrating the automation of three R scripts using a batch file and Windows Scheduler.</p>
+<p>Getting started:</p>
+<ul>
+<li><p>Install R (<a href="https://www.r-project.org/">link</a>)</p></li>
+<li><p>Install any libraries used in your code</p></li>
+<li><p>Windows operating system (but options exist for running batch files on a mac)</p></li>
+</ul>
+<section id="example-r-script" class="level2">
+<h2 class="anchored" data-anchor-id="example-r-script">Example R script</h2>
+<p>The following example generates a CSV file utilizing the Star Wars dataset provided by ggplot2, a package within Tidyverse. The data manipulation is facilitated by the dplyr and janitor packages, while the here package assists in identifying the project path. In this scenario, the output file is intended to be saved in a folder named Data within the same directory as the R script.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here) </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(janitor)  </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the output file path relative to the location of the script </span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>output_file <span class="ot">&lt;-</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"Data"</span>, <span class="st">"starwars_df.csv"</span>) </span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate the CSV file </span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>starwars_df <span class="ot">&lt;-</span> starwars <span class="sc">%&gt;%</span>      </span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(name, species, homeworld) <span class="sc">%&gt;%</span>      </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">clean_names</span>() <span class="sc">%&gt;%</span>      </span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">write_csv</span>(output_file)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="certificates" class="level3">
-<h3 class="anchored" data-anchor-id="certificates">Certificates</h3>
-<p><strong>Tableau Desktop Certified Professional</strong> <span class="citation" data-cites="Tableau">@Tableau</span> (May 2018)</p>
-<p><strong>Tableau Desktop Qualified Associate</strong> <span class="citation" data-cites="Tableau">@Tableau</span> (July 2017)</p>
-<p><strong>Professional Scrum Master</strong> <span class="citation" data-cites="scrum.org">@scrum.org</span> (Jan.&nbsp;2014)</p>
-<p><strong>Prince 2 Foundation</strong> <span class="citation" data-cites="APMG">@APMG</span> International (Aug.&nbsp;2011)</p>
-<p><strong>Prince 2 Practitioner</strong> <span class="citation" data-cites="APMG">@APMG</span> International (Aug.&nbsp;2011)</p>
+<section id="example-batch-file" class="level2">
+<h2 class="anchored" data-anchor-id="example-batch-file">Example Batch File</h2>
+<p>A batch file is a script file containing a series of commands that are executed sequentially by the command interpreter on a computer system. In the Windows operating system, batch files typically have a “.bat” extension.</p>
+<p>Batch files are commonly used to automate repetitive tasks, perform system administration tasks, and run sequences of commands or programs without manual intervention. They are essentially text files containing a list of commands that would otherwise have to be entered individually at the command prompt.</p>
+<hr>
+<p>The following batch file is used to automate the example R scripts.</p>
+<p>Start by defining your paths. Update the placeholder path below with the correct path to your Rscript.exe. Replace <code>"C:\Program Files\R\R-4.3.3\bin\Rscript.exe"</code> with the actual path to your Rscript.exe, and <code>"C:\Path\to\your\R\script.R"</code> with the path to your R script. This batch file will execute the specified R script using Rscript.exe. You can add more commands or scripts after the execution of the R script as needed.</p>
+<pre><code>REM Define the path to Rscript executable 
+set "rscript=C:\Program Files\R\R-4.3.3\bin\Rscript.exe</code></pre>
+<p>With this script, <code>COMMON_PATH</code> will be set to the directory where the batch file is located, assuming the batch file is in the same folder as your R scripts. If you want to set <code>COMMON_PATH</code> as an absolute path, uncomment the line and replace <code>"C:\absolute\path\to\R\scripts"</code> with your desired absolute path.</p>
+<pre><code>REM Get the directory of the batch file 
+set "batch_dir=%~dp0"  
+
+REM Set the common path relative to the batch file location 
+set "common_path=%batch_dir%..\Scripts\"  
+
+REM Replace the common path with an absolute path if needed REM 
+set "COMMON_PATH=C:\absolute\path\to\R\scripts"  
+
+REM Prints the common path to the console 
+echo %common_path%</code></pre>
+<p>Next, specify the paths to your R scripts. In this example, all three files are located in the same folder, and the common path has been previously defined. However, if the R scripts are located in different folders, you can store their absolute paths directly here instead of creating a common path variable.</p>
+<pre><code>REM Define the path to the R script 
+set "rscript_file1=%common_path%script_1.R" 
+set "rscript_file2=%common_path%script_2.R" 
+set "rscript_file3=%common_path%script_3.R"</code></pre>
+<p>Run the R scripts.</p>
+<pre><code>REM Execute the R script 
+"%rscript%" "%rscript_file1%" 
+"%rscript%" "%rscript_file2%" 
+"%rscript%" "%rscript_file3%"</code></pre>
+<p>The “pause” command prevents the console from closing, allowing you to view the output generated during the execution of the batch file. On the other hand, the “exit” command will close the console immediately after the batch file finishes executing.</p>
+<pre><code>PAUSE</code></pre>
+<p>To execute, simply double-click the batch file (typically saved with a .bat extension).</p>
 </section>
-<section id="workshops" class="level3">
-<h3 class="anchored" data-anchor-id="workshops">Workshops</h3>
-<p><strong>DataViz Drawing</strong> with Stefanie Posavec <span class="citation" data-cites="Graphic">@Graphic</span> Hunters (1 day workshop) (Apr.&nbsp;2018)</p>
+<section id="automating-a-batch-file-with-windows-task-scheduler" class="level2">
+<h2 class="anchored" data-anchor-id="automating-a-batch-file-with-windows-task-scheduler"><strong>Automating a batch file with Windows Task Scheduler</strong></h2>
+<p>Windows Task Scheduler is a built-in utility in the Windows operating system that allows users to schedule and automate various tasks to run at specific times or in response to specific events. It provides a graphical user interface (GUI) that enables users to create, modify, and delete scheduled tasks easily.</p>
+<p>With Windows Task Scheduler, users can schedule tasks such as running programs, scripts, or batch files, as well as performing system maintenance tasks like disk cleanup or system backups. Tasks can be scheduled to run once, at a specified time and date, or on a recurring basis, such as daily, weekly, or monthly.</p>
+<p>Tasks can also be triggered by specific events, such as when the computer starts up, when a user logs on, or when a particular system event occurs. Additionally, Task Scheduler provides options for configuring task settings, including specifying the user account under which the task will run, setting priority levels, and defining conditions for task execution.</p>
+<p>Overall, Windows Task Scheduler is a versatile tool that helps users automate routine tasks, improve productivity, and ensure that important processes are executed reliably and on schedule.</p>
+<hr>
+</section>
+<section id="create-a-task" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-task">Create a Task</h2>
+<ol type="1">
+<li>Open Task Scheduler and select “Create Basic Task”.</li>
+</ol>
+<div style="text-align: center;">
+    <img src="../../images/automate_r/automate_r_1.png" alt="Alt text" width="600">
+</div>
+<p>Add a name and description for your task.</p>
+<div style="text-align: center;">
+    <img src="../../images/automate_r/automate_r_2.png" alt="Alt text" width="600">
+</div>
+<p>Select the schedule</p>
+<div style="text-align: center;">
+    <img src="../../images/automate_r/automate_r_3.png" alt="Alt text" width="600">
+</div>
+<p>Depending on which trigger is selected, and separate window opens.</p>
+<div style="text-align: center;">
+    <img src="../../images/automate_r/automate_r_4.png" alt="Alt text" width="600">
+</div>
+<p>The only option available is to start a program (this includes a batch file).</p>
+<div style="text-align: center;">
+    <img src="../../images/automate_r/automate_r_5.png" alt="Alt text" width="600">
+</div>
+<p>Browse for your batch file.</p>
+<div style="text-align: center;">
+    <img src="../../images/automate_r/automate_r_6.png" alt="Alt text" width="600">
+</div>
+<p>The final window is a summary of the task.</p>
+<div style="text-align: center;">
+    <img src="../../images/automate_r/automate_r_7.png" alt="Alt text" width="600">
+</div>
+<hr>
+<p>n short, automating R scripts with batch files and task schedulers offers numerous benefits, but two standout advantages are worth highlighting. Firstly, it enables you to effortlessly run scripts in the background, freeing up time for other tasks. Secondly, it simplifies script execution for anyone, regardless of their familiarity with R, fostering collaboration and knowledge sharing within your team.</p>
+<hr>
+</section>
+<section id="links" class="level2">
+<h2 class="anchored" data-anchor-id="links">Links</h2>
+<p><a href="https://github.com/KirstinLyon/run_r_with_bat_file/tree/main">Working example</a> (available on GitHub)</p>
+<p><a href="https://www.tidyverse.org/">Tidyverse</a> (suite of R pacakages)</p>
+<p><a href="https://here.r-lib.org/">Here</a> (R package)</p>
+<p><a href="https://sfirke.github.io/janitor/">Janitor</a> (R package)</p>
 
 
 </section>
