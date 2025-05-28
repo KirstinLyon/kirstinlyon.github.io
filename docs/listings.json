@@ -2,6 +2,7 @@
   {
     "listing": "/guides.html",
     "items": [
+      "/posts/blog/python_project_setup.html",
       "/posts/blog/airtable_r.html",
       "/posts/blog/who_daily_dash.html",
       "/posts/blog/lab_times_tableau_example.html",
