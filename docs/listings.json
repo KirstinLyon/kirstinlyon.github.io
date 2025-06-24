@@ -2,6 +2,7 @@
   {
     "listing": "/guides.html",
     "items": [
+      "/posts/blog/one_input_rule_all.html",
       "/posts/blog/python_project_setup.html",
       "/posts/blog/airtable_r.html",
       "/posts/blog/who_daily_dash.html",
