@@ -11,6 +11,8 @@ website:
         menu:
           - text: "Armchair TB"
             href: armchair_tb_project.html
+          - text: "Visualizing Lab Testing Turnaround Times"
+            href: posts/project/lab_times_tableau_example.html
           - text: "Kickout"
             href: https://kirstinlyon.shinyapps.io/kickout/
       - text: "Blog"
