@@ -1,0 +1,9 @@
+---
+title: "How To: Your Own DHIS2 Setup in Docker"
+categories: 
+    - Docker
+    - DHIS2
+image: "/images/airtable_r/airtable_overview.jpg"
+date: "2025-07-3"
+format: html
+---

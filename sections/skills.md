@@ -25,7 +25,7 @@ See:
 ```{=html}
 <ul class="compact">  
   <li><a href="https://public.tableau.com/app/profile/kirstin.lyon5886/vizzes" target="_blank">Tableau Public</a></li>
-  <li><a href="https://mltwelve.com/project.html#category=Tableau" onclick="window.top.location.href=this.href; return false;">All Tableau Posts</a></li>
+  <li><a href="https://mltwelve.com/guides.html#category=Tableau" onclick="window.top.location.href=this.href; return false;">All Tableau Posts</a></li>
 </ul>
 ```
 
