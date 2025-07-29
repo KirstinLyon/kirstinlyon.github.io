@@ -9,16 +9,26 @@ website:
     left:
       - text: "Projects"
         menu:
+
           - text: "Armchair TB"
             href: armchair_tb_project.html
+          - text: "Mozambique TB/HIV Coinfection Overview (Demo)"
+            href: posts/project/pepfar_tb_example.html
           - text: "Visualizing Lab Testing Turnaround Times"
             href: posts/project/lab_times_tableau_example.html
+          - text: "Kickout"
+            href: https://kirstinlyon.shinyapps.io/kickout/
           - text: "So, You Want to be a Summer Olympian? (Part 1)"
             href: posts/project/summer_olympian_p1.html
           - text: "So, You Want to be a Summer Olympian? (Part 2)"
             href: posts/project/summer_olympian_p2.html
-          - text: "Kickout"
-            href: https://kirstinlyon.shinyapps.io/kickout/
+          - text: "Where are all the members?"
+            href: posts/project/club_members.html 
+          - text: "Find Your Next Club in Denmark"
+            href: posts/project/next_club.html  
+          - text: "Management Dashboard"
+            href: posts/project/management_dashboard.html  
+
       - text: "Blog"
         href: guides.html
       - text: "CV"

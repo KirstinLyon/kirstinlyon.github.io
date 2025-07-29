@@ -100,10 +100,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>
+  /* Hide the navbar immediately */
+  .navbar {
+    display: none;
+  }
+</style>
 
 
 <link rel="stylesheet" href="../../styles.css">
-<link rel="stylesheet" href="style.css">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -133,8 +138,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Armchair TB</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../../posts/project/pepfar_tb_example.html">
+ <span class="dropdown-text">Mozambique TB/HIV Coinfection Overview (Demo)</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../../posts/project/lab_times_tableau_example.html">
  <span class="dropdown-text">Visualizing Lab Testing Turnaround Times</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="https://kirstinlyon.shinyapps.io/kickout/">
+ <span class="dropdown-text">Kickout</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../posts/project/summer_olympian_p1.html">
@@ -145,8 +158,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">So, You Want to be a Summer Olympian? (Part 2)</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="https://kirstinlyon.shinyapps.io/kickout/">
- <span class="dropdown-text">Kickout</span></a>
+    <a class="dropdown-item" href="../../posts/project/club_members.html">
+ <span class="dropdown-text">Where are all the members?</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../posts/project/next_club.html">
+ <span class="dropdown-text">Find Your Next Club in Denmark</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../posts/project/management_dashboard.html">
+ <span class="dropdown-text">Management Dashboard</span></a>
   </li>  
     </ul>
   </li>
@@ -181,9 +202,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-title">
 <h1 class="title">Connect To World Bank DataBank Using R</h1>
   <div class="quarto-categories">
-    <div class="quarto-category">R</div>
     <div class="quarto-category">Public Health</div>
     <div class="quarto-category">Armchair TB Project</div>
+    <div class="quarto-category">R</div>
   </div>
   </div>
 
@@ -208,7 +229,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div style="text-align: center;">
-    <img src="../../images/medium_worldbank_databank.jpg" alt="Analysts reviewing data" width="600">
+    <img src="../../images/medium_worldbank_databank.jpg" alt="Analysts reviewing data" width="500">
 </div>
 <p>The <a href="https://databank.worldbank.org/">World Bank DataBank</a> provides access to open and free global development data. As of February 2023, there are 20152 indicators available for 299 regions/countries for 55 sources with data going back decades.</p>
 <p>Thanks to Jesse Pilburn it it easy to access this large dataset by using his <a href="https://www.rdocumentation.org/packages/wbstats/versions/1.0.4">wbstats</a> package in R. This article walks through how to use this package to download indicators.</p>
@@ -288,13 +309,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Once downloaded, the CSV file looks like this (1 row per country, per year per indicator):</p>
 <div style="text-align: center;">
-    <img src="../../images/medium_worldbank_databank_output.png" alt="Alt text" width="600">
+    <img src="../../images/medium_worldbank_databank_output.png" alt="Alt text" width="500">
 </div>
 
 <hr>
 <p>All code can be found on the project <a href="https://github.com/KirstinLyon/Armchair-TB">Armchair TB</a> in GitHub.</p>
 <p>Article published on <a href="https://medium.com/@kirstin.lyon">Medium</a></p>
-<p><a href="armchair_tb_project.html">See project introduction</a></p>
+<p><a href="../..\posts/project/armchair_tb_intro.html">See project introduction</a></p>
 <hr>
 
 
