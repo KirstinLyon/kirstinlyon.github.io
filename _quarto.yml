@@ -29,9 +29,9 @@ website:
           - text: "Management Dashboard"
             href: posts/project/management_dashboard.html  
 
-      - text: "Blog"
+      - text: "Guides"
         href: guides.html
-      - text: "CV"
+      - text: "Skills"
         href: about.html
 
     

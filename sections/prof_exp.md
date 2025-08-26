@@ -12,9 +12,13 @@ format:
         </style>
 ---
 
-### **Independent BI Consultant/Project Manager \| MLTwelve** (Jul. 2019 – Present) 
+### **Independent BI Consultant/Project Manager \| MLTwelve** (Jul. 2019 – Present)
 
 Experienced in leading cross-functional analytics projects, delivering Tableau and Power BI solutions with R-supported data processing. Skilled in managing full rollouts and providing training to drive adoption. Using Copilot to optimise scripts.
+
+**Developer \| Santa Shoebox Project (South Africa)**
+
+Improved data capture and built reports for four programme areas in Google Looker Studio.
 
 **Developer \| Two scenarios**
 

@@ -7,12 +7,12 @@ css: styles.css  # Make sure the file name matches exactly
 <div class="container">
   <div class="left-column">
     <ul class = "no-bullets">
-      <li><a href="sections/prof_exp.html" target="content-frame">Professional Experience</a></li>
+      <!--<li><a href="sections/prof_exp.html" target="content-frame">Professional Experience</a></li>-->
       <li><a href="sections/skills.html" target="content-frame">Skills</a></li>
-      <li><a href="sections/sharing.html" target="content-frame">Teaching, Presentation & User Groups</a></li>
-      <li><a href="sections/education.html" target="content-frame">Education, Certificates & Workshops</a></li>
+      <!-- <li><a href="sections/sharing.html" target="content-frame">Teaching, Presentation & User Groups</a></li>-->
+      <!-- <li><a href="sections/education.html" target="content-frame">Education, Certificates & Workshops</a></li> -->
     </ul>
-    <p><a href="/files/cv.pdf" target="_blank">Download CV</a></p>
+    <!-- <p><a href="/files/cv.pdf" target="_blank">Download CV</a></p>-->
   </div>
       
 

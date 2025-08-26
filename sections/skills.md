@@ -55,6 +55,10 @@ See:
 </ul>
 ```
 
+### Google Looker Studio
+
+Project for the Santa Shoebox Project showing overview of four of their programmes. 
+
 ### Other
 
 <a href="https://github.com/KirstinLyon" target="_blank">GitHub</a>
